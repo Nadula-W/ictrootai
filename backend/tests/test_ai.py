@@ -9,6 +9,7 @@ def test_offline_admin_status(signed,monkeypatch):
     c=signed(3,'admin');r=c.get('/api/admin/ai');assert r.status_code==200 and not r.json()['connected']
     signed();assert len(c.get('/api/assessments').json())==1
 def test_generation_offline_fallback(signed,monkeypatch):
+    monkeypatch.setattr(ai,'require_generation_setup',lambda *args:None)
     monkeypatch.setattr(ai,'generate',lambda *args:(_ for _ in ()).throw(httpx.ConnectError('offline')))
     r=signed(2,'teacher').post('/api/ai/generate',json={'outcome_id':'3.1-test'})
     assert r.status_code==503 and 'manual' in r.json()['detail'].lower()

@@ -19,7 +19,7 @@ class User(Base):
 class Session(Base):
     __tablename__ = 'sessions'
     token_hash: Mapped[str] = mapped_column(String(64), primary_key=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'))
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), index=True)
     expires: Mapped[datetime] = mapped_column(DateTime(timezone=True))
 
 class CurriculumVersion(Base):
@@ -32,7 +32,7 @@ class CurriculumVersion(Base):
 class Unit(Base):
     __tablename__ = 'units'
     id: Mapped[int] = mapped_column(primary_key=True)
-    version_id: Mapped[str] = mapped_column(ForeignKey('curriculum_versions.id'))
+    version_id: Mapped[str] = mapped_column(ForeignKey('curriculum_versions.id'), index=True)
     name: Mapped[str] = mapped_column(String(200))
     grade: Mapped[int | None]
     verified: Mapped[bool] = mapped_column(default=False)
@@ -72,7 +72,7 @@ class Question(Base):
     explanation: Mapped[str] = mapped_column(Text)
     status: Mapped[str] = mapped_column(default='draft', index=True)
     sources: Mapped[list] = mapped_column(JSON, default=list)
-    author_id: Mapped[int | None] = mapped_column(ForeignKey('users.id'), nullable=True)
+    author_id: Mapped[int | None] = mapped_column(ForeignKey('users.id'), nullable=True, index=True)
     rubric: Mapped[list] = mapped_column(JSON, default=list)
 
 class Translation(Base):
@@ -87,8 +87,8 @@ class Translation(Base):
 class Validation(Base):
     __tablename__ = 'question_validations'
     id: Mapped[int] = mapped_column(primary_key=True)
-    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'))
-    reviewer_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
+    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'), index=True)
+    reviewer_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
     decision: Mapped[str]
     reason: Mapped[str] = mapped_column(Text)
     created: Mapped[datetime] = mapped_column(default=now)
@@ -97,35 +97,35 @@ class ClassRoom(Base):
     __tablename__ = 'classes'
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
-    teacher_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
+    teacher_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
     grade: Mapped[int]
     code: Mapped[str] = mapped_column(unique=True)
 
 class Membership(Base):
     __tablename__ = 'class_memberships'
     class_id: Mapped[int] = mapped_column(ForeignKey('classes.id'), primary_key=True)
-    student_id: Mapped[int] = mapped_column(ForeignKey('users.id'), primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey('users.id'), primary_key=True, index=True)
 
 class Assessment(Base):
     __tablename__ = 'assessments'
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str]
-    teacher_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
-    class_id: Mapped[int] = mapped_column(ForeignKey('classes.id'))
+    teacher_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
+    class_id: Mapped[int] = mapped_column(ForeignKey('classes.id'), index=True)
     duration: Mapped[int]
     published: Mapped[bool] = mapped_column(default=False)
 
 class AssessmentQuestion(Base):
     __tablename__ = 'assessment_questions'
     assessment_id: Mapped[int] = mapped_column(ForeignKey('assessments.id'), primary_key=True)
-    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'), primary_key=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'), primary_key=True, index=True)
     position: Mapped[int]
 
 class Attempt(Base):
     __tablename__ = 'student_attempts'
     id: Mapped[int] = mapped_column(primary_key=True)
     assessment_id: Mapped[int] = mapped_column(ForeignKey('assessments.id'))
-    student_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
+    student_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
     started: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
     submitted: Mapped[bool] = mapped_column(default=False)
     __table_args__ = (UniqueConstraint('assessment_id', 'student_id'),)
@@ -133,18 +133,18 @@ class Attempt(Base):
 class Answer(Base):
     __tablename__ = 'student_answers'
     attempt_id: Mapped[int] = mapped_column(ForeignKey('student_attempts.id'), primary_key=True)
-    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'), primary_key=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'), primary_key=True, index=True)
     value: Mapped[str] = mapped_column(Text)
     score: Mapped[float | None] = mapped_column(nullable=True)
     reason: Mapped[str] = mapped_column(Text, default='Awaiting submission')
-    reviewed_by: Mapped[int | None] = mapped_column(ForeignKey('users.id'), nullable=True)
+    reviewed_by: Mapped[int | None] = mapped_column(ForeignKey('users.id'), nullable=True, index=True)
 
 class TeacherReview(Base):
     __tablename__ = 'teacher_reviews'
     id: Mapped[int] = mapped_column(primary_key=True)
-    attempt_id: Mapped[int] = mapped_column(ForeignKey('student_attempts.id'))
-    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'))
-    teacher_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
+    attempt_id: Mapped[int] = mapped_column(ForeignKey('student_attempts.id'), index=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'), index=True)
+    teacher_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
     score: Mapped[float]
     reason: Mapped[str] = mapped_column(Text)
 

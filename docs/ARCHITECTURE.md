@@ -1,27 +1,47 @@
 # Architecture and trust boundaries
 
-The browser speaks to same-origin `/api`; Next.js rewrites to loopback FastAPI. FastAPI owns authentication, authorization, question-key filtering, review decisions, assessment timing and persistence. SQLAlchemy supports SQLite locally and a private Supabase PostgreSQL connection. Ollama is loopback-only and receives curriculum material, not student information.
+The browser speaks to same-origin `/api`; Next.js forwards requests to FastAPI. FastAPI owns authentication, authorization, answer-key filtering, assessment timing and transactions. **Supabase PostgreSQL is the only application database.** SQLAlchemy uses a private psycopg connection configured in `backend/.env`; no SQLite application-storage fallback exists. Ollama stays loopback-only.
 
-## Schema
+## Persistent schema and connections
 
-`users → sessions`; `classes → class_memberships`; `curriculum_versions → units → learning_outcomes → learning_resources / questions`; `questions → translations / question_validations`; `classes → assessments → assessment_questions`; `assessments → student_attempts → student_answers`; `student_answers → teacher_reviews` (attempt and question references); `ai_generation_logs`; `app_settings`.
+The 18 application tables cover users/sessions, classes/memberships, curriculum versions/units/outcomes, resources, questions/translations/validation, assessments/question selection, attempts/answers, teacher reviews, AI logs and settings. Foreign keys enforce references; a unique constraint permits one attempt per assessment/student. New migrations add missing access-path/foreign-key indexes and backend-only access controls without rewriting applied revisions.
 
-User role is a constrained API-managed string; source of authority is the DB. Structured question options, answer keys, rubrics and source references live in JSON fields. Every outcome has a unique application ID, competency-level reference, source page, review flag and timestamp. Grade mappings can be null to avoid invented classification.
+Options, keys, rubrics and source references are JSON documents. Resource embeddings include model identity. Progress is derived from finalized answers. Grade mappings stay null when official classification is unverified.
+
+The backend has a bounded pool with stale-connection checks and timeouts. Supabase session pooling supports a persistent Windows backend on IPv4. Remote connections require TLS; credentials are never sent to the frontend or printed in logs. Configuration/health checks report missing or unavailable PostgreSQL explicitly.
+
+Authentication remains scrypt plus opaque server-side sessions; it does not use Supabase Auth or browser JWT claims. Migrations enable RLS and revoke `PUBLIC`, `anon` and `authenticated` access to application tables/sequences and migration metadata. The runtime connection must own the application tables or have explicit server-role grants/policies. Broad browser grants are not a fix for backend configuration errors.
 
 ## Assessment lifecycle
 
-Only approved immutable questions enter assessments. Class ownership controls teacher operations; membership and publication control student access. One attempt per assessment/student is enforced by a database unique constraint. Start is idempotent. Server time defines a deadline. Autosaved answers are mutable only before deadline and submission. A conditional update serializes saves and submission; duplicate submissions return 409. Results, keys and misconception labels are available to the owning student only after submission. Teachers can see keys in their authorized question bank.
+Only approved immutable questions enter assessments. Teacher operations enforce class ownership; student operations require membership and publication. Start is idempotent. Server time sets the deadline. Saves are allowed only before deadline/submission. PostgreSQL row locking and conditional updates serialize saves with submission; duplicate submissions return 409.
 
-Scoring uses normalized 0–1 per question. Deterministic strategies handle MCQ, numbers, Boolean equivalence, approved expected output and SQL fixture results. Descriptive answers stay pending until a teacher stores a score/reason. Overrides are audited. Missing responses score zero. No LLM has final-score authority.
+Student responses exclude keys, explanations, rubrics and misconception labels before submission. Results reveal the approved answer and grading reason afterward. Teachers see keys in their authorized question bank and review their class submissions.
 
-SQL query execution uses a new in-memory SQLite DB for each comparison. Only fixture CREATE TABLE/INSERT statements are accepted; ATTACH/DETACH/PRAGMA/virtual tables are denied. Student SELECT/WITH queries run with an authorizer, function allowlist, size limits, instruction budget and row cap. This is bounded SQL evaluation, not a general-purpose isolated code sandbox. Student Python execution is absent.
+Each question currently contributes 0–1. Deterministic strategies cover MCQs, integer base conversions, Boolean equivalence, approved expected outputs and SQL fixture results. Descriptive scores remain pending until teacher review. Overrides require a reason and create an audit record. Detected malformed legacy technical configurations are deferred for teacher review. LLM confidence never determines final verified marks.
 
-## Content lifecycle
+## Isolated SQL-answer grading
 
-PDF/table extraction → unverified outcomes → administrator source review. Resource upload → unreviewed chunks → administrator review → local embedding. Retrieval uses only matching-outcome reviewed resources with current-model vectors and a similarity threshold. Local schema-constrained generation → draft → teacher review with reason → immutable approval. Source attachment establishes provenance, not automatic correctness. Sinhala drafts have an independent review flag; original English remains authoritative until translation review.
+Student SQL runs against a fresh **in-memory SQLite exercise database** per comparison. It is independent of PostgreSQL, contains approved exercise fixtures only, stores no application records and never connects to Supabase.
 
-## Local security and deployment limits
+Fixtures accept bounded CREATE TABLE/INSERT statements. ATTACH/DETACH/PRAGMA/virtual tables are denied. Student SELECT/WITH queries use a read-only authorizer, function allowlist, size limit, instruction budget and row cap. Comparisons preserve duplicate counts and normalize numeric equivalence. SQLite exercise semantics do not claim full PostgreSQL dialect support. Arbitrary student Python execution is absent.
 
-Passwords use per-user salts and scrypt. Session tokens have 384 bits of random entropy and only SHA-256 hashes are stored. Cookies are HttpOnly, SameSite Strict and optionally Secure; non-development configuration requires Secure cookies. Server-side sessions expire after 12 hours. Mutations reject foreign browser origins. Expensive AI operations and login attempts are process-rate-limited. HTML in questions is rendered as React text, never injected markup.
+## Content and AI lifecycle
 
-Uploads are not stored under user-supplied filesystem paths and are size-limited. File parsers still warrant worker isolation for public multi-tenant deployment. Rate limits are in-memory and unsuitable for multiple workers without shared storage. Deployment needs HTTPS, explicit trusted origins/proxy settings, database least privilege, monitoring, user recovery and operational backups. No claim of a completed penetration test is made.
+PDF extraction produces unverified outcomes. Administrators compare wording, mappings and pages with the official source. Uploaded passages become unreviewed chunks, then reviewed notes, then locally indexed embeddings. Retrieval uses matching-outcome reviewed chunks with current-model vectors and a relevance threshold.
+
+Question bank checks readiness before generation: verified outcome, local models, reviewed material and a current index. Setup-only failures do not spend inference quota; actual attempts remain limited and include retry guidance.
+
+Schema-constrained local generation creates a draft with sources. Teacher approval enables assessment use. Provenance alone is not proof of correctness. Student data stays out of prompts/logs, and the model cannot modify DB records. Sinhala drafts have independent review status while English originals remain preserved.
+
+## Legacy migration and tests
+
+The former SQLite application file is preserved privately in `backups/` until its records are imported and verified. The one-time importer reads that source and writes to migrated PostgreSQL tables; it is not a runtime storage mode. Never remove the only copy of user records or report migration success without verification.
+
+Database integration tests require a separate `TEST_DATABASE_URL` and create constrained generated PostgreSQL schemas. They never select the application database implicitly or fall back to SQLite. Pure grading/configuration tests can run without a database. Skipped integration tests remain an explicit verification limitation.
+
+## Deployment limits
+
+Session tokens have 384 bits of entropy; only hashes are stored. Cookies are HttpOnly/SameSite Strict; non-development requires Secure cookies. Sessions expire after 12 hours. Mutations reject foreign browser origins. React renders question content as text rather than injected HTML.
+
+Public multi-tenant deployment still needs parser worker isolation, shared rate-limit storage for multiple workers, HTTPS/proxy configuration, least-privilege server roles, monitoring, account recovery and tested backups. PostgreSQL storage removes the local-file bottleneck but does not complete those operational requirements.

@@ -1,177 +1,194 @@
-
 # ICTRoot AI
 
-A locally runnable Sri Lankan A/L ICT learning and assessment application built with Next.js, FastAPI, SQLAlchemy and Ollama. It includes complete local student/teacher assessment workflows and an administrator workspace. **This is a working research foundation with partial curriculum verification, not a fully populated or production-certified complete-syllabus product.** See [implementation status](IMPLEMENTATION_STATUS.md) for exact limits.
+A Sri Lankan A/L ICT learning and assessment application with a Next.js frontend, FastAPI backend, **Supabase PostgreSQL application database**, and local Ollama AI. The application has no SQLite storage fallback.
+
+**The curriculum is still partially populated.** The supplied corpus has 359 unverified outcome candidates, one source-checked number-conversion outcome and seven original demonstration questions. See [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for current verification results and unfinished work.
 
 ![Student workspace](docs/student-dashboard.png)
 
-## What works
+## Start the application
 
-- Registration, password login, HttpOnly session cookies, database-backed student/teacher/admin roles, session revocation and logout.
-- Classes, enrolment by class code, approved-question bank, manual JSON drafts, approval/rejection with review reasons, mixed-outcome assessment creation and class assignment.
-- Timed attempts, server-side answer persistence, resume after interruption, locked submission, deterministic feedback, results, revision history and outcome performance.
-- MCQ option-ID marking, integer base conversion, bounded Boolean truth-table equivalence, approved output comparison and read-only SQL result comparison in disposable SQLite.
-- Structured/short answers with approved rubrics remain pending until teacher marking. Teacher overrides store a reason and audit record. Scores are normalized 0–1 per question.
-- Official PDF import candidates for all 14 syllabus areas; outcome editing/import; resource PDF/TXT/JSON ingestion, chunk review and indexing; honest coverage reporting.
-- Real Ollama model discovery/configuration, local `/api/chat` JSON-schema validation, local `/api/embed` integration and cosine vector retrieval restricted to reviewed resources for the chosen outcome. Generated questions remain drafts.
-- Sinhala preference, reviewed-translation workflow and explicit English fallback. English originals and answer IDs stay intact.
-- Administrator user-role management, actual AI status, health checks, private generation-status logs and teacher CSV exports.
+Use two **Command Prompt** terminals after the database setup below.
 
-## Windows setup from a clean computer
+Backend:
 
-Install Node.js 24 LTS, Python 3.13 (with Python available on PATH), and Ollama for Windows. Git is optional. Open PowerShell in the project directory; the commands below assume `E:\ictrootai`.
-
-```powershell
-cd E:\ictrootai
-# Only if PowerShell blocks local scripts; applies to this terminal only:
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\scripts\setup-backend.ps1
-.\scripts\setup-frontend.ps1
+```cmd
+cd /d E:\ictrootai\backend
+.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-Backend setup creates `backend/.venv`, installs pinned dependencies, copies `.env.example` if needed, extracts the included syllabus, migrates SQLite, and seeds original demonstration questions. **Save the randomly generated password printed by the seed command.** The three local accounts are:
+Frontend:
 
-| Role | Email |
-| --- | --- |
-| Student | `student@ictroot.local` |
-| Teacher | `teacher@ictroot.local` |
-| Administrator | `admin@ictroot.local` |
-
-Seeding is idempotent and refuses non-development environments. These accounts use ordinary password authentication; there is no bypass login endpoint. If the database was already seeded and you need a password:
-
-```powershell
-cd E:\ictrootai\backend
-.\.venv\Scripts\python.exe -m app.reset_demo_password
+```cmd
+cd /d E:\ictrootai\frontend
+npm run dev
 ```
 
-Start the services in **two terminals**:
+Open **http://localhost:3000**. API documentation is at **http://127.0.0.1:8000/docs**. Keep both terminals open; Ctrl+C stops each service. Ollama uses **http://127.0.0.1:11434**.
 
-```powershell
-# Terminal 1
-cd E:\ictrootai
-.\scripts\start-backend.ps1
+## First-time setup
+
+Install Node.js 24 LTS, Python 3.13 and Ollama for Windows. Commands below use Command Prompt and a project-local virtual environment.
+
+```cmd
+cd /d E:\ictrootai\backend
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+if not exist .env copy .env.example .env
 ```
 
-```powershell
-# Terminal 2
-cd E:\ictrootai
-.\scripts\start-frontend.ps1
+Edit **backend/.env** using your separate ICTRoot Supabase project's connection settings. **backend/.env.example** is the canonical backend template; the former root template and separate PostgreSQL template are redundant.
+
+The separate [ictroot-ai Supabase project](https://supabase.com/dashboard/project/zbugipqjwamlrgdyycpr) is already created, migrated to revision `0002` and populated with the 434 preserved records. The private backend connection is still required. Run `.venv\Scripts\python.exe -m app.configure_database` to paste it into a hidden prompt, then check the connection and restart the backend. See [the connection guide](docs/SUPABASE.md).
+
+```dotenv
+DATABASE_URL=postgresql+psycopg://postgres.PROJECT_REF:URL_ENCODED_DATABASE_PASSWORD@POOLER_HOST:5432/postgres?sslmode=require
 ```
 
-Open **http://localhost:3000**. Backend API documentation: **http://127.0.0.1:8000/docs**. Ollama: **http://127.0.0.1:11434**. Ctrl+C stops each terminal's service. `scripts/start-dev.ps1` is an optional combined launcher; two terminals make stopping both services simpler.
+Copy the exact host, port and username from **Supabase Dashboard → your ICTRoot project → Connect → Session pooler**. Session pooling suits a persistent backend on Windows IPv4 networks. Replace the password and percent-encode reserved characters. Keep TLS enabled. See [Supabase's connection guide](https://supabase.com/docs/guides/database/connecting-to-postgres).
 
-For a production frontend build served locally:
+The database password belongs only in the ignored backend environment file. A Supabase API URL or publishable key is not a PostgreSQL connection string. No database password or service-role key belongs in frontend configuration.
 
-```powershell
-cd E:\ictrootai\frontend
-npm run build
-npm start
+Check the connection, then apply migrations:
+
+```cmd
+cd /d E:\ictrootai\backend
+.venv\Scripts\python.exe -m app.check_database
+.venv\Scripts\python.exe -m alembic upgrade head
+.venv\Scripts\python.exe -m alembic current
 ```
 
-## Try the complete local workflow
+If PostgreSQL is missing or unavailable, database-dependent requests fail clearly. The app does not create a local database or silently change storage engines. Configure a separate ICTRoot project; the existing MathRoot project must remain untouched. See implementation status for the actual cloud connection state.
 
-1. Sign in as the student. Open Assessments and start **Number systems · First steps**. Select an answer, reload, resume, and submit. View feedback, progress and revision history.
-2. Sign in as the teacher. Create a class and copy its code. Create an assessment, select approved questions and publish it to the class. A student can join using that code.
-3. Open Question bank, create a manual draft, inspect the key/explanation, enter a review reason and approve it. Only approved questions can be assigned.
-4. For short/structured questions, include a `rubric` array in the draft; students receive pending marks until a teacher reviews the submission. Each teacher mark is 0–1 with a required reason.
-5. Sign in as administrator. Open Curriculum, expand a unit, edit an outcome JSON record, compare it with the cited PDF page and verify it only after review. Upload authorised notes in Administration, review each chunk, and index it after installing an embedding model.
-6. For Sinhala, teachers open a question's translation editor, translate display fields while preserving identifiers/symbols, save the unreviewed draft, then approve the saved translation with a reason. Until approved, Sinhala-preferring students see an English fallback notice.
+Frontend dependencies:
 
-The browser test suite creates classes/assessments and submits demo work. Run it against a disposable demo database when preserving local practice history matters.
-
-## Ollama and local RAG
-
-Inspection on 2026-11-14 found `qwen3:4b-instruct` installed (approximately 2.5 GB on disk). A real structured `/api/chat` smoke test succeeded. The machine reports 15.5 GiB RAM, with about 4.8 GiB available during testing. Use the existing 4B quantized model; close heavy applications if inference exhausts memory. No instruction model was downloaded by this project.
-
-```powershell
-cd E:\ictrootai
-.\scripts\check-ollama.ps1
-.\backend\.venv\Scripts\python.exe .\scripts\ollama-smoke.py
+```cmd
+cd /d E:\ictrootai\frontend
+npm ci
+if not exist .env.local copy .env.example .env.local
 ```
 
-If Ollama is not running, open its Windows app or run `ollama serve`. If the instruction model is absent, install it explicitly:
+PowerShell setup/start scripts remain optional convenience wrappers. Normal startup uses the commands at the top of this file.
 
-```powershell
+## Preserve existing records when switching databases
+
+**This ICTRoot project's transfer is already complete:** 434 records are in Supabase. The following recovery-import instructions apply only to a different empty destination. Do not re-import or seed the populated project.
+
+Existing accounts, password hashes, classes, resources and assessment records must be preserved before removing the former SQLite application file. A preserved source belongs in the ignored `backups/` directory, named like `sqlite-before-supabase-<timestamp>.db`. Do not commit, publish or share it.
+
+After PostgreSQL migrations succeed, import the preserved source, replacing the filename below with the actual one:
+
+```cmd
+cd /d E:\ictrootai\backend
+.venv\Scripts\python.exe -m app.migrate_legacy_sqlite --source "..\backups\sqlite-before-supabase-TIMESTAMP.db"
+```
+
+The importer is a one-time transfer tool, not a runtime database mode. Keep the backup until the import has committed and verification has succeeded. Migrated users retain their passwords. Do not seed a second copy of demo content over migrated records.
+
+For an **empty development database only**, optional original demo content can be added with:
+
+```cmd
+cd /d E:\ictrootai\backend
+.venv\Scripts\python.exe -m app.seed
+```
+
+Save the random password printed during seeding. Demonstration accounts are `student@ictroot.local`, `teacher@ictroot.local` and `admin@ictroot.local`. They use ordinary password authentication. Seeding is idempotent and disabled outside development. To reset only those development demo accounts:
+
+```cmd
+cd /d E:\ictrootai\backend
+.venv\Scripts\python.exe -m app.reset_demo_password
+```
+
+## Teacher and student workflow
+
+1. A teacher creates a class in **My classes** and shares its joining code. New classes use the grade selected in the teacher's Profile.
+2. In **Question bank**, inspect approved questions or create a draft. Review its answer, explanation and sources before approval. The manual editor currently uses JSON; see [question format examples](docs/QUESTION_FORMATS.md).
+3. In **Assessments → Create assessment**, choose a class, duration and approved questions, then publish. Questions may come from multiple outcomes.
+4. Students join the class, start an assessment, save answers and resume interrupted attempts. Submission locks answers and reveals feedback.
+5. Teachers open **Submissions** to inspect work, mark descriptive answers, override scores with a reason and export reports. Each question currently contributes a normalized score from 0 to 1.
+6. Administrators manage roles, review syllabus outcomes, upload authorised notes, review resource chunks and configure local AI.
+
+Progress and revision history come from submitted answers. Descriptive marks stay pending until teacher review. Distractor feedback indicates a possible misconception; one wrong answer is insufficient evidence of a persistent weakness.
+
+## Local Ollama AI
+
+The model discovered during original setup was **qwen3:4b-instruct**, which writes drafts. **EmbeddingGemma** supplies embeddings used to find relevant reviewed teaching passages.
+
+Start the Ollama Windows app. Check the local service without downloading models:
+
+```cmd
+cd /d E:\ictrootai
+backend\.venv\Scripts\python.exe scripts\ollama-smoke.py
+```
+
+If required models are absent, install them explicitly:
+
+```cmd
 ollama pull qwen3:4b-instruct
-```
-
-**No embedding model was installed at inspection time.** To enable semantic retrieval, explicitly install the configured lightweight local embedding model after checking disk space:
-
-```powershell
 ollama pull embeddinggemma
 ```
 
-Then use Administration → Learning resources → review a chunk → Create local embedding. Generation requires a verified outcome and relevant reviewed/indexed material. Select that outcome in Question bank and generate an AI draft. Review its sources, answer and explanation before approval. Upload JSON resources as `{"text":"Your authorised educational passage"}`. PDF extraction does not perform OCR.
+Downloads never occur automatically. The 2026-11-15 diagnosis found the instruction model available, the embedding model missing and the reviewed demo note unindexed. See implementation status for later verification.
 
-Vectors are stored as JSON alongside source chunks and searched by bounded cosine similarity over the selected outcome. This is a small-corpus local vector index, not FAISS; it avoids a Windows native FAISS dependency. Changing `EMBEDDING_MODEL` requires reindexing. Model identity is stored with embeddings.
+After installing the embedding model, sign in as administrator, open **Administration → Learning resources**, review the relevant note and click **Create local embedding**. Return to Question bank, select a **Verified:** outcome and click **Refresh AI status**. The UI explains missing prerequisites before enabling generation. Setup-only failures do not consume inference quota; actual generation attempts remain rate-limited.
 
-The configured Ollama URL must resolve to a loopback hostname. Cloud-tagged/remote models are excluded. No student details or answers are sent to AI. Reviewed passages are treated as quoted data; generated output is schema-validated and never written as approved content. Prompt injection cannot be eliminated by prompting alone, so human approval remains required.
+Vectors are stored with source chunks in PostgreSQL and searched locally by cosine similarity for the selected outcome. Changing models requires reindexing. Only reviewed chunks with current-model vectors are retrieved. Generated questions remain drafts until teacher approval. No student details or answers are sent to AI; cloud-backed Ollama models are excluded.
 
-With Ollama offline or embeddings missing, existing approved questions, manual drafts and deterministic grading continue to work. Generation returns a clear failure rather than unsupported questions.
+With Ollama offline, approved questions, manual drafting and deterministic marking work **while PostgreSQL remains available**. Database availability and local AI availability are separate concerns.
 
-## Curriculum provenance and coverage
+## Curriculum and Sinhala content
 
-Authoritative source: [NIE A/L ICT syllabus, effective 2017](https://nie.lk/pdffiles/tg/eALSyl%20ICT.pdf), downloaded to `curriculum/nie-ict-2017.pdf`. The official [Grade 13 teacher guide](https://nie.lk/pdffiles/tg/eGr13TG%20ICT.pdf) also describes the 2017 revision. Search on 2026-11-14 did not locate a newer applicable official syllabus; this does **not** establish examination applicability for every future sitting.
+The source is the [NIE A/L ICT syllabus effective from 2017](https://nie.lk/pdffiles/tg/eALSyl%20ICT.pdf), included in `curriculum/nie-ict-2017.pdf`. A 2026-11-14 search did not locate a newer official replacement; current examination applicability still requires confirmation.
 
-`scripts/extract_curriculum.py` extracts table columns into `curriculum/extracted-review.json`, preserving a source SHA-256, page reference and review status. The current extraction contains **359 unverified outcome candidates** across units 1–13, not a certified official outcome count. Project (unit 14) has competency levels but no bulleted learning-outcome entries in the source table; its outcome inventory is empty rather than invented. PDF column layouts, continuation lines, competencies and subtopic boundaries can produce extraction errors. Verify every candidate against the original before approval. Re-extraction updates the JSON but does not overwrite an already seeded DB; use the administrator import after review.
+The extraction records source hash, PDF page and review status. Its 359 candidates are not a certified official outcome count. Project lists competency levels but no bulleted outcome-column entries, so its outcome inventory is empty rather than invented. Competency/subtopic boundaries, continuation lines, later-unit numbering and grade mappings require review.
 
-One number-conversion outcome has been source-checked, with seven original deterministic practice questions. These are **not past-paper questions**. All other outcome candidates require review and question population. The source's summary table has numbering inconsistencies near the final units; internal unit IDs follow the 14-area sequence. Later titles/numbering and all Grade 12/13 unit mappings remain flagged for review. Grade preferences are functional, but unverified curriculum grade mapping is not silently invented.
+The supplied demo has one source-checked outcome and seven original questions, not past-paper questions. Coverage shows source verification, approved counts, formats, difficulty, Sinhala availability and review dates. No full-syllabus percentage is shown while the official inventory is unverified.
 
-Coverage reports approved counts, source verification, reviewed material, formats, difficulty, Sinhala availability and review dates per imported outcome. There is no full-syllabus percentage while the denominator is unverified. `CurriculumVersion.verified_complete` is intentionally false and has no casual UI toggle.
+Sinhala display fields have a separate save/review workflow. Preserve English originals, option IDs, code, SQL and symbols. Missing/unreviewed Sinhala text produces a clear English fallback. Navigation is currently English.
 
-## Database and configuration
+## Database security and SQL-answer grading
 
-SQLite is the default: `backend/ictroot.db`. Configuration comes from `backend/.env` when commands run in `backend/`. Frontend uses a same-origin `/api` rewrite to FastAPI; no database credentials or service-role keys belong in frontend configuration.
+Persistent application data uses **Supabase PostgreSQL through a private SQLAlchemy/psycopg backend connection**. The browser calls FastAPI through Next.js's same-origin `/api` rewrite. Authentication remains the app's scrypt/password and opaque-session implementation; storage migration does not introduce Supabase Auth JWTs.
 
-```powershell
-cd E:\ictrootai\backend
-.\.venv\Scripts\python.exe -m alembic upgrade head
-.\.venv\Scripts\python.exe -m alembic current
-.\.venv\Scripts\python.exe -m app.seed
+Migrations enable RLS and deny direct browser-role access to application tables, sequence values and migration metadata. The backend must own application tables or use explicit server-role grants/policies. Do not grant broad `PUBLIC`, `anon` or `authenticated` access to solve a backend permission issue. Foreign-key/access-path indexes and pool limits are managed by the backend. See [architecture](docs/ARCHITECTURE.md).
+
+The **SQL-answer grader** deliberately retains a fresh **in-memory SQLite** exercise database per comparison. It contains approved fixtures only, never application users or assessment records. Student queries cannot attach files, access PostgreSQL, modify fixtures or call unrestricted functions. This isolated grading tool is needed functionality, not an obsolete application storage fallback. Arbitrary student Python execution remains disabled.
+
+## Testing and actual results
+
+Integration tests require a separate **TEST_DATABASE_URL** pointing to disposable PostgreSQL and use isolated generated schemas. They never automatically reuse `DATABASE_URL` or fall back to SQLite. Missing test configuration causes explicit skips; skipped tests are not successful PostgreSQL verification.
+
+```cmd
+cd /d E:\ictrootai\backend
+set TEST_DATABASE_URL=YOUR_SEPARATE_DISPOSABLE_POSTGRESQL_CONNECTION_STRING
+.venv\Scripts\python.exe -m pytest -q
+set TEST_DATABASE_URL=
+cd /d E:\ictrootai\frontend
+npm run typecheck
+npm run build
 ```
 
-For Supabase PostgreSQL, obtain your project's server-side connection string from its Connect dialog. See [Supabase connection guidance](https://supabase.com/docs/guides/database/connecting-to-postgres). Use the session pooler or a direct connection that your network supports, and retain `sslmode=require`. Replace `backend/.env` using `.env.postgres.example` and run the migrations. URL-encode the password. **No Supabase credentials were supplied, so remote PostgreSQL migration/queries are untested.**
+Four generation-readiness browser tests mock APIs without changing demo records:
 
-The PostgreSQL migration enables RLS on all application tables and revokes `anon`/`authenticated` table access. The browser does not use Supabase Data API; authentication and class authorization live in FastAPI, and the backend uses its private DB connection. This is custom application authentication, not Supabase Auth JWT integration. Use a dedicated restricted backend database role, HTTPS, protected backups and deployment-specific origin/proxy configuration before real deployment. The shipped migration assumes Supabase's `anon` and `authenticated` roles exist. No remote database was created or modified.
-
-The backend connection must own the application tables or have explicit server-role RLS policies and grants; an ordinary non-owner role is denied by the shipped default-deny RLS setup. Restrict any app-specific owner role to application objects. Do not solve backend access by granting browser roles broad table privileges.
-
-There are 18 relational tables with foreign keys and unique constraints. Options, rubric criteria, source IDs and vectors are JSON documents attached to questions/resources; they are not separately normalized option/rubric tables. Progress is calculated from persisted finalized answers rather than a duplicate progress table. See [architecture](docs/ARCHITECTURE.md) and [manual question format examples](docs/QUESTION_FORMATS.md).
-
-## Tests and actual results
-
-```powershell
-cd E:\ictrootai
-.\scripts\test.ps1
-# Browser tests require both services running:
-cd frontend
+```cmd
+cd /d E:\ictrootai\frontend
 npx playwright install chromium --no-shell
-$env:ICTROOT_DEMO_PASSWORD = Read-Host 'Password printed during seeding'
-npx playwright test
-Remove-Item Env:ICTROOT_DEMO_PASSWORD
+npx playwright test generation-readiness.spec.ts
 ```
 
-Results recorded on 2026-11-14:
+The original workflow browser tests require both services and seeded accounts. They create classes/assessments and submit answers, so use a disposable demonstration database. Set `ICTROOT_DEMO_PASSWORD` only for that test process and never commit it.
 
-- Backend Pytest: **69 passed**. One upstream Starlette/httpx deprecation warning.
-- Frontend TypeScript check: passed.
-- Next.js production build: passed.
-- Playwright Chromium: **4 passed** (student, teacher, administrator, mobile).
-- Fresh SQLite migration upgrade → downgrade → upgrade: passed.
-- HTTP frontend and backend/database health checks: passed.
-- Real local Ollama schema response: passed (16.7 seconds in the initial smoke run).
-- Real embeddings, grounded AI generation and Supabase PostgreSQL: not verified, pending model installation/reviewed indexing or credentials.
+**Historical results before PostgreSQL-only storage:** 69 backend tests, four workflow browser tests and a SQLite migration smoke test passed on 2026-11-14. On 2026-11-15, 81 backend tests, four mocked readiness browser tests, typecheck and production build passed. These runs do not prove the new PostgreSQL configuration or a remote Supabase connection works. Current migration/test/cloud results are recorded in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md).
 
-## Troubleshooting
+During the PostgreSQL migration, **109 tests passed against an isolated real PostgreSQL server**. Alembic migrations, legacy import, repeated-import refusal and login with the preserved password also passed. Frontend typecheck and build passed. The new Supabase schema and transferred counts were checked through the connected management tool. A live connection from the local backend to Supabase still needs the private connection string.
 
-- **PowerShell policy:** use the process-scoped command above, or run each script with `powershell -ExecutionPolicy Bypass -File ...`.
-- **Windows Store Python temp permission error:** setup redirects TEMP/TMP into the project's `.tmp` directory. Install Python from python.org if Store launcher behavior still prevents venv creation.
-- **`spawn EPERM` during build/browser launch:** allow the trusted Node/Chromium subprocess in your execution environment; the production build passed when process creation was permitted.
-- **C: disk full during browser installation:** full Chromium is sufficient; `--no-shell` avoids downloading the second headless-shell distribution. Set TEMP/TMP and `PLAYWRIGHT_BROWSERS_PATH` to a disk with space before installation and testing if needed.
-- **Login fails:** use the random seed password or run the local password recovery command. Registration always creates a student, never a teacher/admin.
-- **Generation unavailable:** verify `/api/tags`, selected local model, embedding installation, source-verified outcome, reviewed chunks and current embeddings. Check administrator generation logs for failure categories. Manual drafting remains available.
-- **Port busy:** stop the process you started on that port; do not kill unrelated services.
+## Troubleshooting and remaining limits
 
-## Remaining limitations
+- **Database unavailable:** configure `backend/.env`, run `app.check_database` and confirm the separate ICTRoot project is active. Copy the exact session-pooler values from its Connect dialog on IPv4 networks.
+- **Login fails after migration:** import the preserved records or seed an empty development database. The former local application file is no longer used at runtime.
+- **Generation 422/503/429:** an outcome needs source review; setup/inference failed; or repeated actual inference reached its retry delay. The readiness panel explains the next step.
+- **Windows temporary-file permissions:** use a writable project-local temporary directory if Python cannot create a virtual environment through system TEMP.
+- **Browser/model storage:** use a disk with space. Chromium `--no-shell` avoids downloading a second headless-shell distribution.
+- **Port busy:** stop only the service you started on that port.
 
-Full official curriculum verification/population, confirmed grade mappings/exam applicability, reviewed Sinhala content, automated paper blueprints, multipart per-criterion mark totals, richer misconception aggregation, AI provisional descriptive feedback, password reset/email verification, distributed rate limiting, PostgreSQL deployment testing and production operations remain unfinished. There is no arbitrary student Python execution. See [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for the phase-by-phase record.
+Full curriculum verification/population, reviewed Sinhala resources, paper blueprints, multipart mark totals, richer misconception analysis, AI provisional feedback, email/account recovery, distributed rate limits and production operations remain unfinished. Keep ICTRoot separate from MathRoot.

@@ -1,0 +1,6 @@
+.generation-setup{display:flex;align-items:flex-start;gap:10px;background:#fff8e9;border:1px solid #eadfc5;color:#806635;border-radius:7px;padding:14px 15px;margin:15px 0;font-size:12px}
+.generation-setup>svg{flex-shrink:0;margin-top:2px}
+.generation-setup>div{flex:1;min-width:0}
+.generation-setup p{margin-top:5px;font-size:11px;line-height:1.8}
+.generation-setup>.text-link{white-space:normal;text-align:right;max-width:100px;flex-shrink:0}
+@media(max-width:620px){.generation-setup{flex-wrap:wrap}.generation-setup>.text-link{margin-left:28px;max-width:none;text-align:left}}

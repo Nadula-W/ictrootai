@@ -4,6 +4,8 @@ import json
 import secrets
 import threading
 import time
+import math
+import httpx
 from datetime import datetime, timedelta, timezone
 from fastapi import FastAPI, Depends, HTTPException, Request, Response, UploadFile, File, Form
 from fastapi.responses import StreamingResponse
@@ -26,7 +28,9 @@ def rate_limit(key, maximum=10, window=60):
     with limit_lock:
         now=time.monotonic()
         old=[t for t in limits.get(key,[]) if now-t<window]
-        if len(old)>=maximum: raise HTTPException(429,'Too many requests; try again shortly')
+        if len(old)>=maximum:
+            retry_after=max(1,math.ceil(window-(now-old[0])))
+            raise HTTPException(429,f'Too many requests. Try again in {retry_after} seconds.',headers={'Retry-After':str(retry_after)})
         limits[key]=old+[now]
         if len(limits)>10000:
             for k in list(limits):
@@ -260,7 +264,7 @@ def get_attempt(tid:int,language:Literal['en','si']='en',user=Depends(current_us
 def save_answer(tid:int,qid:int,data:AnswerInput,user=Depends(current_user),db:DBSession=Depends(get_db)):
     a=owned_attempt(db,tid,user,True)
     if user.role!='student':raise HTTPException(403,'Student access required')
-    # Atomic guard serializes writes with submission in both SQLite and PostgreSQL.
+    # Atomic guard serializes writes with submission in PostgreSQL.
     guarded=db.execute(update(m.Attempt).where(m.Attempt.id==a.id,m.Attempt.submitted==False).values(submitted=False))
     if guarded.rowcount!=1:raise HTTPException(409,'Attempt already submitted')
     if datetime.now(timezone.utc)>deadline(db,a):raise HTTPException(409,'Time expired; submit saved answers')
@@ -339,7 +343,7 @@ def export(user=Depends(staff),db:DBSession=Depends(get_db)):
 @app.get('/api/admin/ai')
 def ai_status(user=Depends(admin),db:DBSession=Depends(get_db)):
     try:
-        models=ai.local_models();return {'connected':True,'models':[m['name'] for m in models],'selected':ai.model_name(db),'embedding_model':settings.embedding_model,'embedding_available':settings.embedding_model in [m['name'].removesuffix(':latest') for m in models]}
+        models=ai.local_models();return {'connected':True,'models':[m['name'] for m in models],'selected':ai.model_name(db),'embedding_model':settings.embedding_model,'embedding_available':ai.model_installed(settings.embedding_model,models)}
     except Exception:return {'connected':False,'models':[],'selected':ai.model_name(db),'embedding_available':False,'message':'Ollama unavailable. Approved questions and deterministic marking remain usable.'}
 
 class ModelInput(BaseModel):
@@ -355,13 +359,38 @@ def configure_model(data:ModelInput,user=Depends(admin),db:DBSession=Depends(get
     else:db.add(m.AppSetting(key='ollama_model',value=data.model))
     db.commit();return {'selected':data.model}
 
+@app.get('/api/ai/readiness')
+def generation_readiness(outcome_id:str,user=Depends(staff),db:DBSession=Depends(get_db)):
+    outcome=db.get(m.Outcome,outcome_id)
+    if not outcome or not outcome.verified:
+        return {'ready':False,'code':'outcome_unverified','message':'This syllabus learning outcome has not been checked against its official source. Choose a source-verified outcome or ask an administrator to review it.','outcome_id':outcome_id,'reviewed_resources':0,'indexed_resources':0}
+    resources=db.scalars(select(m.Resource).where(m.Resource.outcome_id==outcome.id)).all()
+    reviewed=[r for r in resources if r.reviewed]
+    response={'outcome_id':outcome_id,'reviewed_resources':len(reviewed),'indexed_resources':sum(bool(r.embedding) and r.embedding_model==settings.embedding_model for r in reviewed)}
+    try:ai.require_generation_setup(db,resources)
+    except ai.AISetupError as error:return {**response,'ready':False,'code':error.code,'message':str(error)}
+    return {**response,'ready':True,'code':'ready','message':'Local models and reviewed resource index are available. Generated questions will still need teacher approval.'}
+
 @app.post('/api/ai/generate')
-def generate_question(data:GenerateInput,user=Depends(staff),db:DBSession=Depends(get_db)):
-    rate_limit(f'ai:{user.id}',3,60)
+def generate_question(data:GenerateInput,response:Response,user=Depends(staff),db:DBSession=Depends(get_db)):
     outcome=db.get(m.Outcome,data.outcome_id)
     if not outcome or not outcome.verified:raise HTTPException(422,'Select a source-verified learning outcome')
     resources=db.scalars(select(m.Resource).where(m.Resource.outcome_id==outcome.id)).all()
+    try:ai.require_generation_setup(db,resources)
+    except ai.AISetupError as error:
+        # Setup checks perform no inference and must not consume the inference limit.
+        db.add(m.GenerationLog(model=ai.model_name(db),outcome_id=outcome.id,status=error.code));db.commit()
+        response.status_code=503
+        return {'detail':str(error),'error_code':error.code}
+    rate_limit(f'ai:{user.id}',3,60)
     try:draft=ai.generate(db,data,outcome,resources)
+    except ai.AISetupError as error:
+        db.add(m.GenerationLog(model=ai.model_name(db),outcome_id=outcome.id,status=error.code));db.commit()
+        response.status_code=503
+        return {'detail':str(error),'error_code':error.code}
+    except httpx.TimeoutException:
+        db.add(m.GenerationLog(model=ai.model_name(db),outcome_id=outcome.id,status='generation_timeout'));db.commit()
+        raise HTTPException(503,'Local AI took too long to respond. Wait before trying again, or use manual drafting.')
     except Exception as error:
         db.add(m.GenerationLog(model=ai.model_name(db),outcome_id=outcome.id,status=type(error).__name__));db.commit()
         raise HTTPException(503,'Generation unavailable or invalid response. Check Ollama, embeddings and reviewed resources. Use manual drafting.')
