@@ -1,0 +1,455 @@
+import csv
+import io
+import json
+import secrets
+import threading
+import time
+from datetime import datetime, timedelta, timezone
+from fastapi import FastAPI, Depends, HTTPException, Request, Response, UploadFile, File, Form
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel, Field
+from sqlalchemy import select, text, update
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import Session as DBSession
+from . import models as m, ai
+from .database import get_db
+from .config import settings
+from .security import current_user, staff, admin, hash_password, verify_password, digest
+from .schemas import *
+from .verification import mark
+
+app=FastAPI(title='ICTRoot AI',version='0.1.0')
+limits={}
+limit_lock=threading.Lock()
+
+def rate_limit(key, maximum=10, window=60):
+    with limit_lock:
+        now=time.monotonic()
+        old=[t for t in limits.get(key,[]) if now-t<window]
+        if len(old)>=maximum: raise HTTPException(429,'Too many requests; try again shortly')
+        limits[key]=old+[now]
+        if len(limits)>10000:
+            for k in list(limits):
+                if not limits[k] or now-limits[k][-1]>window: limits.pop(k,None)
+
+@app.middleware('http')
+async def security_headers(request,call_next):
+    if request.method not in ('GET','HEAD','OPTIONS'):
+        origin=request.headers.get('origin')
+        allowed={'http://localhost:3000','http://127.0.0.1:3000'} if settings.environment=='development' else set()
+        if origin and origin not in allowed and origin != str(request.base_url).rstrip('/'):
+            return Response('Origin rejected',403)
+        if int(request.headers.get('content-length','0'))>6*1024*1024:
+            return Response('Upload too large',413)
+    response=await call_next(request)
+    response.headers['X-Content-Type-Options']='nosniff'
+    response.headers['Cache-Control']='no-store'
+    response.headers['Referrer-Policy']='same-origin'
+    response.headers['X-Frame-Options']='DENY'
+    return response
+
+def public_user(user):
+    return {k:getattr(user,k) for k in ('id','email','name','role','grade','language')}
+
+def issue_session(db,user,response):
+    token=secrets.token_urlsafe(48)
+    db.add(m.Session(token_hash=digest(token),user_id=user.id,expires=datetime.now(timezone.utc)+timedelta(hours=12)))
+    db.commit()
+    response.set_cookie('ictroot_session',token,httponly=True,samesite='strict',secure=settings.secure_cookies,max_age=43200)
+    return public_user(user)
+
+@app.post('/api/auth/register')
+def register(data:Register,response:Response,request:Request,db:DBSession=Depends(get_db)):
+    rate_limit('register:'+request.client.host,5)
+    if '@' not in data.email: raise HTTPException(422,'Valid email required')
+    user=m.User(email=data.email.lower().strip(),name=data.name,password=hash_password(data.password),grade=data.grade,role='student')
+    db.add(user)
+    try: db.flush()
+    except IntegrityError:
+        db.rollback();raise HTTPException(409,'Account already exists')
+    return issue_session(db,user,response)
+
+@app.post('/api/auth/login')
+def login(data:Credentials,response:Response,request:Request,db:DBSession=Depends(get_db)):
+    rate_limit('login:'+request.client.host,15)
+    user=db.scalar(select(m.User).where(m.User.email==data.email.lower().strip()))
+    if not user or not verify_password(data.password,user.password): raise HTTPException(401,'Invalid email or password')
+    return issue_session(db,user,response)
+
+@app.post('/api/auth/logout')
+def logout(request:Request,response:Response,db:DBSession=Depends(get_db)):
+    session=db.get(m.Session,digest(request.cookies.get('ictroot_session','')))
+    if session: db.delete(session);db.commit()
+    response.delete_cookie('ictroot_session');return {'ok':True}
+
+@app.get('/api/me')
+def me(user=Depends(current_user)): return public_user(user)
+
+class Preferences(BaseModel):
+    grade:Literal[12,13]
+    language:Literal['en','si']
+
+@app.patch('/api/me')
+def preferences(data:Preferences,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    user.grade=data.grade;user.language=data.language;db.commit();return public_user(user)
+
+@app.get('/api/health')
+def health(db:DBSession=Depends(get_db)):
+    db.execute(text('SELECT 1'));return {'backend':'ok','database':'ok'}
+
+def owned_class(db,cid,user):
+    classroom=db.get(m.ClassRoom,cid)
+    if not classroom or (user.role!='admin' and classroom.teacher_id!=user.id): raise HTTPException(404,'Class not found')
+    return classroom
+
+def accessible_assessment(db,aid,user):
+    assessment=db.get(m.Assessment,aid)
+    if not assessment: raise HTTPException(404,'Assessment not found')
+    if user.role=='student':
+        if not assessment.published or not db.get(m.Membership,(assessment.class_id,user.id)): raise HTTPException(404,'Assessment not found')
+    elif user.role!='admin' and assessment.teacher_id!=user.id: raise HTTPException(404,'Assessment not found')
+    return assessment
+
+@app.get('/api/classes')
+def classes(user=Depends(current_user),db:DBSession=Depends(get_db)):
+    stmt=select(m.ClassRoom)
+    if user.role=='student': stmt=stmt.join(m.Membership).where(m.Membership.student_id==user.id)
+    elif user.role!='admin':stmt=stmt.where(m.ClassRoom.teacher_id==user.id)
+    return [{'id':c.id,'name':c.name,'grade':c.grade,'code':c.code,'members':len(db.scalars(select(m.Membership).where(m.Membership.class_id==c.id)).all())} for c in db.scalars(stmt)]
+
+class ClassInput(BaseModel):
+    name:str=Field(min_length=3,max_length=120)
+    grade:Literal[12,13]
+
+@app.post('/api/classes')
+def create_class(data:ClassInput,user=Depends(staff),db:DBSession=Depends(get_db)):
+    c=m.ClassRoom(**data.model_dump(),teacher_id=user.id,code=secrets.token_hex(4).upper());db.add(c);db.commit();return {'id':c.id,'code':c.code}
+
+class JoinInput(BaseModel):
+    code:str=Field(max_length=20)
+
+@app.post('/api/classes/join')
+def join_class(data:JoinInput,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    if user.role!='student':raise HTTPException(403,'Student access required')
+    rate_limit(f'join:{user.id}',10)
+    c=db.scalar(select(m.ClassRoom).where(m.ClassRoom.code==data.code.upper().strip()))
+    if not c:raise HTTPException(404,'Class code not found')
+    if not db.get(m.Membership,(c.id,user.id)):db.add(m.Membership(class_id=c.id,student_id=user.id));db.commit()
+    return {'ok':True}
+
+@app.get('/api/curriculum')
+def curriculum(user=Depends(current_user),db:DBSession=Depends(get_db)):
+    units=db.scalars(select(m.Unit).order_by(m.Unit.id)).all()
+    return {'versions':[{'id':v.id,'source':v.source,'applicability':v.applicability,'verified_complete':v.verified_complete} for v in db.scalars(select(m.CurriculumVersion))], 'units':[{'id':u.id,'name':u.name,'grade':u.grade,'verified':u.verified,'outcomes':[{'id':o.id,'text':o.text,'level':o.level,'subtopic':o.subtopic,'competency':o.competency,'source_page':o.source_page,'verified':o.verified,'reviewed_at':o.reviewed_at} for o in db.scalars(select(m.Outcome).where(m.Outcome.unit_id==u.id))]} for u in units]}
+
+@app.post('/api/admin/curriculum')
+def import_curriculum(data:CurriculumImport,user=Depends(admin),db:DBSession=Depends(get_db)):
+    for row in data.outcomes:
+        if not db.get(m.Unit,row.unit_id):raise HTTPException(422,'Unknown unit')
+        o=db.get(m.Outcome,row.id)
+        if not o: o=m.Outcome(**row.model_dump());db.add(o)
+        else:
+            for k,v in row.model_dump().items():setattr(o,k,v)
+        o.reviewed_at=datetime.now(timezone.utc).isoformat() if row.verified else None
+    db.commit();return {'imported':len(data.outcomes)}
+
+@app.get('/api/coverage')
+def coverage(user=Depends(current_user),db:DBSession=Depends(get_db)):
+    rows=[]
+    for o in db.scalars(select(m.Outcome)):
+        qs=db.scalars(select(m.Question).where(m.Question.outcome_id==o.id,m.Question.status=='approved')).all()
+        material=db.scalar(select(m.Resource).where(m.Resource.outcome_id==o.id,m.Resource.reviewed==True))
+        translated=any(db.scalar(select(m.Translation).where(m.Translation.question_id==q.id,m.Translation.reviewed==True)) for q in qs)
+        rows.append({'id':o.id,'text':o.text,'unit_id':o.unit_id,'verified':o.verified,'approved_questions':len(qs),'formats':sorted({q.kind for q in qs}),'difficulties':sorted({q.difficulty for q in qs}),'sinhala':translated,'reviewed_at':o.reviewed_at,'covered':bool(o.verified and qs and material)})
+    complete=all(v.verified_complete for v in db.scalars(select(m.CurriculumVersion)))
+    return {'outcomes':rows,'imported_outcomes':len(rows),'covered_outcomes':sum(r['covered'] for r in rows),'official_denominator_verified':complete,'full_syllabus_percentage':None,'warning':'Coverage of imported outcomes only. Complete official outcome inventory and examination applicability are not yet verified.'}
+
+def question_public(q,user,language,db):
+    result={k:getattr(q,k) for k in ('id','outcome_id','kind','difficulty','prompt','status')}
+    result['options']=[{'id':o['id'],'text':o['text']} for o in q.options]
+    result['language']='en';result['language_notice']=None
+    if language=='si':
+        tr=db.scalar(select(m.Translation).where(m.Translation.question_id==q.id,m.Translation.language=='si',m.Translation.reviewed==True))
+        if tr: result.update(tr.content);result['language']='si'
+        else:result['language_notice']='Reviewed Sinhala translation unavailable. Showing original English.'
+    if user.role!='student':result.update(key=q.key,explanation=q.explanation,sources=q.sources,rubric=q.rubric,options=q.options)
+    return result
+
+@app.get('/api/questions')
+def questions(outcome_id:str|None=None,language:Literal['en','si']='en',user=Depends(staff),db:DBSession=Depends(get_db)):
+    stmt=select(m.Question)
+    if user.role!='admin':stmt=stmt.where((m.Question.status=='approved') | (m.Question.author_id==user.id))
+    if outcome_id:stmt=stmt.where(m.Question.outcome_id==outcome_id)
+    return [question_public(q,user,language,db) for q in db.scalars(stmt)]
+
+@app.post('/api/questions')
+def create_question(data:QuestionDraft,user=Depends(staff),db:DBSession=Depends(get_db)):
+    if not db.get(m.Outcome,data.outcome_id):raise HTTPException(422,'Unknown learning outcome')
+    q=m.Question(**data.model_dump(),author_id=user.id,status='draft');db.add(q);db.commit();return {'id':q.id}
+
+@app.post('/api/questions/{qid}/review')
+def review_question(qid:int,data:Decision,user=Depends(staff),db:DBSession=Depends(get_db)):
+    q=db.get(m.Question,qid)
+    if not q or (user.role!='admin' and q.author_id!=user.id):raise HTTPException(404,'Draft not found')
+    try:QuestionDraft.model_validate({k:getattr(q,k) for k in QuestionDraft.model_fields})
+    except ValueError:raise HTTPException(422,'Question configuration is invalid; create a corrected draft before approval')
+    if q.status=='approved':raise HTTPException(409,'Approved questions are immutable; create a new draft')
+    if data.decision=='approved' and q.sources:
+        for rid in q.sources:
+            r=db.get(m.Resource,rid)
+            if not r or not r.reviewed or r.outcome_id!=q.outcome_id:raise HTTPException(422,'Sources must be reviewed and linked to the same outcome')
+    q.status=data.decision;db.add(m.Validation(question_id=q.id,reviewer_id=user.id,decision=data.decision,reason=data.reason));db.commit();return {'status':q.status}
+
+@app.post('/api/assessments')
+def create_assessment(data:AssessmentCreate,user=Depends(staff),db:DBSession=Depends(get_db)):
+    owned_class(db,data.class_id,user)
+    if len(set(data.question_ids))!=len(data.question_ids):raise HTTPException(422,'Duplicate question IDs')
+    for qid in data.question_ids:
+        q=db.get(m.Question,qid)
+        if not q or q.status!='approved':raise HTTPException(422,'Only approved questions can be assigned')
+    a=m.Assessment(**data.model_dump(exclude={'question_ids'}),teacher_id=user.id);db.add(a);db.flush()
+    for pos,qid in enumerate(data.question_ids):db.add(m.AssessmentQuestion(assessment_id=a.id,question_id=qid,position=pos))
+    db.commit();return {'id':a.id}
+
+@app.get('/api/assessments')
+def assessments(user=Depends(current_user),db:DBSession=Depends(get_db)):
+    stmt=select(m.Assessment)
+    if user.role=='student':stmt=stmt.join(m.Membership,m.Membership.class_id==m.Assessment.class_id).where(m.Membership.student_id==user.id,m.Assessment.published==True)
+    elif user.role!='admin':stmt=stmt.where(m.Assessment.teacher_id==user.id)
+    result=[]
+    for a in db.scalars(stmt):
+        attempt=db.scalar(select(m.Attempt).where(m.Attempt.assessment_id==a.id,m.Attempt.student_id==user.id))
+        count=len(db.scalars(select(m.AssessmentQuestion).where(m.AssessmentQuestion.assessment_id==a.id)).all())
+        result.append({'id':a.id,'title':a.title,'duration':a.duration,'class_id':a.class_id,'questions':count,'published':a.published,'attempt_id':attempt.id if attempt else None,'submitted':attempt.submitted if attempt else False})
+    return result
+
+@app.post('/api/assessments/{aid}/start')
+def start(aid:int,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    if user.role!='student':raise HTTPException(403,'Student access required')
+    accessible_assessment(db,aid,user)
+    attempt=db.scalar(select(m.Attempt).where(m.Attempt.assessment_id==aid,m.Attempt.student_id==user.id))
+    if not attempt:
+        attempt=m.Attempt(assessment_id=aid,student_id=user.id);db.add(attempt)
+        try:db.commit()
+        except IntegrityError:
+            db.rollback();attempt=db.scalar(select(m.Attempt).where(m.Attempt.assessment_id==aid,m.Attempt.student_id==user.id))
+    return {'id':attempt.id}
+
+def owned_attempt(db,tid,user,lock=False):
+    stmt=select(m.Attempt).where(m.Attempt.id==tid)
+    if lock:stmt=stmt.with_for_update()
+    attempt=db.scalar(stmt)
+    if not attempt:raise HTTPException(404,'Attempt not found')
+    if user.role=='student' and attempt.student_id!=user.id:raise HTTPException(404,'Attempt not found')
+    accessible_assessment(db,attempt.assessment_id,user)
+    return attempt
+
+def attempt_questions(db,attempt):
+    return db.scalars(select(m.Question).join(m.AssessmentQuestion).where(m.AssessmentQuestion.assessment_id==attempt.assessment_id).order_by(m.AssessmentQuestion.position)).all()
+
+def deadline(db,attempt):
+    return attempt.started.replace(tzinfo=timezone.utc)+timedelta(minutes=db.get(m.Assessment,attempt.assessment_id).duration)
+
+@app.get('/api/attempts/{tid}')
+def get_attempt(tid:int,language:Literal['en','si']='en',user=Depends(current_user),db:DBSession=Depends(get_db)):
+    a=owned_attempt(db,tid,user)
+    answers=db.scalars(select(m.Answer).where(m.Answer.attempt_id==a.id)).all()
+    return {'id':a.id,'title':db.get(m.Assessment,a.assessment_id).title,'submitted':a.submitted,'deadline':deadline(db,a).isoformat(),'questions':[question_public(q,user,language,db) for q in attempt_questions(db,a)],'answers':{str(x.question_id):x.value for x in answers}}
+
+@app.put('/api/attempts/{tid}/answers/{qid}')
+def save_answer(tid:int,qid:int,data:AnswerInput,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    a=owned_attempt(db,tid,user,True)
+    if user.role!='student':raise HTTPException(403,'Student access required')
+    # Atomic guard serializes writes with submission in both SQLite and PostgreSQL.
+    guarded=db.execute(update(m.Attempt).where(m.Attempt.id==a.id,m.Attempt.submitted==False).values(submitted=False))
+    if guarded.rowcount!=1:raise HTTPException(409,'Attempt already submitted')
+    if datetime.now(timezone.utc)>deadline(db,a):raise HTTPException(409,'Time expired; submit saved answers')
+    if qid not in [q.id for q in attempt_questions(db,a)]:raise HTTPException(404,'Question not in assessment')
+    q=db.get(m.Question,qid)
+    if q.kind=='mcq' and data.value not in [o['id'] for o in q.options]:raise HTTPException(422,'Unknown option ID')
+    row=db.get(m.Answer,(tid,qid))
+    if row:row.value=data.value
+    else:db.add(m.Answer(attempt_id=tid,question_id=qid,value=data.value))
+    db.commit();return {'saved':True}
+
+@app.post('/api/attempts/{tid}/submit')
+def submit(tid:int,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    a=owned_attempt(db,tid,user,True)
+    if user.role!='student':raise HTTPException(403,'Student access required')
+    guard=db.execute(update(m.Attempt).where(m.Attempt.id==a.id,m.Attempt.submitted==False).values(submitted=True))
+    if guard.rowcount!=1:raise HTTPException(409,'Attempt already submitted')
+    for q in attempt_questions(db,a):
+        answer=db.get(m.Answer,(tid,q.id))
+        if not answer:answer=m.Answer(attempt_id=tid,question_id=q.id,value='');db.add(answer)
+        answer.score,answer.reason=mark(q,answer.value) if answer.value else (0.0,'No answer submitted')
+    db.commit();return {'submitted':True}
+
+@app.get('/api/attempts/{tid}/results')
+def results(tid:int,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    a=owned_attempt(db,tid,user)
+    if not a.submitted:raise HTTPException(409,'Submit assessment to see answers')
+    items=[]
+    for q in attempt_questions(db,a):
+        answer=db.get(m.Answer,(tid,q.id))
+        possible=next((o.get('misconception') for o in q.options if o['id']==answer.value),None) if answer.score==0 else None
+        follow=db.scalar(select(m.Question).where(m.Question.outcome_id==q.outcome_id,m.Question.status=='approved',m.Question.id!=q.id))
+        correct_answer=next((o['text'] for o in q.options if o['id']==q.key.get('answer')),None) if q.kind=='mcq' else q.key.get('answer')
+        items.append({'question_id':q.id,'prompt':q.prompt,'value':answer.value,'score':answer.score,'key':q.key,'correct_answer':correct_answer,'rubric':q.rubric,'explanation':q.explanation,'reason':answer.reason,'possible_misconception':possible,'misconception_notice':'Possible explanation only; a single answer is insufficient evidence.' if possible else None,'revise':db.get(m.Outcome,q.outcome_id).text,'follow_up':follow.prompt if follow else 'Ask your teacher for another reviewed question on this outcome.'})
+    return {'id':tid,'score':sum(x['score'] or 0 for x in items),'total':len(items),'pending':sum(x['score'] is None for x in items),'items':items}
+
+@app.get('/api/progress')
+def progress(user=Depends(current_user),db:DBSession=Depends(get_db)):
+    rows=db.execute(select(m.Answer,m.Question).join(m.Attempt,m.Answer.attempt_id==m.Attempt.id).join(m.Question,m.Answer.question_id==m.Question.id).where(m.Attempt.student_id==user.id,m.Attempt.submitted==True).order_by(m.Attempt.started,m.Attempt.id,m.Question.id)).all()
+    topics={}
+    for answer,q in rows:
+        if answer.score is None:continue
+        topics.setdefault(q.outcome_id,[]).append(answer.score)
+    return [{'outcome_id':oid,'text':db.get(m.Outcome,oid).text,'answered':len(scores),'accuracy':round(100*sum(scores)/len(scores)),'recommended_difficulty':'easy' if sum(scores[-5:])/len(scores[-5:])<0.5 else ('hard' if len(scores)>=3 and sum(scores[-5:])/len(scores[-5:])>=0.8 else 'medium')} for oid,scores in topics.items()]
+
+@app.get('/api/history')
+def history(user=Depends(current_user),db:DBSession=Depends(get_db)):
+    return [{'id':a.id,'title':db.get(m.Assessment,a.assessment_id).title,'started':a.started.isoformat(),'submitted':a.submitted} for a in db.scalars(select(m.Attempt).where(m.Attempt.student_id==user.id).order_by(m.Attempt.started.desc()))]
+
+@app.get('/api/teacher/submissions')
+def submissions(user=Depends(staff),db:DBSession=Depends(get_db)):
+    stmt=select(m.Attempt).join(m.Assessment).where(m.Attempt.submitted==True)
+    if user.role!='admin':stmt=stmt.where(m.Assessment.teacher_id==user.id)
+    return [{'id':a.id,'student':db.get(m.User,a.student_id).name,'title':db.get(m.Assessment,a.assessment_id).title,**{k:v for k,v in results(a.id,user,db).items() if k in ('score','total','pending')}} for a in db.scalars(stmt)]
+
+class GradeInput(BaseModel):
+    score:float=Field(ge=0,le=1)
+    reason:str=Field(min_length=5,max_length=2000)
+
+@app.post('/api/attempts/{tid}/answers/{qid}/review')
+def grade(tid:int,qid:int,data:GradeInput,user=Depends(staff),db:DBSession=Depends(get_db)):
+    a=owned_attempt(db,tid,user,True)
+    if not a.submitted:raise HTTPException(409,'Attempt not submitted')
+    answer=db.get(m.Answer,(tid,qid))
+    if not answer:raise HTTPException(404,'Answer not found')
+    answer.score=data.score;answer.reason=data.reason;answer.reviewed_by=user.id
+    db.add(m.TeacherReview(attempt_id=tid,question_id=qid,teacher_id=user.id,**data.model_dump()));db.commit();return {'ok':True}
+
+@app.get('/api/teacher/export')
+def export(user=Depends(staff),db:DBSession=Depends(get_db)):
+    output=io.StringIO();writer=csv.writer(output);writer.writerow(['attempt','student','assessment','score','total','pending'])
+    for r in submissions(user,db):
+        writer.writerow([r['id'],*("'"+str(r[k]) if str(r[k]).startswith(('=','+','-','@')) else r[k] for k in ('student','title','score','total','pending'))])
+    return Response(output.getvalue(),media_type='text/csv',headers={'Content-Disposition':'attachment; filename=ictroot-report.csv'})
+
+@app.get('/api/admin/ai')
+def ai_status(user=Depends(admin),db:DBSession=Depends(get_db)):
+    try:
+        models=ai.local_models();return {'connected':True,'models':[m['name'] for m in models],'selected':ai.model_name(db),'embedding_model':settings.embedding_model,'embedding_available':settings.embedding_model in [m['name'].removesuffix(':latest') for m in models]}
+    except Exception:return {'connected':False,'models':[],'selected':ai.model_name(db),'embedding_available':False,'message':'Ollama unavailable. Approved questions and deterministic marking remain usable.'}
+
+class ModelInput(BaseModel):
+    model:str=Field(max_length=150)
+
+@app.put('/api/admin/ai')
+def configure_model(data:ModelInput,user=Depends(admin),db:DBSession=Depends(get_db)):
+    try:names=[x['name'] for x in ai.local_models()]
+    except Exception:raise HTTPException(503,'Ollama unavailable')
+    if data.model not in names:raise HTTPException(422,'Choose an installed local model')
+    row=db.get(m.AppSetting,'ollama_model')
+    if row:row.value=data.model
+    else:db.add(m.AppSetting(key='ollama_model',value=data.model))
+    db.commit();return {'selected':data.model}
+
+@app.post('/api/ai/generate')
+def generate_question(data:GenerateInput,user=Depends(staff),db:DBSession=Depends(get_db)):
+    rate_limit(f'ai:{user.id}',3,60)
+    outcome=db.get(m.Outcome,data.outcome_id)
+    if not outcome or not outcome.verified:raise HTTPException(422,'Select a source-verified learning outcome')
+    resources=db.scalars(select(m.Resource).where(m.Resource.outcome_id==outcome.id)).all()
+    try:draft=ai.generate(db,data,outcome,resources)
+    except Exception as error:
+        db.add(m.GenerationLog(model=ai.model_name(db),outcome_id=outcome.id,status=type(error).__name__));db.commit()
+        raise HTTPException(503,'Generation unavailable or invalid response. Check Ollama, embeddings and reviewed resources. Use manual drafting.')
+    q=m.Question(**draft.model_dump(),author_id=user.id,status='draft');db.add(q)
+    db.add(m.GenerationLog(model=ai.model_name(db),outcome_id=outcome.id,status='draft_created'));db.commit();return {'id':q.id,'status':'draft'}
+
+@app.get('/api/admin/resources')
+def resources(user=Depends(admin),db:DBSession=Depends(get_db)):
+    return [{'id':r.id,'outcome_id':r.outcome_id,'title':r.title,'source':r.source,'text':r.text,'reviewed':r.reviewed,'indexed':bool(r.embedding)} for r in db.scalars(select(m.Resource))]
+
+@app.post('/api/admin/resources')
+async def upload_resource(outcome_id:str=Form(...),title:str=Form(...),source:str=Form(...),file:UploadFile=File(...),user=Depends(admin),db:DBSession=Depends(get_db)):
+    if not db.get(m.Outcome,outcome_id):raise HTTPException(422,'Unknown learning outcome')
+    data=await file.read(5*1024*1024+1)
+    if len(data)>5*1024*1024:raise HTTPException(413,'Maximum file size is 5 MB')
+    name=(file.filename or '').lower()
+    try:
+        if name.endswith('.pdf'):
+            from pypdf import PdfReader
+            reader=PdfReader(io.BytesIO(data))
+            if len(reader.pages)>200:raise ValueError('Too many pages')
+            content='\n'.join(p.extract_text() or '' for p in reader.pages)
+        elif name.endswith('.txt'):content=data.decode('utf-8-sig')
+        elif name.endswith('.json'):
+            raw=json.loads(data);content=raw['text']
+            if not isinstance(content,str):raise ValueError('text must be a string')
+        else:raise ValueError('Unsupported file')
+        if not content.strip() or len(content)>1000000:raise ValueError('Empty or oversized extracted content')
+    except Exception:raise HTTPException(422,'Cannot extract this document; use PDF, UTF-8 TXT, or JSON with a text field')
+    chunks=[content[i:i+1600] for i in range(0,len(content),1400)]
+    for chunk in chunks:db.add(m.Resource(outcome_id=outcome_id,title=title[:200],source=source[:2000],text=chunk,reviewed=False))
+    db.commit();return {'chunks':len(chunks),'status':'unreviewed'}
+
+@app.post('/api/admin/resources/{rid}/review')
+def review_resource(rid:int,data:Decision,user=Depends(admin),db:DBSession=Depends(get_db)):
+    r=db.get(m.Resource,rid)
+    if not r:raise HTTPException(404,'Resource not found')
+    r.reviewed=data.decision=='approved';r.embedding=None;r.embedding_model=None;db.commit();return {'reviewed':r.reviewed}
+
+@app.post('/api/admin/resources/{rid}/index')
+def index_resource(rid:int,user=Depends(admin),db:DBSession=Depends(get_db)):
+    rate_limit(f'index:{user.id}',10)
+    r=db.get(m.Resource,rid)
+    if not r or not r.reviewed:raise HTTPException(422,'Review resource before indexing')
+    try:r.embedding=ai.embed(r.text);r.embedding_model=settings.embedding_model
+    except Exception:raise HTTPException(503,'Local embedding model unavailable. See README setup.')
+    db.commit();return {'indexed':True}
+
+@app.get('/api/admin/users')
+def users(user=Depends(admin),db:DBSession=Depends(get_db)):return [public_user(u) for u in db.scalars(select(m.User))]
+
+class RoleInput(BaseModel):
+    role:Literal['student','teacher','admin']
+
+@app.patch('/api/admin/users/{uid}')
+def set_role(uid:int,data:RoleInput,user=Depends(admin),db:DBSession=Depends(get_db)):
+    if uid==user.id:raise HTTPException(422,'Cannot change your own role')
+    target=db.get(m.User,uid)
+    if not target:raise HTTPException(404,'User not found')
+    target.role=data.role
+    for s in db.scalars(select(m.Session).where(m.Session.user_id==uid)):db.delete(s)
+    db.commit();return public_user(target)
+
+@app.get('/api/admin/logs')
+def logs(user=Depends(admin),db:DBSession=Depends(get_db)):
+    return [{'id':r.id,'model':r.model,'outcome_id':r.outcome_id,'status':r.status,'created':r.created.isoformat()} for r in db.scalars(select(m.GenerationLog).order_by(m.GenerationLog.id.desc()).limit(100))]
+
+class TranslationInput(BaseModel):
+    prompt:str=Field(min_length=5,max_length=10000)
+    options:list[dict]=Field(default_factory=list,max_length=5)
+
+@app.put('/api/questions/{qid}/translation')
+def translation_draft(qid:int,data:TranslationInput,user=Depends(staff),db:DBSession=Depends(get_db)):
+    q=db.get(m.Question,qid)
+    if not q or (user.role!='admin' and q.author_id!=user.id):raise HTTPException(404,'Question not found')
+    if q.kind=='mcq' and [o.get('id') for o in data.options]!=[o['id'] for o in q.options]:raise HTTPException(422,'Translation must preserve option IDs and order')
+    # Only display fields can be translated; answer keys and identifiers stay unchanged.
+    content={'prompt':data.prompt,'options':[{'id':o.get('id'),'text':str(o.get('text',''))[:1000]} for o in data.options]}
+    tr=db.scalar(select(m.Translation).where(m.Translation.question_id==qid,m.Translation.language=='si'))
+    if tr:tr.content=content;tr.reviewed=False
+    else:db.add(m.Translation(question_id=qid,language='si',content=content,reviewed=False))
+    db.commit();return {'status':'translation_draft'}
+
+@app.post('/api/questions/{qid}/translation/review')
+def review_translation(qid:int,data:Decision,user=Depends(staff),db:DBSession=Depends(get_db)):
+    q=db.get(m.Question,qid)
+    if not q or (user.role!='admin' and q.author_id!=user.id):raise HTTPException(404,'Question not found')
+    tr=db.scalar(select(m.Translation).where(m.Translation.question_id==qid,m.Translation.language=='si'))
+    if not tr:raise HTTPException(404,'Translation draft not found')
+    tr.reviewed=data.decision=='approved'
+    db.add(m.Validation(question_id=qid,reviewer_id=user.id,decision='translation_'+data.decision,reason=data.reason));db.commit();return {'reviewed':tr.reviewed}

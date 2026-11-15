@@ -1,3 +1,4 @@
+
 # ICTRoot AI
 
 A locally runnable Sri Lankan A/L ICT learning and assessment application built with Next.js, FastAPI, SQLAlchemy and Ollama. It includes complete local student/teacher assessment workflows and an administrator workspace. **This is a working research foundation with partial curriculum verification, not a fully populated or production-certified complete-syllabus product.** See [implementation status](IMPLEMENTATION_STATUS.md) for exact limits.

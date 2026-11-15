@@ -1,0 +1,15 @@
+backend/.venv/
+**/__pycache__/
+.pytest_cache/
+*.db
+*.db-*
+.env
+backend/.env
+frontend/.env.local
+frontend/node_modules/
+frontend/.next/
+.tmp/
+*.log
+frontend/test-results/
+frontend/playwright-report/
+backend/pytest-cache-files-*/
