@@ -8,3 +8,4 @@ pytest
 python-multipart
 pypdf
 psycopg[binary]
+websockets==17.3

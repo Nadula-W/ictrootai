@@ -144,7 +144,11 @@ def join_class(data:JoinInput,user=Depends(current_user),db:DBSession=Depends(ge
 @app.get('/api/curriculum')
 def curriculum(user=Depends(current_user),db:DBSession=Depends(get_db)):
     units=db.scalars(select(m.Unit).order_by(m.Unit.id)).all()
-    return {'versions':[{'id':v.id,'source':v.source,'applicability':v.applicability,'verified_complete':v.verified_complete} for v in db.scalars(select(m.CurriculumVersion))], 'units':[{'id':u.id,'name':u.name,'grade':u.grade,'verified':u.verified,'outcomes':[{'id':o.id,'text':o.text,'level':o.level,'subtopic':o.subtopic,'competency':o.competency,'source_page':o.source_page,'verified':o.verified,'reviewed_at':o.reviewed_at} for o in db.scalars(select(m.Outcome).where(m.Outcome.unit_id==u.id))]} for u in units]}
+    versions=db.scalars(select(m.CurriculumVersion)).all()
+    outcomes_by_unit={u.id:[] for u in units}
+    for o in db.scalars(select(m.Outcome)):
+        outcomes_by_unit.setdefault(o.unit_id,[]).append({'id':o.id,'text':o.text,'level':o.level,'subtopic':o.subtopic,'competency':o.competency,'source_page':o.source_page,'verified':o.verified,'reviewed_at':o.reviewed_at})
+    return {'versions':[{'id':v.id,'source':v.source,'applicability':v.applicability,'verified_complete':v.verified_complete} for v in versions], 'units':[{'id':u.id,'name':u.name,'grade':u.grade,'verified':u.verified,'outcomes':outcomes_by_unit[u.id]} for u in units]}
 
 @app.post('/api/admin/curriculum')
 def import_curriculum(data:CurriculumImport,user=Depends(admin),db:DBSession=Depends(get_db)):
@@ -159,13 +163,20 @@ def import_curriculum(data:CurriculumImport,user=Depends(admin),db:DBSession=Dep
 
 @app.get('/api/coverage')
 def coverage(user=Depends(current_user),db:DBSession=Depends(get_db)):
-    rows=[]
-    for o in db.scalars(select(m.Outcome)):
-        qs=db.scalars(select(m.Question).where(m.Question.outcome_id==o.id,m.Question.status=='approved')).all()
-        material=db.scalar(select(m.Resource).where(m.Resource.outcome_id==o.id,m.Resource.reviewed==True))
-        translated=any(db.scalar(select(m.Translation).where(m.Translation.question_id==q.id,m.Translation.reviewed==True)) for q in qs)
-        rows.append({'id':o.id,'text':o.text,'unit_id':o.unit_id,'verified':o.verified,'approved_questions':len(qs),'formats':sorted({q.kind for q in qs}),'difficulties':sorted({q.difficulty for q in qs}),'sinhala':translated,'reviewed_at':o.reviewed_at,'covered':bool(o.verified and qs and material)})
+    # Load each collection once: cloud round trips must not scale with outcomes
+    # or question counts. Select only coverage metadata, never answer-key JSON.
+    outcomes=db.scalars(select(m.Outcome)).all()
+    approved_by_outcome={}
+    for q in db.execute(select(m.Question.id,m.Question.outcome_id,m.Question.kind,m.Question.difficulty).where(m.Question.status=='approved')):
+        approved_by_outcome.setdefault(q.outcome_id,[]).append(q)
+    reviewed_outcomes=set(db.scalars(select(m.Resource.outcome_id).where(m.Resource.reviewed==True)))
+    reviewed_translations=set(db.scalars(select(m.Translation.question_id).where(m.Translation.reviewed==True)))
     complete=all(v.verified_complete for v in db.scalars(select(m.CurriculumVersion)))
+    rows=[]
+    for o in outcomes:
+        qs=approved_by_outcome.get(o.id,[])
+        translated=any(q.id in reviewed_translations for q in qs)
+        rows.append({'id':o.id,'text':o.text,'unit_id':o.unit_id,'verified':o.verified,'approved_questions':len(qs),'formats':sorted({q.kind for q in qs}),'difficulties':sorted({q.difficulty for q in qs}),'sinhala':translated,'reviewed_at':o.reviewed_at,'covered':bool(o.verified and qs and o.id in reviewed_outcomes)})
     return {'outcomes':rows,'imported_outcomes':len(rows),'covered_outcomes':sum(r['covered'] for r in rows),'official_denominator_verified':complete,'full_syllabus_percentage':None,'warning':'Coverage of imported outcomes only. Complete official outcome inventory and examination applicability are not yet verified.'}
 
 def question_public(q,user,language,db):

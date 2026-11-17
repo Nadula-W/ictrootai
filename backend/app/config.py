@@ -2,11 +2,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import model_validator, field_validator, SecretStr, Field
 from urllib.parse import urlparse
 from pathlib import Path
+from typing import Literal
 from .db_url import validate_database_url
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=Path(__file__).resolve().parents[1]/'.env', extra='ignore', hide_input_in_errors=True)
     database_url: SecretStr = SecretStr('')
+    database_transport: Literal['direct','supabase_websocket'] = 'direct'
     database_pool_size: int = Field(default=5,ge=1,le=50)
     database_max_overflow: int = Field(default=5,ge=0,le=50)
     database_pool_timeout: int = Field(default=10,ge=1,le=120)

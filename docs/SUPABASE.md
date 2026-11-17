@@ -28,6 +28,8 @@ If a saved URL reaches the correct project but reports password authentication f
 
 Enter the original database password exactly as set in Supabase. The hidden prompt encodes reserved URL characters automatically and saves the result to `.env`. Do not enter your Supabase account sign-in password or a percent-encoded version.
 
+If `app.check_database` reports `database_timeout`, a timeout alone does not establish that the password is wrong. Check whether a different network (such as a mobile hotspot) completes the connection. A healthy project in the Supabase dashboard does not prove the network path from the local backend is working. PostgreSQL requires successful protocol/TLS negotiation in addition to an open TCP port. Do not disable TLS or reset passwords repeatedly to work around a handshake timeout. See [Supabase pooler troubleshooting](https://supabase.com/docs/guides/database/supavisor).
+
 The application schema is managed through Alembic. Revision **0002** is already applied in this cloud project. **434 legacy records have already been imported and checked**, including 3 accounts, 360 outcome records and 7 questions. Do not import or seed them again. Start the backend and sign in with your existing password.
 
 ```cmd

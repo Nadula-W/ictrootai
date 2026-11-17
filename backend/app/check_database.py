@@ -2,6 +2,8 @@
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 from .database import engine
+from .database_diagnostics import database_failure
+from .config import settings
 
 def main():
     if engine is None:
@@ -14,10 +16,13 @@ def main():
             present=connection.scalar(text("SELECT to_regclass('public.alembic_version') IS NOT NULL"))
             revision=connection.scalar(text('SELECT version_num FROM public.alembic_version')) if present else None
         print('PostgreSQL connection: OK')
+        print('Transport: '+settings.database_transport)
         print('Schema revision: '+str(revision or 'not migrated; run python -m alembic upgrade head'))
         return 0
-    except (SQLAlchemyError,RuntimeError):
-        print('PostgreSQL connection failed. Check the project status, DATABASE_URL, TLS settings and network. Credentials were not printed.')
+    except (SQLAlchemyError,RuntimeError) as error:
+        code,message=database_failure(error)
+        print('PostgreSQL connection failed ('+code+'). '+message)
+        print('Credentials were not printed.')
         return 1
 
 if __name__=='__main__':raise SystemExit(main())
