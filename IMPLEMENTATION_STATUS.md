@@ -1,6 +1,8 @@
-# Implementation status — updated 2026-11-15
+# Implementation status — updated 2026-11-17
 
-**Current database status:** Application storage is PostgreSQL only. A separate `ictroot-ai` Supabase project (`zbugipqjwamlrgdyycpr`, Mumbai) was created with the user's approval at the quoted $0/month cost. Schema revision `0002` is installed, and all **434 preserved records** have been imported and checked. The private connection string for the running Windows backend has not yet been supplied; database-dependent requests return a clear 503 until that connection is configured and the backend restarted. MathRoot was not changed.
+**Latest connection check — 2026-11-17:** Supabase reports `ACTIVE_HEALTHY`. A management query confirmed schema `0002`, 3 users, 7 questions and 360 outcome records. The saved Windows-backend connection is configured with TLS and no outer password whitespace; DNS resolves, but the direct psycopg connection currently **times out**. The successful live login/access checks below were performed on 2026-11-15 and do not establish current local connectivity. No credentials or database settings were changed during this status check.
+
+**Current database status:** Supabase PostgreSQL is connected and verified from the local backend. The separate `ictroot-ai` project (`zbugipqjwamlrgdyycpr`, Mumbai) is at schema revision `0002`, with all **434 preserved records** imported and checked. Missing TLS and an accidental outer space in the saved password were corrected without printing credentials. Live teacher/student login, authorized question-bank/assessment access, student answer-key restrictions, logout and database health checks passed. The connection persists in ignored `backend/.env`. MathRoot was not changed.
 
 The dated local-demo results below are historical. The PostgreSQL migration details at the end record the current storage implementation and verification.
 
@@ -8,7 +10,7 @@ Working local application delivered in `E:\ictrootai`; MathRoot was not accessed
 
 | Phase | Implemented and exercised | Remaining |
 | --- | --- | --- |
-| 1. Foundation | Next.js/React/TypeScript/Tailwind frontend; FastAPI/Pydantic/SQLAlchemy backend; Supabase PostgreSQL schema and transferred records; bounded pool; pinned dependencies; Windows setup | Private local-backend connection string and production hosting |
+| 1. Foundation | Next.js/React/TypeScript/Tailwind frontend; FastAPI/Pydantic/SQLAlchemy backend; verified live Supabase PostgreSQL connection and transferred records; bounded pool; pinned dependencies; Windows setup | Production hosting |
 | 2. Curriculum | Official 63-page NIE PDF downloaded; hash/page-linked extraction; 14 unit areas; 359 unverified outcome candidates; one reviewed conversion outcome; import/edit UI/API; per-outcome coverage | Full source-wording verification, competency/subtopic cleanup, grade mappings, official exam applicability, reviewed complete inventory |
 | 3. Ollama/RAG | Installed model discovery; admin selection/status; real local structured chat succeeded; local embeddings client; resource ingestion/review/indexing; cosine vector retrieval; source attachment | Embedding model not installed, so real embedding/retrieval/generation chain not smoke-tested |
 | 4. Question bank | Seven original approved questions; manual drafts; schema validation; local generation API; source-review gating; approve/reject/edit-as-new workflow; offline fallback | Broad reviewed question population and formal quality evaluation |
@@ -35,7 +37,7 @@ Project (unit 14) has competency levels but no bulleted outcome-column entries i
 
 1. **Embedding model absent:** free sufficient model-storage space and explicitly run `ollama pull embeddinggemma`. Review and index authorised resource chunks, then run generation and inspect its source-grounded draft. Mock tests do not establish real generation quality.
 2. **Verified full curriculum corpus absent:** review each extracted row against `curriculum/nie-ict-2017.pdf`; correct continuation/column errors, competency/subtopic mapping and grade applicability in administrator import. Obtain official confirmation of the currently applicable exam syllabus. Do not mark the full inventory complete merely because 14 units exist.
-3. **Local backend connection pending:** The new ICTRoot Supabase project, schema, RLS restrictions and 434 transferred records have been checked through the management connection. Save its private Session pooler connection with `python -m app.configure_database`, run `python -m app.check_database`, and restart the backend. The connection from the local FastAPI process to Supabase remains unverified until then.
+3. **Production operations:** Live backend-to-Supabase connectivity is verified. Public multi-user deployment still needs hosting, HTTPS/proxy configuration, shared rate limits, least-privilege operational roles, account recovery and tested backups.
 4. **Reviewed content/translation staffing:** authorised teachers must populate and review conceptual questions, rubrics, source notes and Sinhala translations. Locally authored demo questions are not official exam materials.
 
 No paid AI, external student-data transmission, deployment, Git commit or remote push occurred.
@@ -63,6 +65,14 @@ The real setup blocker remains: explicitly install `embeddinggemma`, then sign i
 - Removed the obsolete active `backend/ictroot.db`, `backend/migration-smoke.db`, redundant root `.env.example` and `backend/.env.postgres.example`. Canonical template is `backend/.env.example`. The isolated in-memory SQLite SQL-answer grader remains necessary and cannot access PostgreSQL.
 - Added read-only `app.check_database`, hidden-input/atomic-save `app.configure_database`, and guarded one-time `app.migrate_legacy_sqlite`. The importer refuses nonempty destinations and never deletes its source. Invalid legacy conversion messages do not expose field values or silently turn text into verified flags. The configuration wizard works even when an older SQLite/invalid URL exists.
 - Verification against disposable real PostgreSQL: **109 tests passed** in the final run (30.80 seconds), with the existing upstream Starlette/httpx deprecation warning. Alembic upgrade, schema-drift check, 434-record import, repeat-import refusal and preserved-password teacher login/question-bank/health/logout smoke passed. Frontend typecheck and production build passed. Only the task's disposable PostgreSQL container was stopped after verification; user services were left alone.
-- Remote cloud checks were run through the connected management tool. The separate private PostgreSQL URI needed by the Windows backend is still absent; no successful local-to-Supabase runtime connection is claimed. Direct endpoint DNS was unavailable from this host, so use the exact Session pooler values from the dashboard's Connect dialog.
+- Initial remote cloud checks were run through the connected management tool. The private runtime URI was supplied later and is now verified, as recorded below. Direct endpoint DNS was unavailable from this host; the configured Session pooler is reachable.
 
-See [docs/SUPABASE.md](docs/SUPABASE.md) for the remaining connection step. Existing passwords are preserved. The new cloud database is populated already; do not seed or import it again.
+See [docs/SUPABASE.md](docs/SUPABASE.md) for connection recovery instructions. Existing passwords are preserved. The cloud database is connected and populated already; do not seed or import it again.
+
+## Saved-connection follow-up — 2026-11-15
+
+The user saved `DATABASE_URL` in the ignored backend `.env`. Without printing the URL or password, checks confirmed the correct ICTRoot project, Session pooler/port and DNS resolution. Added the missing `sslmode=require`. A network-enabled test then classified the remaining failure as **password authentication failed**; no successful live backend connection is claimed.
+
+Added `app.configure_database --password-only` so the original database password can be entered in a hidden prompt, encoded correctly for reserved URL symbols, and saved atomically without retyping the destination URL. Targeted configuration suite: **26 passed** (1.06 seconds), including password-symbol round trips and empty-password rejection. This does not replace the earlier full 109-test PostgreSQL run; that full suite was not repeated for this CLI-only follow-up.
+
+**Resolution:** The user's connection example revealed an extra space immediately before `@`. A credential-safe check confirmed outer whitespace in the saved password; it was removed and `.env` saved. `app.check_database` then returned **PostgreSQL connection: OK**, revision **0002**. A fresh application process using the actual Supabase connection passed teacher login/question-bank access (7 approved questions), student login/assessment access, student question-bank denial, logout and health checks. Test sessions were logged out and no assessments/answers were changed. Port 8000 was not running at the final check; start the backend normally to serve the browser.

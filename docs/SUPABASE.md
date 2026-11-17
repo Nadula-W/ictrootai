@@ -2,6 +2,8 @@
 
 Project: **ictroot-ai**, reference `zbugipqjwamlrgdyycpr`, Mumbai (`ap-south-1`). Created on 2026-11-15 in the organization explicitly selected by the user, at the quoted **$0/month** creation cost. The separate MathRoot project was not changed.
 
+**Current installation is connected.** The private Session pooler URI is saved in `backend/.env`, schema revision `0002` and live teacher/student authentication/access/health checks passed. Start the backend normally; these setup steps are for a new installation or recovery, not something to repeat at each startup.
+
 Application persistence is PostgreSQL only. The backend uses SQLAlchemy and psycopg; it requires a private PostgreSQL connection string, not a Supabase publishable API key. The connected management tool can manage the project/schema but does not supply the local backend's private database password.
 
 1. Open the [ICTRoot Supabase project](https://supabase.com/dashboard/project/zbugipqjwamlrgdyycpr).
@@ -17,7 +19,16 @@ cd /d E:\ictrootai\backend
 
 Paste the connection string into the hidden prompt. It is saved only to the ignored `backend/.env`. The helper adds `sslmode=require` when TLS is unspecified; explicit insecure remote modes are rejected. **Restart the backend after saving** because changing `.env` alone does not refresh an already-running process. The main database cannot fall back to SQLite.
 
-The application schema is managed through Alembic. Revision **0002** is already applied in this cloud project. **434 legacy records have already been imported and checked**, including 3 accounts, 360 outcome records and 7 questions. Do not import or seed them again. Once the private connection works, start the backend and sign in with your existing password.
+If a saved URL reaches the correct project but reports password authentication failure, update only the password without rebuilding the URL:
+
+```cmd
+.venv\Scripts\python.exe -m app.configure_database --password-only
+.venv\Scripts\python.exe -m app.check_database
+```
+
+Enter the original database password exactly as set in Supabase. The hidden prompt encodes reserved URL characters automatically and saves the result to `.env`. Do not enter your Supabase account sign-in password or a percent-encoded version.
+
+The application schema is managed through Alembic. Revision **0002** is already applied in this cloud project. **434 legacy records have already been imported and checked**, including 3 accounts, 360 outcome records and 7 questions. Do not import or seed them again. Start the backend and sign in with your existing password.
 
 ```cmd
 .venv\Scripts\python.exe -m alembic upgrade head

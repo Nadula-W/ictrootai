@@ -1,4 +1,11 @@
 # ICTRoot AI
+| Role | Email |
+|---|---|
+| Student | `student@ictroot.local` |
+| Teacher | `teacher@ictroot.local` |
+| Admin | `admin@ictroot.local` |
+
+1ZnrA7FHUiXrY5-4CPQ-
 
 A Sri Lankan A/L ICT learning and assessment application with a Next.js frontend, FastAPI backend, **Supabase PostgreSQL application database**, and local Ollama AI. The application has no SQLite storage fallback.
 
@@ -39,7 +46,7 @@ if not exist .env copy .env.example .env
 
 Edit **backend/.env** using your separate ICTRoot Supabase project's connection settings. **backend/.env.example** is the canonical backend template; the former root template and separate PostgreSQL template are redundant.
 
-The separate [ictroot-ai Supabase project](https://supabase.com/dashboard/project/zbugipqjwamlrgdyycpr) is already created, migrated to revision `0002` and populated with the 434 preserved records. The private backend connection is still required. Run `.venv\Scripts\python.exe -m app.configure_database` to paste it into a hidden prompt, then check the connection and restart the backend. See [the connection guide](docs/SUPABASE.md).
+The separate [ictroot-ai Supabase project](https://supabase.com/dashboard/project/zbugipqjwamlrgdyycpr) is created, migrated to revision `0002` and populated with the 434 preserved records. The private backend connection is saved and live teacher/student login and database health have passed. Use the startup commands above normally; no repeated connection entry is needed. For a new installation or credential recovery, use `.venv\Scripts\python.exe -m app.configure_database`. See [the connection guide](docs/SUPABASE.md).
 
 ```dotenv
 DATABASE_URL=postgresql+psycopg://postgres.PROJECT_REF:URL_ENCODED_DATABASE_PASSWORD@POOLER_HOST:5432/postgres?sslmode=require
@@ -180,7 +187,7 @@ The original workflow browser tests require both services and seeded accounts. T
 
 **Historical results before PostgreSQL-only storage:** 69 backend tests, four workflow browser tests and a SQLite migration smoke test passed on 2026-11-14. On 2026-11-15, 81 backend tests, four mocked readiness browser tests, typecheck and production build passed. These runs do not prove the new PostgreSQL configuration or a remote Supabase connection works. Current migration/test/cloud results are recorded in [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md).
 
-During the PostgreSQL migration, **109 tests passed against an isolated real PostgreSQL server**. Alembic migrations, legacy import, repeated-import refusal and login with the preserved password also passed. Frontend typecheck and build passed. The new Supabase schema and transferred counts were checked through the connected management tool. A live connection from the local backend to Supabase still needs the private connection string.
+During the PostgreSQL migration, **109 tests passed against an isolated real PostgreSQL server**. Alembic migrations, legacy import, repeated-import refusal and login with the preserved password also passed. Frontend typecheck and build passed. The Supabase schema and transferred counts were checked through the connected management tool. After saving the private connection, live backend-to-Supabase teacher/student login, permissions, question-bank/assessment access, logout and health checks passed. The password-configuration follow-up passed 26 targeted configuration tests.
 
 ## Troubleshooting and remaining limits
 

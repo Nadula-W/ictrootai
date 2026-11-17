@@ -105,3 +105,16 @@ def test_configuration_helper_cannot_accept_explicit_insecure_remote_tls():
     from app.configure_database import prepare_connection_url
     with pytest.raises(ValueError):
         prepare_connection_url('postgresql://test:example@database.example/ictroot?sslmode=disable')
+
+@pytest.mark.parametrize('password',['test@with#symbols:/?%','literal%40value',"quotes'and\"dollar$"])
+def test_password_only_update_encodes_once_and_keeps_saved_destination(password):
+    from app.configure_database import replace_connection_password
+    url=make_url(replace_connection_password('postgresql://user:old@database.example:5432/ictroot?sslmode=require',password))
+    assert url.password==password
+    assert url.host=='database.example' and url.port==5432
+    assert url.username=='user' and url.database=='ictroot'
+    assert url.query['sslmode']=='require'
+
+def test_password_only_update_rejects_empty_password():
+    from app.configure_database import replace_connection_password
+    with pytest.raises(ValueError):replace_connection_password('postgresql://user:old@localhost/test','')
