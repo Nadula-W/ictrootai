@@ -9,7 +9,7 @@ Demo passwords are private. Use the password saved during seeding, or reset the 
 
 A Sri Lankan A/L ICT learning and assessment application with a Next.js frontend, FastAPI backend, **Supabase PostgreSQL application database**, and local Ollama AI. The application has no SQLite storage fallback.
 
-**The curriculum is still partially populated.** The supplied corpus has 359 unverified outcome candidates, one source-checked number-conversion outcome and seven original demonstration questions. See [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for current verification results and unfinished work.
+**The 2017 source catalogue has been checked:** 14 units, 82 competency levels and 368 explicit learning outcomes, including nine IoT outcomes omitted by the old extraction. All original candidate IDs are preserved. Source verification is separate from question coverage: the existing bank has seven demonstration questions, and a later examination year's applicability is not yet officially confirmed. See [the curriculum audit](curriculum/README.md) and [implementation status](IMPLEMENTATION_STATUS.md).
 
 ![Student workspace](docs/student-dashboard.png)
 

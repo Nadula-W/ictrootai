@@ -1,0 +1,1444 @@
+{
+  "source_url": "https://nie.lk/pdffiles/tg/eALSyl%20ICT.pdf",
+  "source_file": "curriculum/nie-ict-2017.pdf",
+  "source_sha256": "577659c643467316a84fae39fadc49b4753f8b8f553e8e66cf1655c8951082f8",
+  "source_page_numbering": "1-based physical PDF pages; printed body page = PDF page - 11",
+  "source_title": "Information and Communication Technology Syllabus, Grades 12 and 13 (Effective from 2017)",
+  "reviewed_at": "2026-11-22",
+  "reviewer": "Codex source cross-check; not a human teacher approval or examination-board confirmation",
+  "verification_method": "Read the actual five-column syllabus table and inspect rendered images of every page in scope, follow cross-page continuation lines and inspect all outcome bullet glyphs; independently reconcile every pre-existing candidate and every omitted bullet within competencies 10–14.",
+  "scope": "Competencies 10–14 of this exact 2017 NIE PDF only",
+  "review_scope_complete": true,
+  "official_exam_applicability_verified": false,
+  "source_pages_checked": [
+    11,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62
+  ],
+  "rendered_pages_visually_checked": [
+    11,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62
+  ],
+  "units": [
+    {
+      "id": 10,
+      "name": "Web Development",
+      "grade": null,
+      "periods": 60,
+      "source_pages": [
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+      "levels": [
+        {
+          "id": "10.1",
+          "title": "Explores the need for web",
+          "source_pages": [
+            52
+          ],
+          "periods": 8,
+          "contents": [
+            "The world wide web (www)",
+            "Types of web sites",
+            "Information, news",
+            "Personal, educational, commercial, Research",
+            "Web portals"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.1-01",
+              "unit_id": 10,
+              "level": "10.1",
+              "text": "Describes www",
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "subtopic": "Explores the need for web",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.1-02",
+              "unit_id": 10,
+              "level": "10.1",
+              "text": "Analyses the systematic arrangements of contents and structure of a web",
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "subtopic": "Explores the need for web",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "The source itself ends this bullet with \"structure of a web\" before the next competency level. The incomplete wording is retained rather than completing it with an invented word."
+            }
+          ]
+        },
+        {
+          "id": "10.2",
+          "title": "Analyses user requirements(multimedia contents)",
+          "source_pages": [
+            52
+          ],
+          "periods": 4,
+          "contents": [
+            "Defining the objectives of a website",
+            "Contents to be displayed"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.2-01",
+              "unit_id": 10,
+              "level": "10.2",
+              "text": "Creates effective and appropriate information layout of a website",
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "subtopic": "Analyses user requirements(multimedia contents)",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.2-02",
+              "unit_id": 10,
+              "level": "10.2",
+              "text": "Identifies the web pages of a website",
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "subtopic": "Analyses user requirements(multimedia contents)",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.2-03",
+              "unit_id": 10,
+              "level": "10.2",
+              "text": "Identifies the contents of a web page",
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "subtopic": "Analyses user requirements(multimedia contents)",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.2-04",
+              "unit_id": 10,
+              "level": "10.2",
+              "text": "Identifies navigationstructure",
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "subtopic": "Analyses user requirements(multimedia contents)",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "10.3",
+          "title": "Identifies appropriate HTML tags to design a single web page",
+          "source_pages": [
+            52,
+            53
+          ],
+          "periods": 4,
+          "contents": [
+            "Building blocks of a web page",
+            "Page definition",
+            "<html></html>",
+            "Head section",
+            "<head></head>",
+            "<title></title>",
+            "Body section",
+            "<body></body>",
+            "Background color",
+            "Text formatting",
+            "<h1>…<h6>tags",
+            "<p></p>",
+            "<br/>",
+            "Underline, bold, italic",
+            "<font></font>",
+            "Size and color",
+            "Adding comments"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.3-01",
+              "unit_id": 10,
+              "level": "10.3",
+              "text": "Analyses the arrangement of contents of a web page",
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "subtopic": "Identifies appropriate HTML tags to design a single web page",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.3-02",
+              "unit_id": 10,
+              "level": "10.3",
+              "text": "Analyses the organization of contents in a web page",
+              "source_page": 52,
+              "source_pages": [
+                52,
+                53
+              ],
+              "subtopic": "Identifies appropriate HTML tags to design a single web page",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.3-03",
+              "unit_id": 10,
+              "level": "10.3",
+              "text": "Creates a simple web page",
+              "source_page": 53,
+              "source_pages": [
+                53
+              ],
+              "subtopic": "Identifies appropriate HTML tags to design a single web page",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "10.4",
+          "title": "Uses HTML to create linked web pages",
+          "source_pages": [
+            53,
+            54
+          ],
+          "periods": 16,
+          "contents": [
+            "Contents of a website",
+            "Home page",
+            "Linked pages",
+            "Hyperlink",
+            "Different sections of the same page(book mark)",
+            "Different pages of a same site(local link)",
+            "Pages of different sites (External link)",
+            "Lists",
+            "Ordered lists",
+            "Unordered lists",
+            "Definition lists",
+            "Image",
+            "Tables",
+            "<table></table>",
+            "<th></th>",
+            "<tr></tr>",
+            "<td></td>",
+            "<caption>",
+            "Merging columns and rows",
+            "Multimedia objects",
+            "Audio",
+            "Video"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.4-01",
+              "unit_id": 10,
+              "level": "10.4",
+              "text": "Explains hypertext markup language",
+              "source_page": 53,
+              "source_pages": [
+                53
+              ],
+              "subtopic": "Uses HTML to create linked web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.4-02",
+              "unit_id": 10,
+              "level": "10.4",
+              "text": "Identifies the standards of HTML",
+              "source_page": 53,
+              "source_pages": [
+                53
+              ],
+              "subtopic": "Uses HTML to create linked web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.4-03",
+              "unit_id": 10,
+              "level": "10.4",
+              "text": "Saves the source document with suitable extensions",
+              "source_page": 53,
+              "source_pages": [
+                53
+              ],
+              "subtopic": "Uses HTML to create linked web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.4-04",
+              "unit_id": 10,
+              "level": "10.4",
+              "text": "Designs the web page by inserting appropriate multimedia objects according to user requirements",
+              "source_page": 53,
+              "source_pages": [
+                53
+              ],
+              "subtopic": "Uses HTML to create linked web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.4-05",
+              "unit_id": 10,
+              "level": "10.4",
+              "text": "Organizes data using lists and tables in the web page",
+              "source_page": 53,
+              "source_pages": [
+                53
+              ],
+              "subtopic": "Uses HTML to create linked web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.4-06",
+              "unit_id": 10,
+              "level": "10.4",
+              "text": "Links pages and multimedia objects to the web page",
+              "source_page": 53,
+              "source_pages": [
+                53
+              ],
+              "subtopic": "Uses HTML to create linked web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "10.5",
+          "title": "Uses Style sheet to change the appearance of web pages",
+          "source_pages": [
+            54
+          ],
+          "periods": 8,
+          "contents": [
+            "Introduction to style sheet",
+            "CSS",
+            "Syntax, comments",
+            "CSS selectors",
+            "element, id, class, group",
+            "Ways of inserting CSS",
+            "Internal, external, inline",
+            "Appearance formatting",
+            "Background (color, image)",
+            "Text and fonts",
+            "Links",
+            "Lists",
+            "Tables"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.5-01",
+              "unit_id": 10,
+              "level": "10.5",
+              "text": "Briefly explains style sheet and its usage",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Uses Style sheet to change the appearance of web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.5-02",
+              "unit_id": 10,
+              "level": "10.5",
+              "text": "Uses the comments and correct syntax in CSS",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Uses Style sheet to change the appearance of web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.5-03",
+              "unit_id": 10,
+              "level": "10.5",
+              "text": "Uses appropriate selectors to select elements in CSS",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Uses Style sheet to change the appearance of web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.5-04",
+              "unit_id": 10,
+              "level": "10.5",
+              "text": "Inserts CSS in HTML web pages to improve the appearance",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Uses Style sheet to change the appearance of web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.5-05",
+              "unit_id": 10,
+              "level": "10.5",
+              "text": "Applies various CSS formatting in HTML web pages to improve the appearance",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Uses Style sheet to change the appearance of web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "10.6",
+          "title": "Uses an authoring tool to create web pages",
+          "source_pages": [
+            54
+          ],
+          "periods": 10,
+          "contents": [
+            "Introduction to web authoring tools"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.6-01",
+              "unit_id": 10,
+              "level": "10.6",
+              "text": "Briefly explains web authoring tools",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Uses an authoring tool to create web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.6-02",
+              "unit_id": 10,
+              "level": "10.6",
+              "text": "Creates web pages using a web authoring tool",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Uses an authoring tool to create web pages",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "10.7",
+          "title": "Creates dynamic web pages using PHP and MySQL",
+          "source_pages": [
+            54,
+            55
+          ],
+          "periods": 6,
+          "contents": [
+            "Introduction to dynamic web pages",
+            "Embedding PHP code into web page",
+            "Variables",
+            "Arrays",
+            "Control structures",
+            "Functions",
+            "Database connectivity",
+            "Working with databases",
+            "Forms",
+            "Input element",
+            "Type attribute",
+            "Name attribute",
+            "Value attribute",
+            "Text input (Password)",
+            "Radio buttons",
+            "Check box",
+            "Selection",
+            "Submit buttons",
+            "Reset button",
+            "Action attribute",
+            "Method attribute",
+            "Get",
+            "Post",
+            "Grouping form data using <fieldset> tag",
+            "Saving form data into database",
+            "Creating data source and entering data",
+            "CreatingPHP code to retrieve data from MySQL database",
+            "Set form values using retrieved data"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.7-01",
+              "unit_id": 10,
+              "level": "10.7",
+              "text": "Defines dynamic web pages",
+              "source_page": 54,
+              "source_pages": [
+                54
+              ],
+              "subtopic": "Creates dynamic web pages using PHP and MySQL",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.7-02",
+              "unit_id": 10,
+              "level": "10.7",
+              "text": "Creates data source and enters data",
+              "source_page": 55,
+              "source_pages": [
+                55
+              ],
+              "subtopic": "Creates dynamic web pages using PHP and MySQL",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.7-03",
+              "unit_id": 10,
+              "level": "10.7",
+              "text": "CreatesPHP code to save/retrieve data to and from MySQL",
+              "source_page": 55,
+              "source_pages": [
+                55
+              ],
+              "subtopic": "Creates dynamic web pages using PHP and MySQL",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.7-04",
+              "unit_id": 10,
+              "level": "10.7",
+              "text": "Develop simple web based information systems",
+              "source_page": 55,
+              "source_pages": [
+                55
+              ],
+              "subtopic": "Creates dynamic web pages using PHP and MySQL",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "10.8",
+          "title": "Publishes and maintains web sites",
+          "source_pages": [
+            56
+          ],
+          "periods": 4,
+          "contents": [
+            "Local publishing",
+            "Own computer, intranet",
+            "Internet publishing",
+            "Connecting to the web Service provider",
+            "Publishing web Pages on web server",
+            "Factors affecting performance of website"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-10.8-01",
+              "unit_id": 10,
+              "level": "10.8",
+              "text": "Publishes the developed website locally",
+              "source_page": 56,
+              "source_pages": [
+                56
+              ],
+              "subtopic": "Publishes and maintains web sites",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.8-02",
+              "unit_id": 10,
+              "level": "10.8",
+              "text": "Identifies free web hosting sites from the Internet",
+              "source_page": 56,
+              "source_pages": [
+                56
+              ],
+              "subtopic": "Publishes and maintains web sites",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.8-03",
+              "unit_id": 10,
+              "level": "10.8",
+              "text": "Publishes the developed website through a free web hosting site",
+              "source_page": 56,
+              "source_pages": [
+                56
+              ],
+              "subtopic": "Publishes and maintains web sites",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-10.8-04",
+              "unit_id": 10,
+              "level": "10.8",
+              "text": "Investigates the factors affecting performance of website",
+              "source_page": 56,
+              "source_pages": [
+                56
+              ],
+              "subtopic": "Publishes and maintains web sites",
+              "competency": "Develops websites incorporating multi-media technologies (using HTML 5)",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Internet of Things",
+      "grade": null,
+      "periods": 15,
+      "source_pages": [
+        56,
+        57
+      ],
+      "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+      "levels": [
+        {
+          "id": "11.1",
+          "title": "Acquires the knowledge of basic building blocks of digital systems",
+          "source_pages": [
+            56,
+            57
+          ],
+          "periods": 8,
+          "contents": [
+            "Microprocessor Development Systems (MDS) (Arduino Board, Raspberry Pi board, board with etc.)",
+            "Introduction",
+            "Microprocessor Development Systems vs. traditional computer systems",
+            "Features",
+            "Analog Input",
+            "Digital Input",
+            "Microprocessor",
+            "Digital Output",
+            "RX and TX Pins",
+            "USB Port",
+            "Power supply",
+            "Reset Switch",
+            "Connect to the computer",
+            "USB Connectivity",
+            "IDE Software (code editor, compiler and programmer)",
+            "Simple applications",
+            "Switch on/off a LED",
+            "Sending ambient light intensity with a LDR and switching on LEDs on light intensity",
+            "Sensing the room temperature with temperature sensor and switching on a fan on high temperature and off",
+            "Door open/close detection with magnet switch"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-11.1-01",
+              "unit_id": 11,
+              "level": "11.1",
+              "text": "Identifies and lists Microprocessor Development Systems",
+              "source_page": 56,
+              "source_pages": [
+                56
+              ],
+              "subtopic": "Acquires the knowledge of basic building blocks of digital systems",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF pages 56–57; omitted by the old extractor. Source grammar is preserved; the last bullet includes its three indented examples."
+            },
+            {
+              "id": "NIE2017-11.1-02",
+              "unit_id": 11,
+              "level": "11.1",
+              "text": "Describes available features on Microprocessor Development Systems",
+              "source_page": 56,
+              "source_pages": [
+                56
+              ],
+              "subtopic": "Acquires the knowledge of basic building blocks of digital systems",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF pages 56–57; omitted by the old extractor. Source grammar is preserved; the last bullet includes its three indented examples."
+            },
+            {
+              "id": "NIE2017-11.1-03",
+              "unit_id": 11,
+              "level": "11.1",
+              "text": "Identifies necessary software and download them from the Internet to design and write programs into Microprocessor Development System",
+              "source_page": 56,
+              "source_pages": [
+                56
+              ],
+              "subtopic": "Acquires the knowledge of basic building blocks of digital systems",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF pages 56–57; omitted by the old extractor. Source grammar is preserved; the last bullet includes its three indented examples."
+            },
+            {
+              "id": "NIE2017-11.1-04",
+              "unit_id": 11,
+              "level": "11.1",
+              "text": "Develops simple applications using to Microprocessor Development Systems - Switch on/off LEDs on ambient light intensity - Door open/close detection with magnetic switch - Run a fan on high temperature",
+              "source_page": 56,
+              "source_pages": [
+                56,
+                57
+              ],
+              "subtopic": "Acquires the knowledge of basic building blocks of digital systems",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF pages 56–57; omitted by the old extractor. Source grammar is preserved; the last bullet includes its three indented examples."
+            }
+          ]
+        },
+        {
+          "id": "11.2",
+          "title": "Explores the Internet of Things (IoT) to create a simple application",
+          "source_pages": [
+            57
+          ],
+          "periods": 7,
+          "contents": [
+            "Introduction to IoT",
+            "Definition",
+            "Needs",
+            "IoT applications",
+            "Enabling technologies",
+            "Simple IoT application to construct a remote switch"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-11.2-iot-01",
+              "unit_id": 11,
+              "level": "11.2",
+              "text": "Defines IoT (Internet of Things)",
+              "source_page": 57,
+              "source_pages": [
+                57
+              ],
+              "subtopic": "Explores the Internet of Things (IoT) to create a simple application",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF page 57; omitted by the old extractor. The -iot application-ID suffix avoids collision with preserved business records that inherited the printed 11.2 numbering error."
+            },
+            {
+              "id": "NIE2017-11.2-iot-02",
+              "unit_id": 11,
+              "level": "11.2",
+              "text": "Identifies the needs of IoT to make day to day smart",
+              "source_page": 57,
+              "source_pages": [
+                57
+              ],
+              "subtopic": "Explores the Internet of Things (IoT) to create a simple application",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF page 57; omitted by the old extractor. The -iot application-ID suffix avoids collision with preserved business records that inherited the printed 11.2 numbering error."
+            },
+            {
+              "id": "NIE2017-11.2-iot-03",
+              "unit_id": 11,
+              "level": "11.2",
+              "text": "Discusses the various applications of IoT",
+              "source_page": 57,
+              "source_pages": [
+                57
+              ],
+              "subtopic": "Explores the Internet of Things (IoT) to create a simple application",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF page 57; omitted by the old extractor. The -iot application-ID suffix avoids collision with preserved business records that inherited the printed 11.2 numbering error."
+            },
+            {
+              "id": "NIE2017-11.2-iot-04",
+              "unit_id": 11,
+              "level": "11.2",
+              "text": "Identifies the enabling technologies for IoT",
+              "source_page": 57,
+              "source_pages": [
+                57
+              ],
+              "subtopic": "Explores the Internet of Things (IoT) to create a simple application",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF page 57; omitted by the old extractor. The -iot application-ID suffix avoids collision with preserved business records that inherited the printed 11.2 numbering error."
+            },
+            {
+              "id": "NIE2017-11.2-iot-05",
+              "unit_id": 11,
+              "level": "11.2",
+              "text": "Designs and Implements an IOT application to remotely control a device through Internet Example :- ON/OFF a television",
+              "source_page": 57,
+              "source_pages": [
+                57
+              ],
+              "subtopic": "Explores the Internet of Things (IoT) to create a simple application",
+              "competency": "Explores IoT and identify the building blocks of digital systems to develop simple applications",
+              "verified": true,
+              "review_note": "Filled-circle learning-outcome bullet checked against PDF page 57; omitted by the old extractor. The -iot application-ID suffix avoids collision with preserved business records that inherited the printed 11.2 numbering error."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "ICT in Business",
+      "grade": null,
+      "periods": 12,
+      "source_pages": [
+        58,
+        59,
+        60
+      ],
+      "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+      "levels": [
+        {
+          "id": "12.1",
+          "title": "Explores the role of ICT in the world of business",
+          "source_pages": [
+            58
+          ],
+          "periods": 4,
+          "contents": [
+            "Digital economy",
+            "New business methods in digital economy",
+            "Reverse auctions",
+            "Group purchasing",
+            "e-Marketplace",
+            "Pure brick, brick and click, and pure click organizations",
+            "Business functions and the role of ICT",
+            "Accounting and ICT",
+            "Human resource and ICT",
+            "Production and ICT",
+            "Marketing & sales and ICT",
+            "Supply chain management and ICT",
+            "Business communication and ICT",
+            "Secure payment mechanisms",
+            "Payment gateways",
+            "Secure credit card payments",
+            "Third party systems",
+            "PayPal etc",
+            "Mechanisms",
+            "Data encryption",
+            "Micro credit payments (bit coin etc.)",
+            "Threats and opportunities in ecommerce",
+            "Privacy",
+            "Product commercialization"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-12.1-01",
+              "unit_id": 12,
+              "level": "12.1",
+              "text": "Defines digital economy",
+              "source_page": 58,
+              "source_pages": [
+                58
+              ],
+              "subtopic": "Explores the role of ICT in the world of business",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-12.1-02",
+              "unit_id": 12,
+              "level": "12.1",
+              "text": "Lists and describes new business methods in digital economy",
+              "source_page": 58,
+              "source_pages": [
+                58
+              ],
+              "subtopic": "Explores the role of ICT in the world of business",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-12.1-03",
+              "unit_id": 12,
+              "level": "12.1",
+              "text": "Identifies the concepts behind pure brick, brick and click, and pure click organizations",
+              "source_page": 58,
+              "source_pages": [
+                58
+              ],
+              "subtopic": "Explores the role of ICT in the world of business",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-12.1-04",
+              "unit_id": 12,
+              "level": "12.1",
+              "text": "Describes the role of ICT in business functions of an organization",
+              "source_page": 58,
+              "source_pages": [
+                58
+              ],
+              "subtopic": "Explores the role of ICT in the world of business",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "12.2",
+          "title": "Analyses the relationship between ICT and business operations",
+          "source_pages": [
+            58,
+            59
+          ],
+          "periods": 4,
+          "contents": [
+            "E-Commerce and e-business",
+            "The scope of e-commerce and e-business",
+            "Types of e-business transactions",
+            "B2B, B2C, C2C, C2B, B2E, G2C",
+            "E-Business",
+            "Virtual storefronts",
+            "Information brokers",
+            "Online marketplace",
+            "Content provider",
+            "Online service provider",
+            "Portal",
+            "Virtual Community",
+            "Advantages and disadvantages of e-business"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-11.2-01",
+              "unit_id": 12,
+              "level": "12.2",
+              "text": "Distinguishes the e-commerce and e-business",
+              "source_page": 58,
+              "source_pages": [
+                58,
+                59
+              ],
+              "subtopic": "Analyses the relationship between ICT and business operations",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved.",
+              "source_level": "11.2",
+              "legacy_id_preserved": true
+            },
+            {
+              "id": "NIE2017-11.2-02",
+              "unit_id": 12,
+              "level": "12.2",
+              "text": "Investigates the scope of e-commerce and e-business",
+              "source_page": 59,
+              "source_pages": [
+                59
+              ],
+              "subtopic": "Analyses the relationship between ICT and business operations",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved.",
+              "source_level": "11.2",
+              "legacy_id_preserved": true
+            },
+            {
+              "id": "NIE2017-11.2-03",
+              "unit_id": 12,
+              "level": "12.2",
+              "text": "Lists and briefly describes the types of e-business transactions",
+              "source_page": 59,
+              "source_pages": [
+                59
+              ],
+              "subtopic": "Analyses the relationship between ICT and business operations",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved.",
+              "source_level": "11.2",
+              "legacy_id_preserved": true
+            },
+            {
+              "id": "NIE2017-11.2-04",
+              "unit_id": 12,
+              "level": "12.2",
+              "text": "Identifies the advantages and disadvantages of e-business",
+              "source_page": 59,
+              "source_pages": [
+                59
+              ],
+              "subtopic": "Analyses the relationship between ICT and business operations",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved.",
+              "source_level": "11.2",
+              "legacy_id_preserved": true
+            }
+          ],
+          "source_level": "11.2",
+          "review_note": "The source prints 11.2 inside Competency 12, between 12.1 and 12.3. The normalized application level is 12.2; original outcome IDs are retained so linked records are preserved."
+        },
+        {
+          "id": "12.3",
+          "title": "Analyses the ICT in terms of generating and delivering an improved products and services to consumers",
+          "source_pages": [
+            59,
+            60
+          ],
+          "periods": 4,
+          "contents": [
+            "E-marketing",
+            "Concepts of marketing",
+            "Use of ICT in marketing",
+            "Web advertising etc",
+            "Databases in marketing",
+            "Predicting customer behavior with AI tools and techniques",
+            "Gaining competitive advantages through ICT",
+            "Mobile Marketing"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-12.3-01",
+              "unit_id": 12,
+              "level": "12.3",
+              "text": "Defines e-marketing",
+              "source_page": 59,
+              "source_pages": [
+                59
+              ],
+              "subtopic": "Analyses the ICT in terms of generating and delivering an improved products and services to consumers",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-12.3-02",
+              "unit_id": 12,
+              "level": "12.3",
+              "text": "Identifies the role of ICT in e-marketing",
+              "source_page": 59,
+              "source_pages": [
+                59
+              ],
+              "subtopic": "Analyses the ICT in terms of generating and delivering an improved products and services to consumers",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-12.3-03",
+              "unit_id": 12,
+              "level": "12.3",
+              "text": "Investigates the usage of database in marketing activities to improve the product and services according to the requirements of the customers",
+              "source_page": 59,
+              "source_pages": [
+                59
+              ],
+              "subtopic": "Analyses the ICT in terms of generating and delivering an improved products and services to consumers",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-12.3-04",
+              "unit_id": 12,
+              "level": "12.3",
+              "text": "Identifies the ways of gaining competitive advantages using ICT",
+              "source_page": 59,
+              "source_pages": [
+                59,
+                60
+              ],
+              "subtopic": "Analyses the ICT in terms of generating and delivering an improved products and services to consumers",
+              "competency": "Explores applicability of ICT to business organizations and the competitive marketplace",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "New trends and Future Directions of ICT",
+      "grade": null,
+      "periods": 12,
+      "source_pages": [
+        60
+      ],
+      "competency": "Explores new trends and future directions of ICT",
+      "levels": [
+        {
+          "id": "13.1",
+          "title": "Explores new trends and future directions in computing",
+          "source_pages": [
+            60
+          ],
+          "periods": 4,
+          "contents": [
+            "Intelligent and emotional computing",
+            "Artificial intelligence",
+            "Man-machine coexistence",
+            "Machine to machine coexistence"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-13.1-01",
+              "unit_id": 13,
+              "level": "13.1",
+              "text": "Describes intelligent and emotional computing.",
+              "source_page": 60,
+              "source_pages": [
+                60
+              ],
+              "subtopic": "Explores new trends and future directions in computing",
+              "competency": "Explores new trends and future directions of ICT",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-13.1-02",
+              "unit_id": 13,
+              "level": "13.1",
+              "text": "Explains artificial intelligences",
+              "source_page": 60,
+              "source_pages": [
+                60
+              ],
+              "subtopic": "Explores new trends and future directions in computing",
+              "competency": "Explores new trends and future directions of ICT",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-13.1-03",
+              "unit_id": 13,
+              "level": "13.1",
+              "text": "Appreciates man-machine coexistences",
+              "source_page": 60,
+              "source_pages": [
+                60
+              ],
+              "subtopic": "Explores new trends and future directions in computing",
+              "competency": "Explores new trends and future directions of ICT",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "13.2",
+          "title": "Explores the fundamentals and applications of agent technology",
+          "source_pages": [
+            60
+          ],
+          "periods": 4,
+          "contents": [
+            "Software agents",
+            "Multi-agent systems",
+            "Applications of Agent systems"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-13.2-01",
+              "unit_id": 13,
+              "level": "13.2",
+              "text": "Briefly describes software agents and their characteristics",
+              "source_page": 60,
+              "source_pages": [
+                60
+              ],
+              "subtopic": "Explores the fundamentals and applications of agent technology",
+              "competency": "Explores new trends and future directions of ICT",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-13.2-02",
+              "unit_id": 13,
+              "level": "13.2",
+              "text": "Briefly describes multi-agent systems and their characteristics",
+              "source_page": 60,
+              "source_pages": [
+                60
+              ],
+              "subtopic": "Explores the fundamentals and applications of agent technology",
+              "competency": "Explores new trends and future directions of ICT",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            },
+            {
+              "id": "NIE2017-13.2-03",
+              "unit_id": 13,
+              "level": "13.2",
+              "text": "Identifies the applications of agent systems",
+              "source_page": 60,
+              "source_pages": [
+                60
+              ],
+              "subtopic": "Explores the fundamentals and applications of agent technology",
+              "competency": "Explores new trends and future directions of ICT",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        },
+        {
+          "id": "13.3",
+          "title": "Analyzes the existing models of computing and proposes new models",
+          "source_pages": [
+            60
+          ],
+          "periods": 4,
+          "contents": [
+            "Beyond von-Neumann computer",
+            "Nature inspired computing",
+            "Biology inspired computing",
+            "Fundamentals of quantum computing",
+            "Applications"
+          ],
+          "outcomes": [
+            {
+              "id": "NIE2017-13.3-01",
+              "unit_id": 13,
+              "level": "13.3",
+              "text": "Predicts the technologies beyond von-Neumann computers",
+              "source_page": 60,
+              "source_pages": [
+                60
+              ],
+              "subtopic": "Analyzes the existing models of computing and proposes new models",
+              "competency": "Explores new trends and future directions of ICT",
+              "verified": true,
+              "review_note": "Learning-outcome bullet checked against the source table; whitespace normalized; source spelling and grammar preserved."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Project",
+      "grade": 13,
+      "periods": 30,
+      "source_pages": [
+        60,
+        61,
+        62
+      ],
+      "competency": "Designs and Implements a simple Information system as the project",
+      "levels": [
+        {
+          "id": "14.1",
+          "title": "Conducts a project on designing an information system",
+          "source_pages": [
+            60,
+            61
+          ],
+          "periods": null,
+          "contents": [],
+          "outcomes": [],
+          "outcomes_status": "no_explicit_outcomes_in_source",
+          "review_note": "The source leaves Contents and Learning outcomes columns blank. The project allocation is one period per week for one year, clarified on PDF page 62 as 30 Grade 13 periods; no per-level split is supplied."
+        },
+        {
+          "id": "14.2",
+          "title": "Implements and demonstrates the Information system",
+          "source_pages": [
+            61
+          ],
+          "periods": null,
+          "contents": [],
+          "outcomes": [],
+          "outcomes_status": "no_explicit_outcomes_in_source",
+          "review_note": "The source leaves Contents and Learning outcomes columns blank. The project allocation is one period per week for one year, clarified on PDF page 62 as 30 Grade 13 periods; no per-level split is supplied."
+        }
+      ],
+      "grade_source_page": 62,
+      "review_note": "PDF page 62 explicitly sets apart 30 project periods in Grade 13. Pages 60–61 provide two competency levels but leave both Contents and Learning outcomes columns blank. No outcome or task bullets have been invented."
+    }
+  ],
+  "reconciliation": {
+    "original_candidates_in_scope": 49,
+    "preserved_candidate_ids": 49,
+    "reviewed_outcomes": 58,
+    "added_outcomes": [
+      "NIE2017-11.1-01",
+      "NIE2017-11.1-02",
+      "NIE2017-11.1-03",
+      "NIE2017-11.1-04",
+      "NIE2017-11.2-iot-01",
+      "NIE2017-11.2-iot-02",
+      "NIE2017-11.2-iot-03",
+      "NIE2017-11.2-iot-04",
+      "NIE2017-11.2-iot-05"
+    ],
+    "deleted_candidate_ids": [],
+    "remapped_candidates": [
+      {
+        "id": "NIE2017-11.2-01",
+        "candidate_unit_id": 11,
+        "candidate_level": "11.2",
+        "reviewed_unit_id": 12,
+        "reviewed_level": "12.2",
+        "printed_source_level": "11.2",
+        "reason": "Business row under Competency 12 is misnumbered 11.2 in the PDF. Preserve IDs, correct competency ownership."
+      },
+      {
+        "id": "NIE2017-11.2-02",
+        "candidate_unit_id": 11,
+        "candidate_level": "11.2",
+        "reviewed_unit_id": 12,
+        "reviewed_level": "12.2",
+        "printed_source_level": "11.2",
+        "reason": "Business row under Competency 12 is misnumbered 11.2 in the PDF. Preserve IDs, correct competency ownership."
+      },
+      {
+        "id": "NIE2017-11.2-03",
+        "candidate_unit_id": 11,
+        "candidate_level": "11.2",
+        "reviewed_unit_id": 12,
+        "reviewed_level": "12.2",
+        "printed_source_level": "11.2",
+        "reason": "Business row under Competency 12 is misnumbered 11.2 in the PDF. Preserve IDs, correct competency ownership."
+      },
+      {
+        "id": "NIE2017-11.2-04",
+        "candidate_unit_id": 11,
+        "candidate_level": "11.2",
+        "reviewed_unit_id": 12,
+        "reviewed_level": "12.2",
+        "printed_source_level": "11.2",
+        "reason": "Business row under Competency 12 is misnumbered 11.2 in the PDF. Preserve IDs, correct competency ownership."
+      }
+    ],
+    "continued_outcome_pages": {
+      "NIE2017-10.3-02": [
+        52,
+        53
+      ],
+      "NIE2017-11.2-01": [
+        58,
+        59
+      ],
+      "NIE2017-12.3-04": [
+        59,
+        60
+      ],
+      "NIE2017-11.1-04": [
+        56,
+        57
+      ]
+    },
+    "level_outcome_counts": {
+      "10.1": 2,
+      "10.2": 4,
+      "10.3": 3,
+      "10.4": 6,
+      "10.5": 5,
+      "10.6": 2,
+      "10.7": 4,
+      "10.8": 4,
+      "11.1": 4,
+      "11.2": 5,
+      "12.1": 4,
+      "12.2": 4,
+      "12.3": 4,
+      "13.1": 3,
+      "13.2": 3,
+      "13.3": 1,
+      "14.1": 0,
+      "14.2": 0
+    },
+    "completeness_check": "Counted 30 Web Development bullets, 4 microprocessor-system bullets, 5 IoT bullets, 12 business bullets and 7 future-directions bullets. Both project levels have explicitly blank outcomes and contents columns. Accounted for all bullets and continuations on PDF pages 52–61; unit 9 continuation at the top of page 52 is outside this file scope."
+  },
+  "audit_notes": [
+    "The overview on PDF page 11 accidentally repeats unit number 11 and labels the last two entries 12/13. Units here follow the actual Competency 10–14 headings on pages 52–61, preserving their overview names and periods.",
+    "The PDF prints business competency level 11.2 on page 58. It is normalized to 12.2 because it is inside Competency 12 between 12.1 and 12.3. Its four old IDs remain unchanged; real IoT 11.2 outcomes use a collision-free -iot suffix.",
+    "The original extractor omitted all nine Competency 11 learning-outcome bullets because the outcomes use a filled-circle glyph. These were checked directly against pages 56–57 and added.",
+    "No grade split for units 10–13 is explicitly established by this PDF, so their grade fields remain null. Project Grade 13 is explicitly established on PDF page 62.",
+    "The source has imperfect spelling, grammar and missing spaces (for example navigationstructure, CreatesPHP, using to and artificial intelligences). These are not silently rewritten as official wording. PDF line-wrap hyphens in e-commerce/e-business/e-marketing and man-machine are joined.",
+    "The 10.1 learning-outcome bullet ends with \"a web\" in the source. It is flagged as incomplete source wording and is not invented into a longer statement.",
+    "Project levels 14.1 and 14.2 are present and checked, with no explicit outcome bullets or Contents entries. Level periods remain null because the annual project total is not apportioned by level.",
+    "This cross-check establishes what the supplied 2017 source says. It does not claim a current examination syllabus has been confirmed or that the units have sufficient reviewed teaching resources/questions."
+  ]
+}

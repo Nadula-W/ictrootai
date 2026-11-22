@@ -1,0 +1,3809 @@
+{
+  "schema_version": 1,
+  "source": "https://nie.lk/pdffiles/tg/eALSyl%20ICT.pdf",
+  "source_file": "curriculum/nie-ict-2017.pdf",
+  "source_sha256": "577659c643467316a84fae39fadc49b4753f8b8f553e8e66cf1655c8951082f8",
+  "review_status": "source_cross_checked",
+  "reviewed_by": "Codex source comparison; not independent teacher approval",
+  "reviewed_at": "2026-11-22",
+  "verification_scope": "Units 6?9 of the supplied NIE Grades 12?13 ICT syllabus effective 2017. Verifies inventory, wording and table mapping against this PDF; does not establish latest examination applicability or teaching/question coverage.",
+  "page_numbering": "One-based PDF file page numbers. Printed table page number is PDF page minus 11.",
+  "source_pages_checked": [
+    11,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52
+  ],
+  "rendered_pages_inspected": [
+    35,
+    36,
+    42,
+    45,
+    47,
+    49,
+    52
+  ],
+  "normalization": "Whitespace normalized. Original spelling, grammar, capitalization and line-break hyphen spacing retained. Nested open-circle markers in one legacy outcome retained as o and separately represented as child_items.",
+  "audit_notes": [
+    "Independently counted top-level outcome bullet glyphs at their physical PDF coordinates with PyMuPDF. Tally matched the separately reviewed pypdf layout extraction for each of all 42 levels, with no missing or extra top-level bullets.",
+    "The outcome counts by unit are 46, 41, 43, 43: total 173. All 173 existing IDs match after whitespace normalization. No omitted, duplicate, merged or removed candidates were found in these units.",
+    "All 42 competency-level titles were separated from contents; legacy subtopics had captured adjacent contents text. Competency wording was reassembled from the actual left table column, including cross-page continuation for unit7.",
+    "Every contents-column item and nested topic was retained in source order as a flat contents list. Repeated Properties/Applications labels remain repeated in 6.8 because they occur under UDP and TCP.",
+    "Level periods sum to 50/68/50/74 for units 6/7/8/9, matching PDF page 11.",
+    "Official source has incomplete 6.11-01 and 8.4-07 wording. These records are source-verified transcriptions, not silently repaired claims. Their source_anomaly fields retain the issue.",
+    "Source typographic concatenations (e.g. Systemconcept, Routingand routers, Packetswitching, thelogical and improperlydesigned) are retained; they do not indicate invented technical terms.",
+    "One 9.6 outcome includes two nested instructions; they remain one top-level outcome, with child_items stored.",
+    "PDF page 11 overview numbering after unit 11 is inconsistent with later competency numbering. This file uses unambiguous competency identifiers 6?9, unaffected by that error.",
+    "Grade-specific classification is not inferred from the combined Grades 12?13 syllabus. Review is a Codex source cross-check, not a claim of subject-teacher/examination-board approval."
+  ],
+  "reconciliation": {
+    "existing_candidate_count": 173,
+    "reviewed_outcome_count": 173,
+    "retained_ids": [
+      "NIE2017-6.1-01",
+      "NIE2017-6.1-02",
+      "NIE2017-6.2-01",
+      "NIE2017-6.2-02",
+      "NIE2017-6.3-01",
+      "NIE2017-6.3-02",
+      "NIE2017-6.3-03",
+      "NIE2017-6.3-04",
+      "NIE2017-6.3-05",
+      "NIE2017-6.4-01",
+      "NIE2017-6.4-02",
+      "NIE2017-6.4-03",
+      "NIE2017-6.5-01",
+      "NIE2017-6.5-02",
+      "NIE2017-6.5-03",
+      "NIE2017-6.5-04",
+      "NIE2017-6.6-01",
+      "NIE2017-6.6-02",
+      "NIE2017-6.6-03",
+      "NIE2017-6.6-04",
+      "NIE2017-6.7-01",
+      "NIE2017-6.7-02",
+      "NIE2017-6.7-03",
+      "NIE2017-6.7-04",
+      "NIE2017-6.7-05",
+      "NIE2017-6.7-06",
+      "NIE2017-6.7-07",
+      "NIE2017-6.8-01",
+      "NIE2017-6.8-02",
+      "NIE2017-6.8-03",
+      "NIE2017-6.8-04",
+      "NIE2017-6.9-01",
+      "NIE2017-6.9-02",
+      "NIE2017-6.9-03",
+      "NIE2017-6.9-04",
+      "NIE2017-6.9-05",
+      "NIE2017-6.10-01",
+      "NIE2017-6.10-02",
+      "NIE2017-6.10-03",
+      "NIE2017-6.11-01",
+      "NIE2017-6.11-02",
+      "NIE2017-6.11-03",
+      "NIE2017-6.12-01",
+      "NIE2017-6.12-02",
+      "NIE2017-6.12-03",
+      "NIE2017-6.12-04",
+      "NIE2017-7.1-01",
+      "NIE2017-7.1-02",
+      "NIE2017-7.1-03",
+      "NIE2017-7.2-01",
+      "NIE2017-7.2-02",
+      "NIE2017-7.3-01",
+      "NIE2017-7.3-02",
+      "NIE2017-7.3-03",
+      "NIE2017-7.3-04",
+      "NIE2017-7.3-05",
+      "NIE2017-7.4-01",
+      "NIE2017-7.4-02",
+      "NIE2017-7.5-01",
+      "NIE2017-7.5-02",
+      "NIE2017-7.5-03",
+      "NIE2017-7.5-04",
+      "NIE2017-7.5-05",
+      "NIE2017-7.6-01",
+      "NIE2017-7.6-02",
+      "NIE2017-7.6-03",
+      "NIE2017-7.6-04",
+      "NIE2017-7.6-05",
+      "NIE2017-7.6-06",
+      "NIE2017-7.6-07",
+      "NIE2017-7.6-08",
+      "NIE2017-7.6-09",
+      "NIE2017-7.7-01",
+      "NIE2017-7.7-02",
+      "NIE2017-7.7-03",
+      "NIE2017-7.7-04",
+      "NIE2017-7.7-05",
+      "NIE2017-7.8-01",
+      "NIE2017-7.8-02",
+      "NIE2017-7.9-01",
+      "NIE2017-7.9-02",
+      "NIE2017-7.10-01",
+      "NIE2017-7.10-02",
+      "NIE2017-7.10-03",
+      "NIE2017-7.10-04",
+      "NIE2017-7.10-05",
+      "NIE2017-7.10-06",
+      "NIE2017-8.1-01",
+      "NIE2017-8.1-02",
+      "NIE2017-8.1-03",
+      "NIE2017-8.1-04",
+      "NIE2017-8.2-01",
+      "NIE2017-8.2-02",
+      "NIE2017-8.2-03",
+      "NIE2017-8.2-04",
+      "NIE2017-8.3-01",
+      "NIE2017-8.3-02",
+      "NIE2017-8.3-03",
+      "NIE2017-8.3-04",
+      "NIE2017-8.3-05",
+      "NIE2017-8.3-06",
+      "NIE2017-8.3-07",
+      "NIE2017-8.3-08",
+      "NIE2017-8.3-09",
+      "NIE2017-8.3-10",
+      "NIE2017-8.3-11",
+      "NIE2017-8.3-12",
+      "NIE2017-8.3-13",
+      "NIE2017-8.4-01",
+      "NIE2017-8.4-02",
+      "NIE2017-8.4-03",
+      "NIE2017-8.4-04",
+      "NIE2017-8.4-05",
+      "NIE2017-8.4-06",
+      "NIE2017-8.4-07",
+      "NIE2017-8.4-08",
+      "NIE2017-8.4-09",
+      "NIE2017-8.5-01",
+      "NIE2017-8.5-02",
+      "NIE2017-8.5-03",
+      "NIE2017-8.5-04",
+      "NIE2017-8.6-01",
+      "NIE2017-8.6-02",
+      "NIE2017-8.7-01",
+      "NIE2017-8.7-02",
+      "NIE2017-8.7-03",
+      "NIE2017-8.7-04",
+      "NIE2017-8.7-05",
+      "NIE2017-8.7-06",
+      "NIE2017-8.7-07",
+      "NIE2017-9.1-01",
+      "NIE2017-9.1-02",
+      "NIE2017-9.2-01",
+      "NIE2017-9.2-02",
+      "NIE2017-9.3-01",
+      "NIE2017-9.3-02",
+      "NIE2017-9.3-03",
+      "NIE2017-9.3-04",
+      "NIE2017-9.3-05",
+      "NIE2017-9.4-01",
+      "NIE2017-9.4-02",
+      "NIE2017-9.5-01",
+      "NIE2017-9.5-02",
+      "NIE2017-9.5-03",
+      "NIE2017-9.5-04",
+      "NIE2017-9.6-01",
+      "NIE2017-9.6-02",
+      "NIE2017-9.6-03",
+      "NIE2017-9.7-01",
+      "NIE2017-9.7-02",
+      "NIE2017-9.7-03",
+      "NIE2017-9.7-04",
+      "NIE2017-9.7-05",
+      "NIE2017-9.7-06",
+      "NIE2017-9.7-07",
+      "NIE2017-9.8-01",
+      "NIE2017-9.8-02",
+      "NIE2017-9.8-03",
+      "NIE2017-9.8-04",
+      "NIE2017-9.9-01",
+      "NIE2017-9.9-02",
+      "NIE2017-9.9-03",
+      "NIE2017-9.9-04",
+      "NIE2017-9.9-05",
+      "NIE2017-9.9-06",
+      "NIE2017-9.9-07",
+      "NIE2017-9.9-08",
+      "NIE2017-9.10-01",
+      "NIE2017-9.10-02",
+      "NIE2017-9.11-01",
+      "NIE2017-9.12-01",
+      "NIE2017-9.13-01",
+      "NIE2017-9.13-02"
+    ],
+    "added_ids": [],
+    "removed_ids": [],
+    "merged_ids": [],
+    "duplicate_ids": [],
+    "text_changes": "Whitespace normalization only; competency and subtopic mappings corrected."
+  },
+  "units": [
+    {
+      "id": 6,
+      "levels": [
+        {
+          "id": "6.1",
+          "source_pages": [
+            29
+          ],
+          "periods": 4,
+          "contents": [
+            "Signal Types",
+            "Digital",
+            "Analog",
+            "Properties",
+            "Amplitude",
+            "Frequency",
+            "Wave length",
+            "Phase",
+            "Propagation speed in a media"
+          ],
+          "outcomes": [
+            {
+              "source_page": 29,
+              "source_pages": [
+                29
+              ],
+              "id": "NIE2017-6.1-01",
+              "text": "Graphically represents digital and analog signals and their properties",
+              "unit_id": 6,
+              "level": "6.1",
+              "subtopic": "Explores signals and their properties",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 29,
+              "source_pages": [
+                29
+              ],
+              "id": "NIE2017-6.1-02",
+              "text": "Solves problems related to the relationship between signal properties",
+              "unit_id": 6,
+              "level": "6.1",
+              "subtopic": "Explores signals and their properties",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores signals and their properties",
+          "source_page": 29,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "6.2",
+          "source_pages": [
+            29,
+            30
+          ],
+          "periods": 4,
+          "contents": [
+            "Wires – Guided media (Twisted pair, coaxial cable, Fiber optics etc.)",
+            "Free space – Unguided media",
+            "Properties",
+            "Latency",
+            "Bandwidth",
+            "Noise",
+            "Attenuation",
+            "Distortion",
+            "Simple topology: point-to-point connection"
+          ],
+          "outcomes": [
+            {
+              "source_page": 29,
+              "source_pages": [
+                29
+              ],
+              "id": "NIE2017-6.2-01",
+              "text": "Classifies media as guided and unguided media",
+              "unit_id": 6,
+              "level": "6.2",
+              "subtopic": "Explores signal transmission media",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 29,
+              "source_pages": [
+                29,
+                30
+              ],
+              "id": "NIE2017-6.2-02",
+              "text": "Describes how latency, bandwidth, noise, attenuation, and distortion affects signal transmission",
+              "unit_id": 6,
+              "level": "6.2",
+              "subtopic": "Explores signal transmission media",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores signal transmission media",
+          "source_page": 29,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "6.3",
+          "source_pages": [
+            30,
+            31
+          ],
+          "periods": 4,
+          "contents": [
+            "Agreeing on signal elements to represent data (a protocol)",
+            "Two simple elements – two voltage levels (amplitudes)",
+            "Other possibilities (briefly)",
+            "Frequency",
+            "Phase",
+            "Changing speed of signal elements",
+            "Need for synchronization",
+            "Timing/Clocks",
+            "Manchester encoding",
+            "Handling errors",
+            "Example: Parity"
+          ],
+          "outcomes": [
+            {
+              "source_page": 30,
+              "source_pages": [
+                30
+              ],
+              "id": "NIE2017-6.3-01",
+              "text": "Graphically represents encoding of digital data using two voltage levels as well as Manchester encoding",
+              "unit_id": 6,
+              "level": "6.3",
+              "subtopic": "Investigates how digital data is encoded using signal elements",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 30,
+              "source_pages": [
+                30
+              ],
+              "id": "NIE2017-6.3-02",
+              "text": "Describes the possibility of using the changes in frequency and phase as signal elements",
+              "unit_id": 6,
+              "level": "6.3",
+              "subtopic": "Investigates how digital data is encoded using signal elements",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 30,
+              "source_pages": [
+                30
+              ],
+              "id": "NIE2017-6.3-03",
+              "text": "Explains the need for synchronization and describes the problems that arise when the transmitter and the receiver are not synchronized",
+              "unit_id": 6,
+              "level": "6.3",
+              "subtopic": "Investigates how digital data is encoded using signal elements",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 30,
+              "source_pages": [
+                30,
+                31
+              ],
+              "id": "NIE2017-6.3-04",
+              "text": "Compares and contrasts the relationship between how fast the signal elements are changed and the bit rate in simple two voltage encoding and Manchester encoding",
+              "unit_id": 6,
+              "level": "6.3",
+              "subtopic": "Investigates how digital data is encoded using signal elements",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 31,
+              "source_pages": [
+                31
+              ],
+              "id": "NIE2017-6.3-05",
+              "text": "Describes how the parity bit enables detecting a bit error",
+              "unit_id": 6,
+              "level": "6.3",
+              "subtopic": "Investigates how digital data is encoded using signal elements",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Investigates how digital data is encoded using signal elements",
+          "source_page": 30,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 5
+        },
+        {
+          "id": "6.4",
+          "source_pages": [
+            31
+          ],
+          "periods": 4,
+          "contents": [
+            "Public Switched Telephone Network",
+            "Providing a circuit between two points that can carry analog voice",
+            "Modulation, Demodulation and Modems",
+            "Encoding data using analog signal elements",
+            "Connecting two devices using Modems"
+          ],
+          "outcomes": [
+            {
+              "source_page": 31,
+              "source_pages": [
+                31
+              ],
+              "id": "NIE2017-6.4-01",
+              "text": "Describes a PSTN as an analog voice carrying line",
+              "unit_id": 6,
+              "level": "6.4",
+              "subtopic": "Explores the use of Public Switched Telephone Network (PSTN) to connect two remote devices",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 31,
+              "source_pages": [
+                31
+              ],
+              "id": "NIE2017-6.4-02",
+              "text": "Describes how modems modulate analog signals so that they can be sent along a PSTN line",
+              "unit_id": 6,
+              "level": "6.4",
+              "subtopic": "Explores the use of Public Switched Telephone Network (PSTN) to connect two remote devices",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 31,
+              "source_pages": [
+                31
+              ],
+              "id": "NIE2017-6.4-03",
+              "text": "Draws a schematic diagram depicting two computers connected using modems via a PSTN line",
+              "unit_id": 6,
+              "level": "6.4",
+              "subtopic": "Explores the use of Public Switched Telephone Network (PSTN) to connect two remote devices",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores the use of Public Switched Telephone Network (PSTN) to connect two remote devices",
+          "source_page": 31,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 3
+        },
+        {
+          "id": "6.5",
+          "source_pages": [
+            31,
+            32
+          ],
+          "periods": 4,
+          "contents": [
+            "All-to-all connections are impractical",
+            "A solution: Bus Topology",
+            "Simple",
+            "Problem: Controlling access to the bus (media)",
+            "Other topologies",
+            "Star",
+            "Ring",
+            "Mesh",
+            "Simplifying wiring",
+            "Hubs",
+            "Switches"
+          ],
+          "outcomes": [
+            {
+              "source_page": 31,
+              "source_pages": [
+                31
+              ],
+              "id": "NIE2017-6.5-01",
+              "text": "Demonstrates the impracticality of connecting large number of devices in all-to-all topology",
+              "unit_id": 6,
+              "level": "6.5",
+              "subtopic": "Investigates how the problem of connecting multiple devices into a network is addressed",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 31,
+              "source_pages": [
+                31
+              ],
+              "id": "NIE2017-6.5-02",
+              "text": "Demonstrates the simplicity of a Bus",
+              "unit_id": 6,
+              "level": "6.5",
+              "subtopic": "Investigates how the problem of connecting multiple devices into a network is addressed",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 31,
+              "source_pages": [
+                31
+              ],
+              "id": "NIE2017-6.5-03",
+              "text": "Draws diagrams of different topologies",
+              "unit_id": 6,
+              "level": "6.5",
+              "subtopic": "Investigates how the problem of connecting multiple devices into a network is addressed",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 31,
+              "source_pages": [
+                31,
+                32
+              ],
+              "id": "NIE2017-6.5-04",
+              "text": "Describes the use of Hubs and Switches to simplify the wiring of a network and compares/contrasts their functionalities",
+              "unit_id": 6,
+              "level": "6.5",
+              "subtopic": "Investigates how the problem of connecting multiple devices into a network is addressed",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Investigates how the problem of connecting multiple devices into a network is addressed",
+          "source_page": 31,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "6.6",
+          "source_pages": [
+            32
+          ],
+          "periods": 4,
+          "contents": [
+            "Local Area Network (LAN)",
+            "Identifying devices",
+            "Addresses – MAC addresses",
+            "Frames",
+            "Orderly access to the media",
+            "Very simple protocol as an example – ALOHA",
+            "Improvements from ALOHA to Ethernet",
+            "Broadcasting and Uni -casting messages"
+          ],
+          "outcomes": [
+            {
+              "source_page": 32,
+              "source_pages": [
+                32
+              ],
+              "id": "NIE2017-6.6-01",
+              "text": "Describes the need to uniquely name devices (addresses) so that the sender and the receiver can be identified",
+              "unit_id": 6,
+              "level": "6.6",
+              "subtopic": "Explores the role of Media Access Control (MAC) protocol",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 32,
+              "source_pages": [
+                32
+              ],
+              "id": "NIE2017-6.6-02",
+              "text": "Explains the role of frames as the unit of transmission",
+              "unit_id": 6,
+              "level": "6.6",
+              "subtopic": "Explores the role of Media Access Control (MAC) protocol",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 32,
+              "source_pages": [
+                32
+              ],
+              "id": "NIE2017-6.6-03",
+              "text": "Describes the need of a protocol to ensure orderly access to media with respect to a bus",
+              "unit_id": 6,
+              "level": "6.6",
+              "subtopic": "Explores the role of Media Access Control (MAC) protocol",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 32,
+              "source_pages": [
+                32
+              ],
+              "id": "NIE2017-6.6-04",
+              "text": "Briefly describes the evolution of MAC protocols from ALOHA to Ethernet",
+              "unit_id": 6,
+              "level": "6.6",
+              "subtopic": "Explores the role of Media Access Control (MAC) protocol",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores the role of Media Access Control (MAC) protocol",
+          "source_page": 32,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "6.7",
+          "source_pages": [
+            32,
+            33
+          ],
+          "periods": 6,
+          "contents": [
+            "A device to connect two or more networks – gateway",
+            "Need for globally unique uniform addressing independent of MAC addresses and LAN technology",
+            "IPv4 addresses",
+            "Assigning IPs to networks",
+            "Sub-netting",
+            "Subnet masks",
+            "CIDR notation",
+            "Private IP addresses",
+            "DHCP",
+            "Scarcity of IPv4 addresses and IPv6 as a solution(an overview)",
+            "Finding the path to the destination",
+            "Routingand routers",
+            "Packetswitching",
+            "Best effort delivery"
+          ],
+          "outcomes": [
+            {
+              "source_page": 32,
+              "source_pages": [
+                32
+              ],
+              "id": "NIE2017-6.7-01",
+              "text": "Explains the role of a gateway device in inter connecting two LANs",
+              "unit_id": 6,
+              "level": "6.7",
+              "subtopic": "Explores how the multiple networks are interconnected to form the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 32,
+              "source_pages": [
+                32,
+                33
+              ],
+              "id": "NIE2017-6.7-02",
+              "text": "Explain the need for a uniform, MAC protocol independent addressing scheme and how IP addresses play that role",
+              "unit_id": 6,
+              "level": "6.7",
+              "subtopic": "Explores how the multiple networks are interconnected to form the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 33,
+              "source_pages": [
+                33
+              ],
+              "id": "NIE2017-6.7-03",
+              "text": "Describes the role of subnet masks",
+              "unit_id": 6,
+              "level": "6.7",
+              "subtopic": "Explores how the multiple networks are interconnected to form the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 33,
+              "source_pages": [
+                33
+              ],
+              "id": "NIE2017-6.7-04",
+              "text": "Calculates subnet masks and IP address ranges for a given block of IP addresses and network sizes",
+              "unit_id": 6,
+              "level": "6.7",
+              "subtopic": "Explores how the multiple networks are interconnected to form the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 33,
+              "source_pages": [
+                33
+              ],
+              "id": "NIE2017-6.7-05",
+              "text": "Describes how DHCP is used to dynamically assign IP addresses",
+              "unit_id": 6,
+              "level": "6.7",
+              "subtopic": "Explores how the multiple networks are interconnected to form the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 33,
+              "source_pages": [
+                33
+              ],
+              "id": "NIE2017-6.7-06",
+              "text": "Describes the role of routers in finding a suitable path from the sender to the receiver",
+              "unit_id": 6,
+              "level": "6.7",
+              "subtopic": "Explores how the multiple networks are interconnected to form the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 33,
+              "source_pages": [
+                33
+              ],
+              "id": "NIE2017-6.7-07",
+              "text": "Explains packet switching and best effort delivery in IP networks",
+              "unit_id": 6,
+              "level": "6.7",
+              "subtopic": "Explores how the multiple networks are interconnected to form the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores how the multiple networks are interconnected to form the Internet",
+          "source_page": 32,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 7
+        },
+        {
+          "id": "6.8",
+          "source_pages": [
+            33,
+            34
+          ],
+          "periods": 4,
+          "contents": [
+            "Delivering data from an application process to another application process",
+            "Multiple applications at a host identified by an IP",
+            "Multiplexing – multiple end points at the same IP",
+            "Ports andport numbers",
+            "UDP",
+            "Properties",
+            "Applications",
+            "TCP",
+            "Properties",
+            "Applications"
+          ],
+          "outcomes": [
+            {
+              "source_page": 33,
+              "source_pages": [
+                33,
+                34
+              ],
+              "id": "NIE2017-6.8-01",
+              "text": "Explains that it is not sufficient to deliver a message from one IP address to another by demonstrating that the communication is from process to a process",
+              "unit_id": 6,
+              "level": "6.8",
+              "subtopic": "Explores the role of transport protocols in the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 34,
+              "source_pages": [
+                34
+              ],
+              "id": "NIE2017-6.8-02",
+              "text": "Explains the need for multiplexing messages and how port numbers identify the end points",
+              "unit_id": 6,
+              "level": "6.8",
+              "subtopic": "Explores the role of transport protocols in the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 34,
+              "source_pages": [
+                34
+              ],
+              "id": "NIE2017-6.8-03",
+              "text": "Briefly describes the functionality of UDP and lists applications that use it",
+              "unit_id": 6,
+              "level": "6.8",
+              "subtopic": "Explores the role of transport protocols in the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 34,
+              "source_pages": [
+                34
+              ],
+              "id": "NIE2017-6.8-04",
+              "text": "Briefly describes the functionality of TCP and lists applications that use it",
+              "unit_id": 6,
+              "level": "6.8",
+              "subtopic": "Explores the role of transport protocols in the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores the role of transport protocols in the Internet",
+          "source_page": 33,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "6.9",
+          "source_pages": [
+            34,
+            35
+          ],
+          "periods": 4,
+          "contents": [
+            "Domain Name System (DNS)",
+            "IP addresses are hard to remember",
+            "Human friendly names",
+            "Hierarchical name space",
+            "Each domain is responsible for managing the names under it",
+            "Top level domains",
+            "HTTP",
+            "Client Server model"
+          ],
+          "outcomes": [
+            {
+              "source_page": 34,
+              "source_pages": [
+                34
+              ],
+              "id": "NIE2017-6.9-01",
+              "text": "Describes the need for human friendly names instead of IP addresses",
+              "unit_id": 6,
+              "level": "6.9",
+              "subtopic": "Explores some applications on the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 34,
+              "source_pages": [
+                34
+              ],
+              "id": "NIE2017-6.9-02",
+              "text": "Explains the role of DNS in translating names to IP addresses",
+              "unit_id": 6,
+              "level": "6.9",
+              "subtopic": "Explores some applications on the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 34,
+              "source_pages": [
+                34,
+                35
+              ],
+              "id": "NIE2017-6.9-03",
+              "text": "Graphically represent the hierarchical and distributed structure of the DNS",
+              "unit_id": 6,
+              "level": "6.9",
+              "subtopic": "Explores some applications on the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 35,
+              "source_pages": [
+                35
+              ],
+              "id": "NIE2017-6.9-04",
+              "text": "Describes a simple GET request and its response in HTTP",
+              "unit_id": 6,
+              "level": "6.9",
+              "subtopic": "Explores some applications on the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 35,
+              "source_pages": [
+                35
+              ],
+              "id": "NIE2017-6.9-05",
+              "text": "Describes the client server model using DNS and HTTP",
+              "unit_id": 6,
+              "level": "6.9",
+              "subtopic": "Explores some applications on the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores some applications on the Internet",
+          "source_page": 34,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 5
+        },
+        {
+          "id": "6.10",
+          "source_pages": [
+            35
+          ],
+          "periods": 4,
+          "contents": [
+            "TCP/IP model",
+            "Application",
+            "Transport",
+            "Internet",
+            "Host to network",
+            "OSI model",
+            "Application",
+            "Presentation",
+            "Session",
+            "Transport",
+            "Network",
+            "Data link",
+            "Physical"
+          ],
+          "outcomes": [
+            {
+              "source_page": 35,
+              "source_pages": [
+                35
+              ],
+              "id": "NIE2017-6.10-01",
+              "text": "Describes the functions of layers of TCP/IP and OSI models",
+              "unit_id": 6,
+              "level": "6.10",
+              "subtopic": "Investigates the role of reference models to describe the network architecture",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 35,
+              "source_pages": [
+                35
+              ],
+              "id": "NIE2017-6.10-02",
+              "text": "Describes the data units in different layers(packet, frame and bit)",
+              "unit_id": 6,
+              "level": "6.10",
+              "subtopic": "Investigates the role of reference models to describe the network architecture",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 35,
+              "source_pages": [
+                35
+              ],
+              "id": "NIE2017-6.10-03",
+              "text": "Describes the data flow in a network using TCP/IP and OSI models",
+              "unit_id": 6,
+              "level": "6.10",
+              "subtopic": "Investigates the role of reference models to describe the network architecture",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Investigates the role of reference models to describe the network architecture",
+          "source_page": 35,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 3
+        },
+        {
+          "id": "6.11",
+          "source_pages": [
+            35,
+            36
+          ],
+          "periods": 4,
+          "contents": [
+            "Encryption and digital signature – basic idea",
+            "Public Key",
+            "Private Key",
+            "Signing",
+            "Threats",
+            "Viruses",
+            "Trojans",
+            "Malware",
+            "Phishing",
+            "Protection",
+            "Firewalls",
+            "Antivirus software",
+            "Education/ better awareness/ good practices"
+          ],
+          "outcomes": [
+            {
+              "source_page": 35,
+              "source_pages": [
+                35
+              ],
+              "id": "NIE2017-6.11-01",
+              "text": "Identifies the need for confidentiality and authentication of messages and notes that the Internet does not provide",
+              "unit_id": 6,
+              "level": "6.11",
+              "subtopic": "Investigates the security aspects of the communication and protection of devices connected to the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "The official outcome visibly ends with \"the Internet does not provide\" at PDF page 35. Page 36 begins a separate bullet. This incomplete source wording is retained; no ending has been invented.",
+              "source_anomaly": "incomplete_source_wording"
+            },
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-6.11-02",
+              "text": "Briefly explains the use of the public and private keys to encrypt and sign messages",
+              "unit_id": 6,
+              "level": "6.11",
+              "subtopic": "Investigates the security aspects of the communication and protection of devices connected to the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-6.11-03",
+              "text": "Describes different threats faced by networked systems and protection against them",
+              "unit_id": 6,
+              "level": "6.11",
+              "subtopic": "Investigates the security aspects of the communication and protection of devices connected to the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Investigates the security aspects of the communication and protection of devices connected to the Internet",
+          "source_page": 35,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 3
+        },
+        {
+          "id": "6.12",
+          "source_pages": [
+            36
+          ],
+          "periods": 4,
+          "contents": [
+            "ISPs",
+            "Connecting to ISP",
+            "Modems",
+            "DSL/ADSL",
+            "A home LAN that uses private IPs",
+            "Network Address Translation /Proxies"
+          ],
+          "outcomes": [
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-6.12-01",
+              "text": "Describes the role of an ISP",
+              "unit_id": 6,
+              "level": "6.12",
+              "subtopic": "Explores the role of ISPs and technologies used for connecting Home Networks to the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-6.12-02",
+              "text": "Explains the use of modems and dialup lines to connect a home machine to an ISPs network",
+              "unit_id": 6,
+              "level": "6.12",
+              "subtopic": "Explores the role of ISPs and technologies used for connecting Home Networks to the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-6.12-03",
+              "text": "Explains the advantages of DSL/ADSL lines",
+              "unit_id": 6,
+              "level": "6.12",
+              "subtopic": "Explores the role of ISPs and technologies used for connecting Home Networks to the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-6.12-04",
+              "text": "Explains the roles of NATs and Proxies in a LAN that uses private IPs",
+              "unit_id": 6,
+              "level": "6.12",
+              "subtopic": "Explores the role of ISPs and technologies used for connecting Home Networks to the Internet",
+              "competency": "Explores the data communication and computer networking technologies to share information effectively",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores the role of ISPs and technologies used for connecting Home Networks to the Internet",
+          "source_page": 36,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        }
+      ],
+      "competency": "Explores the data communication and computer networking technologies to share information effectively",
+      "name": "Data Communication and Networking",
+      "grade": null,
+      "grade_note": "This Grades 12?13 syllabus does not assign this unit to a specific grade in the reviewed table/overview. Grade is left unspecified rather than inferred.",
+      "periods": 50,
+      "verified": true,
+      "source_pages": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "review_note": "Unit name/period total checked against PDF page 11; competency wording and all levels, contents and top-level outcome bullets checked against the curriculum table."
+    },
+    {
+      "id": 7,
+      "levels": [
+        {
+          "id": "7.1",
+          "source_pages": [
+            36,
+            37
+          ],
+          "periods": 4,
+          "contents": [
+            "Systemconcept",
+            "Classification of systems",
+            "Open and closed systems",
+            "Natural and manmade systems",
+            "Living and physical systems"
+          ],
+          "outcomes": [
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-7.1-01",
+              "text": "Recalls the definition of systems",
+              "unit_id": 7,
+              "level": "7.1",
+              "subtopic": "Explores Characteristics of Systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 36,
+              "source_pages": [
+                36
+              ],
+              "id": "NIE2017-7.1-02",
+              "text": "Lists and describes the characteristics of systems",
+              "unit_id": 7,
+              "level": "7.1",
+              "subtopic": "Explores Characteristics of Systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 36,
+              "source_pages": [
+                36,
+                37
+              ],
+              "id": "NIE2017-7.1-03",
+              "text": "Classifies and describes systems with examples",
+              "unit_id": 7,
+              "level": "7.1",
+              "subtopic": "Explores Characteristics of Systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores Characteristics of Systems",
+          "source_page": 36,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 3
+        },
+        {
+          "id": "7.2",
+          "source_pages": [
+            37
+          ],
+          "periods": 4,
+          "contents": [
+            "Information systems",
+            "Office Automation Systems (OAS)",
+            "Transaction Processing Systems (TPS)",
+            "Management Information Systems (MIS)",
+            "Decisions Support Systems (DSS)",
+            "Executive Support Systems (ESS)",
+            "Geographical information systems (GIS)",
+            "Knowledge Management Systems (KMS)",
+            "Content Management Systems (CMS)",
+            "Enterprise Resource Planning Systems (ERPS)",
+            "Smart systems"
+          ],
+          "outcomes": [
+            {
+              "source_page": 37,
+              "source_pages": [
+                37
+              ],
+              "id": "NIE2017-7.2-01",
+              "text": "Compares the objectives and functionality of different types of manmade systems",
+              "unit_id": 7,
+              "level": "7.2",
+              "subtopic": "Compares and contrasts different types of manmade systems in terms of their objectives and functionality",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 37,
+              "source_pages": [
+                37
+              ],
+              "id": "NIE2017-7.2-02",
+              "text": "Distinguishes the different types of manmade systems in terms of objectives and functionality",
+              "unit_id": 7,
+              "level": "7.2",
+              "subtopic": "Compares and contrasts different types of manmade systems in terms of their objectives and functionality",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Compares and contrasts different types of manmade systems in terms of their objectives and functionality",
+          "source_page": 37,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "7.3",
+          "source_pages": [
+            37,
+            38
+          ],
+          "periods": 8,
+          "contents": [
+            "System developmentLifecycle models",
+            "Waterfall",
+            "Spiral",
+            "Agile",
+            "Prototyping",
+            "Rapid Application Development (RAD)",
+            "System development methodologies",
+            "Structured",
+            "Object Oriented"
+          ],
+          "outcomes": [
+            {
+              "source_page": 37,
+              "source_pages": [
+                37
+              ],
+              "id": "NIE2017-7.3-01",
+              "text": "Lists and briefly describes system development models",
+              "unit_id": 7,
+              "level": "7.3",
+              "subtopic": "Explores different information system development models and methods",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 37,
+              "source_pages": [
+                37
+              ],
+              "id": "NIE2017-7.3-02",
+              "text": "Investigates the applicability of each model",
+              "unit_id": 7,
+              "level": "7.3",
+              "subtopic": "Explores different information system development models and methods",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 37,
+              "source_pages": [
+                37,
+                38
+              ],
+              "id": "NIE2017-7.3-03",
+              "text": "Lists and describes the stages of System Development Life Cycle (SDLC) in Waterfall model",
+              "unit_id": 7,
+              "level": "7.3",
+              "subtopic": "Explores different information system development models and methods",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.3-04",
+              "text": "Lists and describes phases of the SDLC in Spiral model",
+              "unit_id": 7,
+              "level": "7.3",
+              "subtopic": "Explores different information system development models and methods",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.3-05",
+              "text": "Lists and briefly describes system development methodologies",
+              "unit_id": 7,
+              "level": "7.3",
+              "subtopic": "Explores different information system development models and methods",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores different information system development models and methods",
+          "source_page": 37,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 5
+        },
+        {
+          "id": "7.4",
+          "source_pages": [
+            38
+          ],
+          "periods": 2,
+          "contents": [
+            "Introduction to SSADM",
+            "Stages of the system development life cycle"
+          ],
+          "outcomes": [
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.4-01",
+              "text": "Defines SSADM",
+              "unit_id": 7,
+              "level": "7.4",
+              "subtopic": "Examines the Structured System Analysis and Design Methodology (SSADM)",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.4-02",
+              "text": "Lists and briefly describes the stages of SDLC covered by SSADM",
+              "unit_id": 7,
+              "level": "7.4",
+              "subtopic": "Examines the Structured System Analysis and Design Methodology (SSADM)",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Examines the Structured System Analysis and Design Methodology (SSADM)",
+          "source_page": 38,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "7.5",
+          "source_pages": [
+            38
+          ],
+          "periods": 4,
+          "contents": [
+            "Preliminary investigation",
+            "Identification of the problems in the current system",
+            "Suggest alternative solutions",
+            "Prioritizing information systems needs",
+            "Feasibility study",
+            "Technical feasibility",
+            "Economic feasibility",
+            "Operational feasibility",
+            "Organizational feasibility"
+          ],
+          "outcomes": [
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.5-01",
+              "text": "Describes the tasks in preliminary investigation stage",
+              "unit_id": 7,
+              "level": "7.5",
+              "subtopic": "Investigates the need for a new information system and its feasibility",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.5-02",
+              "text": "Identifies information problems in an organization",
+              "unit_id": 7,
+              "level": "7.5",
+              "subtopic": "Investigates the need for a new information system and its feasibility",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.5-03",
+              "text": "Identifies priorities of the problems to be solved",
+              "unit_id": 7,
+              "level": "7.5",
+              "subtopic": "Investigates the need for a new information system and its feasibility",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.5-04",
+              "text": "Describes the need of feasibility study",
+              "unit_id": 7,
+              "level": "7.5",
+              "subtopic": "Investigates the need for a new information system and its feasibility",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 38,
+              "source_pages": [
+                38
+              ],
+              "id": "NIE2017-7.5-05",
+              "text": "Lists and briefly describe the types of feasibility",
+              "unit_id": 7,
+              "level": "7.5",
+              "subtopic": "Investigates the need for a new information system and its feasibility",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Investigates the need for a new information system and its feasibility",
+          "source_page": 38,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 5
+        },
+        {
+          "id": "7.6",
+          "source_pages": [
+            39,
+            40
+          ],
+          "periods": 18,
+          "contents": [
+            "Requirement analysis",
+            "Functional requirements",
+            "Non – functional requirements",
+            "Analytical Tools",
+            "Business Activity Modeling",
+            "Business activity model",
+            "Data Flow Modeling (DFM)",
+            "Data Flow Diagrams (DFD)",
+            "Elementary processes and Elementary Process Descriptions (EPD)",
+            "Document flow diagram",
+            "Logical Data Modeling (LDM)",
+            "Logical Data Structure (LDS)",
+            "Business System Options (BSO)"
+          ],
+          "outcomes": [
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-01",
+              "text": "Describes the need for requirement analysis",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-02",
+              "text": "Describes type of requirements with examples for a given system",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-03",
+              "text": "Defines requirements in IEEE standard",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-04",
+              "text": "Lists the analytical tools and describes the purpose of them",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-05",
+              "text": "Draws business activity model, context diagram, document flow diagram, data flow diagrams and logical data structure for a given system",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-06",
+              "text": "Writes elementary process descriptions",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-07",
+              "text": "Describes the need for business system options",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39
+              ],
+              "id": "NIE2017-7.6-08",
+              "text": "Proposes business system options",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 39,
+              "source_pages": [
+                39,
+                40
+              ],
+              "id": "NIE2017-7.6-09",
+              "text": "Selects the most appropriate business system option",
+              "unit_id": 7,
+              "level": "7.6",
+              "subtopic": "Uses different methods to analyze the current system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Uses different methods to analyze the current system",
+          "source_page": 39,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 9
+        },
+        {
+          "id": "7.7",
+          "source_pages": [
+            40
+          ],
+          "periods": 14,
+          "contents": [
+            "Logical design tools",
+            "Logical Data flow modeling",
+            "Logical Data flow diagrams for proposed system",
+            "Elementary processes and elementary process description",
+            "User Interface design",
+            "Logical Data modeling",
+            "Logical data structure for the proposed system",
+            "Physical design of database",
+            "Table and record specifications",
+            "Data dictionary",
+            "Database design"
+          ],
+          "outcomes": [
+            {
+              "source_page": 40,
+              "source_pages": [
+                40
+              ],
+              "id": "NIE2017-7.7-01",
+              "text": "Describes the logical design",
+              "unit_id": 7,
+              "level": "7.7",
+              "subtopic": "Designs the proposed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 40,
+              "source_pages": [
+                40
+              ],
+              "id": "NIE2017-7.7-02",
+              "text": "Describes the activities involve in the logical design stage",
+              "unit_id": 7,
+              "level": "7.7",
+              "subtopic": "Designs the proposed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 40,
+              "source_pages": [
+                40
+              ],
+              "id": "NIE2017-7.7-03",
+              "text": "Reconstructs logical design of the proposed system starting from elementary processes to context diagram",
+              "unit_id": 7,
+              "level": "7.7",
+              "subtopic": "Designs the proposed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 40,
+              "source_pages": [
+                40
+              ],
+              "id": "NIE2017-7.7-04",
+              "text": "Writes elementary process description in pseudo code",
+              "unit_id": 7,
+              "level": "7.7",
+              "subtopic": "Designs the proposed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 40,
+              "source_pages": [
+                40
+              ],
+              "id": "NIE2017-7.7-05",
+              "text": "Specifies table and record specifications",
+              "unit_id": 7,
+              "level": "7.7",
+              "subtopic": "Designs the proposed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Designs the proposed system",
+          "source_page": 40,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 5
+        },
+        {
+          "id": "7.8",
+          "source_pages": [
+            40
+          ],
+          "periods": 6,
+          "contents": [
+            "Program development",
+            "Database development",
+            "Testing",
+            "Test cases",
+            "White box testing",
+            "Black box testing",
+            "Unit testing",
+            "Integrated testing",
+            "System testing",
+            "Acceptance testing"
+          ],
+          "outcomes": [
+            {
+              "source_page": 40,
+              "source_pages": [
+                40
+              ],
+              "id": "NIE2017-7.8-01",
+              "text": "Lists the testing methods for a newly designed system",
+              "unit_id": 7,
+              "level": "7.8",
+              "subtopic": "Develops and tests the proposed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 40,
+              "source_pages": [
+                40
+              ],
+              "id": "NIE2017-7.8-02",
+              "text": "Describes the testing methods for a newly designed system",
+              "unit_id": 7,
+              "level": "7.8",
+              "subtopic": "Develops and tests the proposed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Develops and tests the proposed system",
+          "source_page": 40,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "7.9",
+          "source_pages": [
+            40,
+            41
+          ],
+          "periods": 4,
+          "contents": [
+            "Deployment methods",
+            "Parallel",
+            "Direct",
+            "Pilot",
+            "Phase",
+            "Hardware/Software installation, data migration and user training",
+            "Review, support and maintenance"
+          ],
+          "outcomes": [
+            {
+              "source_page": 40,
+              "source_pages": [
+                40,
+                41
+              ],
+              "id": "NIE2017-7.9-01",
+              "text": "Describes the methods of deployment of the developed system.",
+              "unit_id": 7,
+              "level": "7.9",
+              "subtopic": "Deploys the developed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 41,
+              "source_pages": [
+                41
+              ],
+              "id": "NIE2017-7.9-02",
+              "text": "Describes the activities involved after implementation of a system",
+              "unit_id": 7,
+              "level": "7.9",
+              "subtopic": "Deploys the developed system",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Deploys the developed system",
+          "source_page": 40,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "7.10",
+          "source_pages": [
+            41,
+            42
+          ],
+          "periods": 4,
+          "contents": [
+            "Advantages and disadvantages of using off- the-shelf packages",
+            "Identification of package capabilities, work flows etc.",
+            "Business process gap analysis",
+            "Business process mapping",
+            "Business process reengineering"
+          ],
+          "outcomes": [
+            {
+              "source_page": 41,
+              "source_pages": [
+                41
+              ],
+              "id": "NIE2017-7.10-01",
+              "text": "Describes the costs and benefits of off- the-shelf packages in terms of investment, operational and maintenance cost",
+              "unit_id": 7,
+              "level": "7.10",
+              "subtopic": "Describes system implementation with off- the-shelf packaged systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 41,
+              "source_pages": [
+                41
+              ],
+              "id": "NIE2017-7.10-02",
+              "text": "Describes the features and capabilities of packaged solutions related to standard business applications",
+              "unit_id": 7,
+              "level": "7.10",
+              "subtopic": "Describes system implementation with off- the-shelf packaged systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 41,
+              "source_pages": [
+                41
+              ],
+              "id": "NIE2017-7.10-03",
+              "text": "Identifies and describes differences between a given business process and features of off-the- shelf packages",
+              "unit_id": 7,
+              "level": "7.10",
+              "subtopic": "Describes system implementation with off- the-shelf packaged systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 41,
+              "source_pages": [
+                41,
+                42
+              ],
+              "id": "NIE2017-7.10-04",
+              "text": "Maps business process activities onto work flow of the off-the-shelf packaged solution",
+              "unit_id": 7,
+              "level": "7.10",
+              "subtopic": "Describes system implementation with off- the-shelf packaged systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-7.10-05",
+              "text": "Identifies changes required in the current business process",
+              "unit_id": 7,
+              "level": "7.10",
+              "subtopic": "Describes system implementation with off- the-shelf packaged systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-7.10-06",
+              "text": "Identifies customization requirements of off- the-shelf packaged solutions",
+              "unit_id": 7,
+              "level": "7.10",
+              "subtopic": "Describes system implementation with off- the-shelf packaged systems",
+              "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Describes system implementation with off- the-shelf packaged systems",
+          "source_page": 41,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 6
+        }
+      ],
+      "competency": "Explores the systems concept and uses systems analysis and design methodology in developing information systems",
+      "name": "System Analysis and Design",
+      "grade": null,
+      "grade_note": "This Grades 12?13 syllabus does not assign this unit to a specific grade in the reviewed table/overview. Grade is left unspecified rather than inferred.",
+      "periods": 68,
+      "verified": true,
+      "source_pages": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "review_note": "Unit name/period total checked against PDF page 11; competency wording and all levels, contents and top-level outcome bullets checked against the curriculum table."
+    },
+    {
+      "id": 8,
+      "levels": [
+        {
+          "id": "8.1",
+          "source_pages": [
+            42
+          ],
+          "periods": 2,
+          "contents": [
+            "Data vs. information",
+            "Structured Vs. unstructured data",
+            "Definition of database",
+            "Database models",
+            "Flat file system",
+            "Hierarchical model",
+            "Network model",
+            "Relational model",
+            "Object relational model",
+            "Comparison of database models"
+          ],
+          "outcomes": [
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-8.1-01",
+              "text": "Distinguishes data and information",
+              "unit_id": 8,
+              "level": "8.1",
+              "subtopic": "Learns the basics of information and data, and the need for databases",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-8.1-02",
+              "text": "Defines database",
+              "unit_id": 8,
+              "level": "8.1",
+              "subtopic": "Learns the basics of information and data, and the need for databases",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-8.1-03",
+              "text": "Lists and briefly describes the database models",
+              "unit_id": 8,
+              "level": "8.1",
+              "subtopic": "Learns the basics of information and data, and the need for databases",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-8.1-04",
+              "text": "Compares and contrasts database models in terms of their features",
+              "unit_id": 8,
+              "level": "8.1",
+              "subtopic": "Learns the basics of information and data, and the need for databases",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Learns the basics of information and data, and the need for databases",
+          "source_page": 42,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "8.2",
+          "source_pages": [
+            42,
+            43
+          ],
+          "periods": 4,
+          "contents": [
+            "Relations / Tables",
+            "Attributes / Columns",
+            "Tuples / Rows",
+            "Relationships",
+            "Types of Constraints",
+            "A NOT NULL Constraint",
+            "A Unique Constraint",
+            "A Primary Key Constraint",
+            "A Foreign Key Constraint",
+            "A (Table) Check Constraint"
+          ],
+          "outcomes": [
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-8.2-01",
+              "text": "Defines relations / tables",
+              "unit_id": 8,
+              "level": "8.2",
+              "subtopic": "Describes the main components of the relational database model",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 42,
+              "source_pages": [
+                42
+              ],
+              "id": "NIE2017-8.2-02",
+              "text": "Names and describes main components of a relational database",
+              "unit_id": 8,
+              "level": "8.2",
+              "subtopic": "Describes the main components of the relational database model",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 42,
+              "source_pages": [
+                42,
+                43
+              ],
+              "id": "NIE2017-8.2-03",
+              "text": "Describes the relationships in terms of relational database model",
+              "unit_id": 8,
+              "level": "8.2",
+              "subtopic": "Describes the main components of the relational database model",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.2-04",
+              "text": "Briefly explains the types of constrains",
+              "unit_id": 8,
+              "level": "8.2",
+              "subtopic": "Describes the main components of the relational database model",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Describes the main components of the relational database model",
+          "source_page": 42,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "8.3",
+          "source_pages": [
+            43,
+            44
+          ],
+          "periods": 14,
+          "contents": [
+            "Data Base Management System",
+            "Data definition language (DDL)",
+            "Introduction to SQL",
+            "Classification of SQL",
+            "Creating, using relational database using DDL",
+            "Creating table",
+            "Alter table",
+            "Inserting and deleting attributes",
+            "Adding and deleting foreign key and primary key",
+            "Drop tables",
+            "Drop databases",
+            "Data manipulation Language (DML)",
+            "DML Features in SQL",
+            "Inserting, modifying, retrieving, updating deleting data",
+            "Select Query",
+            "Extracting rows and columns from single table",
+            "Extracting rows and columns from multiple tables using inner join operation",
+            "Insert Query",
+            "Update Query",
+            "Delete Query"
+          ],
+          "outcomes": [
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.3-01",
+              "text": "Lists and briefly describes the component of a database system",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.3-02",
+              "text": "Describes the database management system",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.3-03",
+              "text": "Defines SQL",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.3-04",
+              "text": "Distinguishes between DDL vs. DML",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.3-05",
+              "text": "Uses appropriate SQL commands for creating and using database",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.3-06",
+              "text": "Uses appropriate commands to create tables with suitable fields and data types",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43
+              ],
+              "id": "NIE2017-8.3-07",
+              "text": "Sets primary key and foreign key while creating table",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 43,
+              "source_pages": [
+                43,
+                44
+              ],
+              "id": "NIE2017-8.3-08",
+              "text": "Uses primary key and foreign key after completion of a table",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 44,
+              "source_pages": [
+                44
+              ],
+              "id": "NIE2017-8.3-09",
+              "text": "Creates relationships among tables",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 44,
+              "source_pages": [
+                44
+              ],
+              "id": "NIE2017-8.3-10",
+              "text": "Uses appropriate SQL commands to Insert and delete columns, delete foreign key / primary key and to drop table",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 44,
+              "source_pages": [
+                44
+              ],
+              "id": "NIE2017-8.3-11",
+              "text": "Uses appropriate SQL commands to drop database",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 44,
+              "source_pages": [
+                44
+              ],
+              "id": "NIE2017-8.3-12",
+              "text": "Uses appropriate commands to Insert, modify retrieve, update and delete data.",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 44,
+              "source_pages": [
+                44
+              ],
+              "id": "NIE2017-8.3-13",
+              "text": "Uses appropriate DML commands to query data according to the requirements",
+              "unit_id": 8,
+              "level": "8.3",
+              "subtopic": "Analyzes the main components of a database system",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Analyzes the main components of a database system",
+          "source_page": 43,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 13
+        },
+        {
+          "id": "8.4",
+          "source_pages": [
+            44,
+            45
+          ],
+          "periods": 12,
+          "contents": [
+            "ER (Entity Relationship) diagrams",
+            "Entities, attributes",
+            "Entity identifiers",
+            "Relationships",
+            "Cardinality",
+            "Introduction to EER (Extended ER) diagrams"
+          ],
+          "outcomes": [
+            {
+              "source_page": 44,
+              "source_pages": [
+                44
+              ],
+              "id": "NIE2017-8.4-01",
+              "text": "Describes ER diagram",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 44,
+              "source_pages": [
+                44
+              ],
+              "id": "NIE2017-8.4-02",
+              "text": "Describes the components of an ER diagram (entities, attributes)",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.4-03",
+              "text": "Describes entity identifiers",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.4-04",
+              "text": "Lists and describes relationships",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.4-05",
+              "text": "Describes cardinality",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.4-06",
+              "text": "Identifies the requirements of a given scenario",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.4-07",
+              "text": "Selects entities, attributes and according to the requirement",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "The official outcome visibly reads \"Selects entities, attributes and according to the requirement\" at PDF page 45. The apparent missing phrase is not supplied or silently corrected.",
+              "source_anomaly": "incomplete_source_wording"
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.4-08",
+              "text": "Draws the ER diagram",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.4-09",
+              "text": "Explains the EER diagrams",
+              "unit_id": 8,
+              "level": "8.4",
+              "subtopic": "Designs the conceptual schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Designs the conceptual schema of a database",
+          "source_page": 44,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 9
+        },
+        {
+          "id": "8.5",
+          "source_pages": [
+            45
+          ],
+          "periods": 6,
+          "contents": [
+            "Definition of thelogical schema",
+            "Database schema design",
+            "Relational schema",
+            "Relation instances",
+            "Candidate key",
+            "Primary key",
+            "Alternate key",
+            "Foreign key",
+            "Domain"
+          ],
+          "outcomes": [
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.5-01",
+              "text": "Defines logical schema of a database",
+              "unit_id": 8,
+              "level": "8.5",
+              "subtopic": "Designs the logical schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.5-02",
+              "text": "Describes relational schema",
+              "unit_id": 8,
+              "level": "8.5",
+              "subtopic": "Designs the logical schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.5-03",
+              "text": "Describes relational instances",
+              "unit_id": 8,
+              "level": "8.5",
+              "subtopic": "Designs the logical schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 45,
+              "source_pages": [
+                45
+              ],
+              "id": "NIE2017-8.5-04",
+              "text": "Briefly describes Candidate key, primary key, alternate key and foreign key",
+              "unit_id": 8,
+              "level": "8.5",
+              "subtopic": "Designs the logical schema of a database",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Designs the logical schema of a database",
+          "source_page": 45,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "8.6",
+          "source_pages": [
+            45,
+            46
+          ],
+          "periods": 6,
+          "contents": [
+            "Entity transformation",
+            "Attribute transformation",
+            "Relationship transformation"
+          ],
+          "outcomes": [
+            {
+              "source_page": 45,
+              "source_pages": [
+                45,
+                46
+              ],
+              "id": "NIE2017-8.6-01",
+              "text": "Describes the methods of transformation ER diagram to logical schema",
+              "unit_id": 8,
+              "level": "8.6",
+              "subtopic": "Transforms ER diagrams to logical schema",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 46,
+              "source_pages": [
+                46
+              ],
+              "id": "NIE2017-8.6-02",
+              "text": "Transforms ER diagrams (entity, attribute, relationships) to logical schema",
+              "unit_id": 8,
+              "level": "8.6",
+              "subtopic": "Transforms ER diagrams to logical schema",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Transforms ER diagrams to logical schema",
+          "source_page": 45,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "8.7",
+          "source_pages": [
+            46,
+            47
+          ],
+          "periods": 6,
+          "contents": [
+            "Need for normalization-",
+            "Redundancies and anomalies",
+            "Insert",
+            "Update",
+            "Delete",
+            "Functional dependencies",
+            "Full dependency",
+            "Partial dependency",
+            "Transitive dependency",
+            "Levels of normalization",
+            "Zero normal form",
+            "First normal form",
+            "Second normal form",
+            "Third normal form"
+          ],
+          "outcomes": [
+            {
+              "source_page": 46,
+              "source_pages": [
+                46
+              ],
+              "id": "NIE2017-8.7-01",
+              "text": "Describes the functional dependencies and categorizes them",
+              "unit_id": 8,
+              "level": "8.7",
+              "subtopic": "Normalizes database schema to improve performance",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 46,
+              "source_pages": [
+                46
+              ],
+              "id": "NIE2017-8.7-02",
+              "text": "Describes abnormalities of an improperlydesigned table when modifying in terms of insert, update and delete",
+              "unit_id": 8,
+              "level": "8.7",
+              "subtopic": "Normalizes database schema to improve performance",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "The source prints \"improperlydesigned\" as one word at PDF page 46; retained as printed."
+            },
+            {
+              "source_page": 46,
+              "source_pages": [
+                46
+              ],
+              "id": "NIE2017-8.7-03",
+              "text": "Describes the zero normal form",
+              "unit_id": 8,
+              "level": "8.7",
+              "subtopic": "Normalizes database schema to improve performance",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 46,
+              "source_pages": [
+                46
+              ],
+              "id": "NIE2017-8.7-04",
+              "text": "Explains the abnormalities which are reduced after the first normal form",
+              "unit_id": 8,
+              "level": "8.7",
+              "subtopic": "Normalizes database schema to improve performance",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 46,
+              "source_pages": [
+                46
+              ],
+              "id": "NIE2017-8.7-05",
+              "text": "Lists the conditions for executing the second normal form",
+              "unit_id": 8,
+              "level": "8.7",
+              "subtopic": "Normalizes database schema to improve performance",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 46,
+              "source_pages": [
+                46,
+                47
+              ],
+              "id": "NIE2017-8.7-06",
+              "text": "Explains the abnormalities which are reduced after the second normal form",
+              "unit_id": 8,
+              "level": "8.7",
+              "subtopic": "Normalizes database schema to improve performance",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 47,
+              "source_pages": [
+                47
+              ],
+              "id": "NIE2017-8.7-07",
+              "text": "Explains the abnormalities which are reduced after the third normal form",
+              "unit_id": 8,
+              "level": "8.7",
+              "subtopic": "Normalizes database schema to improve performance",
+              "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Normalizes database schema to improve performance",
+          "source_page": 46,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 7
+        }
+      ],
+      "competency": "Designs and develops database systems to manage data efficiently and effectively.",
+      "name": "Database Management",
+      "grade": null,
+      "grade_note": "This Grades 12?13 syllabus does not assign this unit to a specific grade in the reviewed table/overview. Grade is left unspecified rather than inferred.",
+      "periods": 50,
+      "verified": true,
+      "source_pages": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "review_note": "Unit name/period total checked against PDF page 11; competency wording and all levels, contents and top-level outcome bullets checked against the curriculum table."
+    },
+    {
+      "id": 9,
+      "levels": [
+        {
+          "id": "9.1",
+          "source_pages": [
+            47
+          ],
+          "periods": 2,
+          "contents": [
+            "Understanding the problem",
+            "Defining the problem and boundaries",
+            "Planning solution",
+            "Implementation"
+          ],
+          "outcomes": [
+            {
+              "source_page": 47,
+              "source_pages": [
+                47
+              ],
+              "id": "NIE2017-9.1-01",
+              "text": "Describes the steps of problem solving process",
+              "unit_id": 9,
+              "level": "9.1",
+              "subtopic": "Uses problem-solving process",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 47,
+              "source_pages": [
+                47
+              ],
+              "id": "NIE2017-9.1-02",
+              "text": "Implements the solution",
+              "unit_id": 9,
+              "level": "9.1",
+              "subtopic": "Uses problem-solving process",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Uses problem-solving process",
+          "source_page": 47,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "9.2",
+          "source_pages": [
+            47
+          ],
+          "periods": 4,
+          "contents": [
+            "Modularization",
+            "Top down design and stepwise refinement",
+            "Structure charts"
+          ],
+          "outcomes": [
+            {
+              "source_page": 47,
+              "source_pages": [
+                47
+              ],
+              "id": "NIE2017-9.2-01",
+              "text": "Uses stepwise refinement methodology to solve problems",
+              "unit_id": 9,
+              "level": "9.2",
+              "subtopic": "Explores the top down and stepwise refinement methodologies in solving problems",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 47,
+              "source_pages": [
+                47
+              ],
+              "id": "NIE2017-9.2-02",
+              "text": "Draws structures charts to illustrate a solution for a system",
+              "unit_id": 9,
+              "level": "9.2",
+              "subtopic": "Explores the top down and stepwise refinement methodologies in solving problems",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores the top down and stepwise refinement methodologies in solving problems",
+          "source_page": 47,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "9.3",
+          "source_pages": [
+            47,
+            48
+          ],
+          "periods": 6,
+          "contents": [
+            "Algorithms",
+            "Flow charts",
+            "Pseudo codes",
+            "Hand traces"
+          ],
+          "outcomes": [
+            {
+              "source_page": 47,
+              "source_pages": [
+                47
+              ],
+              "id": "NIE2017-9.3-01",
+              "text": "Briefly describes algorithms",
+              "unit_id": 9,
+              "level": "9.3",
+              "subtopic": "Uses algorithmic approach to solve problems",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 47,
+              "source_pages": [
+                47,
+                48
+              ],
+              "id": "NIE2017-9.3-02",
+              "text": "Identifies the standard symbols used to draw flow charts",
+              "unit_id": 9,
+              "level": "9.3",
+              "subtopic": "Uses algorithmic approach to solve problems",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.3-03",
+              "text": "Draws flow charts to illustrate solutions to a given problem",
+              "unit_id": 9,
+              "level": "9.3",
+              "subtopic": "Uses algorithmic approach to solve problems",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.3-04",
+              "text": "Writes pseudo codes to illustrate solutions to a given problem",
+              "unit_id": 9,
+              "level": "9.3",
+              "subtopic": "Uses algorithmic approach to solve problems",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.3-05",
+              "text": "Uses hand traces to verify the solutions",
+              "unit_id": 9,
+              "level": "9.3",
+              "subtopic": "Uses algorithmic approach to solve problems",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Uses algorithmic approach to solve problems",
+          "source_page": 47,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 5
+        },
+        {
+          "id": "9.4",
+          "source_pages": [
+            48
+          ],
+          "periods": 2,
+          "contents": [
+            "Evolution of programming languages",
+            "Programming paradigms",
+            "Imperative languages",
+            "Declarative languages",
+            "Object oriented languages"
+          ],
+          "outcomes": [
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.4-01",
+              "text": "Describes the evolution of programming language in terms of generations",
+              "unit_id": 9,
+              "level": "9.4",
+              "subtopic": "Compares and Contrasts different programming paradigms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.4-02",
+              "text": "Compares and contrasts imperative, declarative, object oriented languages",
+              "unit_id": 9,
+              "level": "9.4",
+              "subtopic": "Compares and Contrasts different programming paradigms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Compares and Contrasts different programming paradigms",
+          "source_page": 48,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "9.5",
+          "source_pages": [
+            48,
+            49
+          ],
+          "periods": 2,
+          "contents": [
+            "Need of program translation",
+            "Source program",
+            "Object program",
+            "Program translators",
+            "Interpreters",
+            "Compilers",
+            "Hybrid approach",
+            "Linkers"
+          ],
+          "outcomes": [
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.5-01",
+              "text": "Describes the need of translation of a program",
+              "unit_id": 9,
+              "level": "9.5",
+              "subtopic": "Explores the need of program translation and the type of program translators",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.5-02",
+              "text": "Compares the source and object program",
+              "unit_id": 9,
+              "level": "9.5",
+              "subtopic": "Explores the need of program translation and the type of program translators",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 48,
+              "source_pages": [
+                48
+              ],
+              "id": "NIE2017-9.5-03",
+              "text": "Lists and briefly describes the types of program translators",
+              "unit_id": 9,
+              "level": "9.5",
+              "subtopic": "Explores the need of program translation and the type of program translators",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 48,
+              "source_pages": [
+                48,
+                49
+              ],
+              "id": "NIE2017-9.5-04",
+              "text": "Briefly describes the function of linkers",
+              "unit_id": 9,
+              "level": "9.5",
+              "subtopic": "Explores the need of program translation and the type of program translators",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores the need of program translation and the type of program translators",
+          "source_page": 48,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "9.6",
+          "source_pages": [
+            49
+          ],
+          "periods": 4,
+          "contents": [
+            "Basic features of IDE",
+            "Instructions to use",
+            "Opening and saving files",
+            "Compiling, executing programs",
+            "Debugging facilities"
+          ],
+          "outcomes": [
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.6-01",
+              "text": "Identifies the basic features of IDE",
+              "unit_id": 9,
+              "level": "9.6",
+              "subtopic": "Explores integrated development environment (IDE) to identify their basic features",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.6-02",
+              "text": "Practices the instructions to o Open and save files o Compile, execute programs",
+              "unit_id": 9,
+              "level": "9.6",
+              "subtopic": "Explores integrated development environment (IDE) to identify their basic features",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "One main outcome contains two nested open-circle bullets at PDF page 49. The legacy flattened text retains the o markers; child_items separately preserves their structure. Nested bullets are not counted as separate top-level outcomes.",
+              "child_items": [
+                "Open and save files",
+                "Compile, execute programs"
+              ]
+            },
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.6-03",
+              "text": "Uses the debugging facilities in IDE",
+              "unit_id": 9,
+              "level": "9.6",
+              "subtopic": "Explores integrated development environment (IDE) to identify their basic features",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Explores integrated development environment (IDE) to identify their basic features",
+          "source_page": 49,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 3
+        },
+        {
+          "id": "9.7",
+          "source_pages": [
+            49,
+            50
+          ],
+          "periods": 10,
+          "contents": [
+            "Structure of a program",
+            "Comments",
+            "Constants and Variables",
+            "Primitive data types",
+            "Operator categories",
+            "Arithmetical, relational, logical, bitwise",
+            "Operator precedence",
+            "Input / output",
+            "Input from keyboard",
+            "Output to standard devices"
+          ],
+          "outcomes": [
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.7-01",
+              "text": "Identifies the structure of a program",
+              "unit_id": 9,
+              "level": "9.7",
+              "subtopic": "Uses an imperative programming language to encode algorithms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.7-02",
+              "text": "Uses comments to identify the usage of code for future reference",
+              "unit_id": 9,
+              "level": "9.7",
+              "subtopic": "Uses an imperative programming language to encode algorithms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.7-03",
+              "text": "Uses constants and variables in a program appropriately",
+              "unit_id": 9,
+              "level": "9.7",
+              "subtopic": "Uses an imperative programming language to encode algorithms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.7-04",
+              "text": "Identifies the primitive data types of a given program language",
+              "unit_id": 9,
+              "level": "9.7",
+              "subtopic": "Uses an imperative programming language to encode algorithms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 49,
+              "source_pages": [
+                49
+              ],
+              "id": "NIE2017-9.7-05",
+              "text": "Identifies and uses operators in a program",
+              "unit_id": 9,
+              "level": "9.7",
+              "subtopic": "Uses an imperative programming language to encode algorithms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 49,
+              "source_pages": [
+                49,
+                50
+              ],
+              "id": "NIE2017-9.7-06",
+              "text": "Identifies precedence of operators",
+              "unit_id": 9,
+              "level": "9.7",
+              "subtopic": "Uses an imperative programming language to encode algorithms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.7-07",
+              "text": "Writes programs with the facilities of input from keyboard and output to standard devices",
+              "unit_id": 9,
+              "level": "9.7",
+              "subtopic": "Uses an imperative programming language to encode algorithms",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Uses an imperative programming language to encode algorithms",
+          "source_page": 49,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 7
+        },
+        {
+          "id": "9.8",
+          "source_pages": [
+            50
+          ],
+          "periods": 12,
+          "contents": [
+            "Control Structures",
+            "Sequence",
+            "Selection",
+            "Repetition",
+            "Iteration",
+            "Looping"
+          ],
+          "outcomes": [
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.8-01",
+              "text": "Briefly describes control structures",
+              "unit_id": 9,
+              "level": "9.8",
+              "subtopic": "Uses control structures in developing programs",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.8-02",
+              "text": "Lists and briefly describes the types of control structures",
+              "unit_id": 9,
+              "level": "9.8",
+              "subtopic": "Uses control structures in developing programs",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.8-03",
+              "text": "Uses control structures appropriately in programming",
+              "unit_id": 9,
+              "level": "9.8",
+              "subtopic": "Uses control structures in developing programs",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.8-04",
+              "text": "Applies nested control structures in programs",
+              "unit_id": 9,
+              "level": "9.8",
+              "subtopic": "Uses control structures in developing programs",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Uses control structures in developing programs",
+          "source_page": 50,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 4
+        },
+        {
+          "id": "9.9",
+          "source_pages": [
+            50,
+            51
+          ],
+          "periods": 10,
+          "contents": [
+            "Types of subprograms",
+            "Built in",
+            "User defined",
+            "Structure",
+            "Parameter passing",
+            "Return values",
+            "Default values",
+            "Scope of variables"
+          ],
+          "outcomes": [
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.9-01",
+              "text": "Briefly describes the functions",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.9-02",
+              "text": "Lists and briefly describes the types of functions",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.9-03",
+              "text": "Identifies the structure of a function",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50
+              ],
+              "id": "NIE2017-9.9-04",
+              "text": "Compares local and global variables",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 50,
+              "source_pages": [
+                50,
+                51
+              ],
+              "id": "NIE2017-9.9-05",
+              "text": "Identifies the behavior of a variable in terms of life time",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 51,
+              "source_pages": [
+                51
+              ],
+              "id": "NIE2017-9.9-06",
+              "text": "Identifies the need of return values and writes functions to obtain the appropriate return value",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 51,
+              "source_pages": [
+                51
+              ],
+              "id": "NIE2017-9.9-07",
+              "text": "Writes functions using relevant parameters and arguments",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 51,
+              "source_pages": [
+                51
+              ],
+              "id": "NIE2017-9.9-08",
+              "text": "Uses user defined functions",
+              "unit_id": 9,
+              "level": "9.9",
+              "subtopic": "Uses sub-programs in programming",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Uses sub-programs in programming",
+          "source_page": 50,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 8
+        },
+        {
+          "id": "9.10",
+          "source_pages": [
+            51
+          ],
+          "periods": 8,
+          "contents": [
+            "Data structures",
+            "Strings",
+            "Lists",
+            "Tuples",
+            "Dictionaries"
+          ],
+          "outcomes": [
+            {
+              "source_page": 51,
+              "source_pages": [
+                51
+              ],
+              "id": "NIE2017-9.10-01",
+              "text": "Briefly explains the use of data structures",
+              "unit_id": 9,
+              "level": "9.10",
+              "subtopic": "Uses data structures in programs",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 51,
+              "source_pages": [
+                51
+              ],
+              "id": "NIE2017-9.10-02",
+              "text": "Uses relevant data structures in programming",
+              "unit_id": 9,
+              "level": "9.10",
+              "subtopic": "Uses data structures in programs",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Uses data structures in programs",
+          "source_page": 51,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        },
+        {
+          "id": "9.11",
+          "source_pages": [
+            51
+          ],
+          "periods": 6,
+          "contents": [
+            "File handling",
+            "Basic file operations"
+          ],
+          "outcomes": [
+            {
+              "source_page": 51,
+              "source_pages": [
+                51
+              ],
+              "id": "NIE2017-9.11-01",
+              "text": "Uses basic file operations (open, close, read write and append)",
+              "unit_id": 9,
+              "level": "9.11",
+              "subtopic": "Handles files and databases in programs",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Handles files and databases in programs",
+          "source_page": 51,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 1
+        },
+        {
+          "id": "9.12",
+          "source_pages": [
+            51
+          ],
+          "periods": 4,
+          "contents": [
+            "Connecting to a database",
+            "Retrieve data",
+            "Add, modify and delete data"
+          ],
+          "outcomes": [
+            {
+              "source_page": 51,
+              "source_pages": [
+                51
+              ],
+              "id": "NIE2017-9.12-01",
+              "text": "Embeds SQL statements in programming languages to retrieve, add, modify and delete data",
+              "unit_id": 9,
+              "level": "9.12",
+              "subtopic": "Manages data in databases",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Manages data in databases",
+          "source_page": 51,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 1
+        },
+        {
+          "id": "9.13",
+          "source_pages": [
+            51,
+            52
+          ],
+          "periods": 4,
+          "contents": [
+            "Searching techniques",
+            "Sequential search",
+            "Sorting techniques",
+            "Bubble sort"
+          ],
+          "outcomes": [
+            {
+              "source_page": 51,
+              "source_pages": [
+                51,
+                52
+              ],
+              "id": "NIE2017-9.13-01",
+              "text": "Uses sequential searching technique appropriately",
+              "unit_id": 9,
+              "level": "9.13",
+              "subtopic": "Searches and sorts data",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            },
+            {
+              "source_page": 52,
+              "source_pages": [
+                52
+              ],
+              "id": "NIE2017-9.13-02",
+              "text": "Implements bubble sort technique appropriately",
+              "unit_id": 9,
+              "level": "9.13",
+              "subtopic": "Searches and sorts data",
+              "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+              "verified": true,
+              "review_note": "Exact source wording cross-checked; whitespace normalized only. Source page is the PDF page containing this top-level bullet; source_pages includes continuations."
+            }
+          ],
+          "title": "Searches and sorts data",
+          "source_page": 51,
+          "verified": true,
+          "review_note": "Full competency-level title and contents column cross-checked against the PDF layout; all outcome bullets and cross-page continuations accounted for.",
+          "outcome_bullet_count": 2
+        }
+      ],
+      "competency": "Develops algorithms to solve problems and uses python programming language to encode algorithms",
+      "name": "Programming",
+      "grade": null,
+      "grade_note": "This Grades 12?13 syllabus does not assign this unit to a specific grade in the reviewed table/overview. Grade is left unspecified rather than inferred.",
+      "periods": 74,
+      "verified": true,
+      "source_pages": [
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "review_note": "Unit name/period total checked against PDF page 11; competency wording and all levels, contents and top-level outcome bullets checked against the curriculum table."
+    }
+  ]
+}

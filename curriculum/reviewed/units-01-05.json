@@ -1,0 +1,2801 @@
+{
+  "source": "https://nie.lk/pdffiles/tg/eALSyl%20ICT.pdf",
+  "source_file": "curriculum/nie-ict-2017.pdf",
+  "source_sha256": "577659c643467316a84fae39fadc49b4753f8b8f553e8e66cf1655c8951082f8",
+  "review_status": "source_cross_checked",
+  "reviewed_by": "Codex source comparison",
+  "reviewed_on": "2026-11-22",
+  "scope": "Official 2017 source inventory, units 1–5 only. No claim that this is a newly confirmed examination syllabus for 2026 or later.",
+  "page_numbering": "1-based PDF page number; printed table page = PDF page minus 11.",
+  "units": [
+    {
+      "id": 1,
+      "name": "Concept of ICT",
+      "grade": null,
+      "grade_review_note": "The source is jointly for Grades 12 and 13 and does not state a unit-by-grade allocation; none is inferred.",
+      "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+      "periods": 28,
+      "source_page": 11,
+      "source_pages": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "verified": true,
+      "levels": [
+        {
+          "id": "1.1",
+          "title": "Investigates the basic building blocks of information and their characteristics",
+          "source_pages": [
+            12
+          ],
+          "periods": 6,
+          "contents": [
+            "Life cycle of data",
+            "Data creation",
+            "Management",
+            "Removal of obsolete data",
+            "Data vs. Information",
+            "Definition of information",
+            "Characteristics of valuable information: timeliness, accuracy, presented within the context, enhanced understandability and less uncertainty",
+            "The need to handle large volumes and other complexitiesof data",
+            "Introduction"
+          ],
+          "outcomes": [
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-01",
+              "text": "Defines data and outlines its life cycle",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-02",
+              "text": "Recognizes the need of a process to define data and information",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-03",
+              "text": "Recognizes the strong inter relationship between data, process and information",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-04",
+              "text": "Describes data, process and information",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-05",
+              "text": "Lists various forms of data and their characteristics",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-06",
+              "text": "Describes the characteristics of quality data",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-07",
+              "text": "Distinguishes data from information",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-08",
+              "text": "Illustrates the value of information",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-09",
+              "text": "Describes the characteristics of valuable information",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 12,
+              "source_pages": [
+                12
+              ],
+              "id": "NIE2017-1.1-10",
+              "text": "Recognizes big data, their needs and analysis",
+              "unit_id": 1,
+              "level": "1.1",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the basic building blocks of information and their characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "1.2",
+          "title": "Investigates the need of technology to create, disseminate and manage data and information",
+          "source_pages": [
+            12,
+            13,
+            14
+          ],
+          "periods": 6,
+          "contents": [
+            "Applicability of information in day to day life",
+            "Decision making",
+            "Policy making",
+            "Predictions",
+            "Planning, scheduling and monitoring",
+            "Drawbacks of manual methods in manipulating data and information",
+            "Inconsistency and duplication in data, room for errors, human errors and delay in processing",
+            "Lack of sharing information and reduced customer services",
+            "Infeasibility of applying manual methods where they can beharmful to humans",
+            "Emergence of ICT era",
+            "Use of IT to overcome the drawbacks of manual methods of data manipulation",
+            "Usage of information in various domains",
+            "Availability of technologies related to information retrieval and sharing",
+            "Development of computer networks, the Internet and WWW",
+            "Development of mobile communication, mobile computing and cloud computing"
+          ],
+          "outcomes": [
+            {
+              "source_page": 12,
+              "source_pages": [
+                12,
+                13
+              ],
+              "id": "NIE2017-1.2-01",
+              "text": "Identifies the drawbacks of manual data processing methods",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 13,
+              "source_pages": [
+                13
+              ],
+              "id": "NIE2017-1.2-02",
+              "text": "Describes the importance of information in day to day life",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 13,
+              "source_pages": [
+                13
+              ],
+              "id": "NIE2017-1.2-03",
+              "text": "Lists the available technologies related to information dissemination",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 13,
+              "source_pages": [
+                13
+              ],
+              "id": "NIE2017-1.2-04",
+              "text": "Investigates the development of computer networks, the Internet and WWW",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 13,
+              "source_pages": [
+                13
+              ],
+              "id": "NIE2017-1.2-05",
+              "text": "Describes the development of mobile communication, mobile computing and cloud computing",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 13,
+              "source_pages": [
+                13
+              ],
+              "id": "NIE2017-1.2-06",
+              "text": "Appreciates the use of technology to create, disseminate and manage, data and information",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 13,
+              "source_pages": [
+                13
+              ],
+              "id": "NIE2017-1.2-07",
+              "text": "Recognizes the usage of information in various domains",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 13,
+              "source_pages": [
+                13,
+                14
+              ],
+              "id": "NIE2017-1.2-08",
+              "text": "Investigates the safety issues of human operators in various applications",
+              "unit_id": 1,
+              "level": "1.2",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the need of technology to create, disseminate and manage data and information",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "1.3",
+          "title": "Formulates an abstract model of information creation and evaluates its compliance with ICT",
+          "source_pages": [
+            14
+          ],
+          "periods": 2,
+          "contents": [
+            "Abstract model of information creation",
+            "Input, process, output",
+            "Its appropriateness to Computer and ICT"
+          ],
+          "outcomes": [
+            {
+              "source_page": 14,
+              "source_pages": [
+                14
+              ],
+              "id": "NIE2017-1.3-01",
+              "text": "Identifies the components of an abstract model of information creation",
+              "unit_id": 1,
+              "level": "1.3",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Formulates an abstract model of information creation and evaluates its compliance with ICT",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 14,
+              "source_pages": [
+                14
+              ],
+              "id": "NIE2017-1.3-02",
+              "text": "Defines a system",
+              "unit_id": 1,
+              "level": "1.3",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Formulates an abstract model of information creation and evaluates its compliance with ICT",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 14,
+              "source_pages": [
+                14
+              ],
+              "id": "NIE2017-1.3-03",
+              "text": "Analyses various systems using the system definition",
+              "unit_id": 1,
+              "level": "1.3",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Formulates an abstract model of information creation and evaluates its compliance with ICT",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 14,
+              "source_pages": [
+                14
+              ],
+              "id": "NIE2017-1.3-04",
+              "text": "Relates the abstract model to information systems",
+              "unit_id": 1,
+              "level": "1.3",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Formulates an abstract model of information creation and evaluates its compliance with ICT",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 14,
+              "source_pages": [
+                14
+              ],
+              "id": "NIE2017-1.3-05",
+              "text": "Matches the abstract model of information creation to the main functions of the computer",
+              "unit_id": 1,
+              "level": "1.3",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Formulates an abstract model of information creation and evaluates its compliance with ICT",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 14,
+              "source_pages": [
+                14
+              ],
+              "id": "NIE2017-1.3-06",
+              "text": "Recognizes the role of ICT in the abstract model of information creation",
+              "unit_id": 1,
+              "level": "1.3",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Formulates an abstract model of information creation and evaluates its compliance with ICT",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "1.4",
+          "title": "Selects and classifies the basic components of a computer system",
+          "source_pages": [
+            14,
+            15
+          ],
+          "periods": 2,
+          "contents": [
+            "Hardware",
+            "Classification of hardware components",
+            "Software",
+            "Classification of software",
+            "Human Operators",
+            "Need of human operators in information systems"
+          ],
+          "outcomes": [
+            {
+              "source_page": 14,
+              "source_pages": [
+                14
+              ],
+              "id": "NIE2017-1.4-01",
+              "text": "Defines and classifies hardware and software components",
+              "unit_id": 1,
+              "level": "1.4",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Selects and classifies the basic components of a computer system",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 14,
+              "source_pages": [
+                14,
+                15
+              ],
+              "id": "NIE2017-1.4-02",
+              "text": "Distinguishes proprietary software and open source software",
+              "unit_id": 1,
+              "level": "1.4",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Selects and classifies the basic components of a computer system",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.4-03",
+              "text": "Describes the advantages and disadvantages of proprietary and open source software",
+              "unit_id": 1,
+              "level": "1.4",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Selects and classifies the basic components of a computer system",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.4-04",
+              "text": "Identifies the role of human operators in the ICT enabled information systems",
+              "unit_id": 1,
+              "level": "1.4",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Selects and classifies the basic components of a computer system",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "1.5",
+          "title": "Analyses the activities of data processing",
+          "source_pages": [
+            15,
+            16
+          ],
+          "periods": 4,
+          "contents": [
+            "Steps in data processing:",
+            "Data gathering",
+            "Data validation",
+            "Data processing",
+            "Data output",
+            "Data storage",
+            "Data gathering methods",
+            "Manual methods",
+            "Semi-automated and automated methods",
+            "Tools - (OMR, OCR, MICR, card/tape readers, magnetic strip readers, bar code readers, sensors and loggers)",
+            "Data validation methods",
+            "Data type check",
+            "Presence check",
+            "Range check",
+            "Modes of data input",
+            "Direct and remote",
+            "Online and offline",
+            "Data processing",
+            "Batch and real time",
+            "Output methods",
+            "Direct presentation to the user",
+            "Storing for further processing",
+            "Storage methods",
+            "Local and remote storage (cloud)",
+            "Short and long term storage"
+          ],
+          "outcomes": [
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.5-01",
+              "text": "Lists and briefly describes the data processing steps",
+              "unit_id": 1,
+              "level": "1.5",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Analyses the activities of data processing",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.5-02",
+              "text": "Identifies data gathering methods",
+              "unit_id": 1,
+              "level": "1.5",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Analyses the activities of data processing",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.5-03",
+              "text": "Identifies data validation methods",
+              "unit_id": 1,
+              "level": "1.5",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Analyses the activities of data processing",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.5-04",
+              "text": "Lists data input methods",
+              "unit_id": 1,
+              "level": "1.5",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Analyses the activities of data processing",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.5-05",
+              "text": "Describes data processing methods",
+              "unit_id": 1,
+              "level": "1.5",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Analyses the activities of data processing",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.5-06",
+              "text": "Lists data output methods",
+              "unit_id": 1,
+              "level": "1.5",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Analyses the activities of data processing",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 15,
+              "source_pages": [
+                15
+              ],
+              "id": "NIE2017-1.5-07",
+              "text": "Describes data storage methods",
+              "unit_id": 1,
+              "level": "1.5",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Analyses the activities of data processing",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "1.6",
+          "title": "Investigates the application of ICT in different domains",
+          "source_pages": [
+            16
+          ],
+          "periods": 4,
+          "contents": [
+            "Application of ICT in:",
+            "Education",
+            "Healthcare",
+            "Agriculture",
+            "Business and finance",
+            "Engineering",
+            "Tourism",
+            "Media and journalism",
+            "Law enforcement"
+          ],
+          "outcomes": [
+            {
+              "source_page": 16,
+              "source_pages": [
+                16
+              ],
+              "id": "NIE2017-1.6-01",
+              "text": "Identifies appropriate tools, skills and knowledge needed in different application domains",
+              "unit_id": 1,
+              "level": "1.6",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the application of ICT in different domains",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 16,
+              "source_pages": [
+                16
+              ],
+              "id": "NIE2017-1.6-02",
+              "text": "Discusses the benefits of ICT in different domains",
+              "unit_id": 1,
+              "level": "1.6",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Investigates the application of ICT in different domains",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "1.7",
+          "title": "Evaluates the impact of ICT in the society",
+          "source_pages": [
+            16,
+            17
+          ],
+          "periods": 4,
+          "contents": [
+            "Benefits caused by ICT",
+            "Social benefits",
+            "Economic benefits",
+            "Issues caused by ICT",
+            "Social",
+            "Economical",
+            "Environmental",
+            "Ethical",
+            "Legal",
+            "Privacy",
+            "Digital divide",
+            "Confidentiality",
+            "Stealing / Phishing",
+            "Piracy",
+            "Copyright / intellectual property laws",
+            "Plagiarism",
+            "Licensed / unlicensed software"
+          ],
+          "outcomes": [
+            {
+              "source_page": 16,
+              "source_pages": [
+                16
+              ],
+              "id": "NIE2017-1.7-01",
+              "text": "Explains the benefits of ICT in terms of social and economic aspects",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 16,
+              "source_pages": [
+                16
+              ],
+              "id": "NIE2017-1.7-02",
+              "text": "Explains briefly the issues caused by advancement of ICT in terms of social, economic, environmental, ethical and legal aspects",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 16,
+              "source_pages": [
+                16,
+                17
+              ],
+              "id": "NIE2017-1.7-03",
+              "text": "Investigates the legal situation connected with the usage of ICT",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 17,
+              "source_pages": [
+                17
+              ],
+              "id": "NIE2017-1.7-04",
+              "text": "Explains the environmental issues associated with ICT",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 17,
+              "source_pages": [
+                17
+              ],
+              "id": "NIE2017-1.7-05",
+              "text": "Explains safe disposal methods of e-waste",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 17,
+              "source_pages": [
+                17
+              ],
+              "id": "NIE2017-1.7-06",
+              "text": "Explains briefly the ethical, Legal and social issues in the usage of ICT",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 17,
+              "source_pages": [
+                17
+              ],
+              "id": "NIE2017-1.7-07",
+              "text": "Briefly explains the role of ICT in achieving Sustainable Development Goals (SDGs)",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 17,
+              "source_pages": [
+                17
+              ],
+              "id": "NIE2017-1.7-08",
+              "text": "Investigates the approaches to eliminate digital divide",
+              "unit_id": 1,
+              "level": "1.7",
+              "competency": "Explores the basic concepts of ICT together with its role and applicability in today’s knowledge based society",
+              "subtopic": "Evaluates the impact of ICT in the society",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Introduction to Computer",
+      "grade": null,
+      "grade_review_note": "The source is jointly for Grades 12 and 13 and does not state a unit-by-grade allocation; none is inferred.",
+      "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+      "periods": 22,
+      "source_page": 11,
+      "source_pages": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "verified": true,
+      "levels": [
+        {
+          "id": "2.1",
+          "title": "Elicits the significant changes occurred in the computers from generation to generation with more emphasis on the evolution of processors",
+          "source_pages": [
+            17,
+            18
+          ],
+          "periods": 4,
+          "contents": [
+            "History of computing",
+            "Early calculating aids",
+            "mechanical",
+            "electromechanical",
+            "Electronic age of computing",
+            "Generation of computers",
+            "1G, 2G, 3G, 4G and future",
+            "Different types of classifications",
+            "Technology",
+            "analog, digital",
+            "Purpose",
+            "special /general",
+            "Size",
+            "super, mainframe, mini, micro (mobile devices –smart phones, tablet devices and phablets)"
+          ],
+          "outcomes": [
+            {
+              "source_page": 17,
+              "source_pages": [
+                17
+              ],
+              "id": "NIE2017-2.1-01",
+              "text": "Categorizes the early calculating aids with examples",
+              "unit_id": 2,
+              "level": "2.1",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Elicits the significant changes occurred in the computers from generation to generation with more emphasis on the evolution of processors",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 17,
+              "source_pages": [
+                17
+              ],
+              "id": "NIE2017-2.1-02",
+              "text": "Describes the generations of computers with their features in a table",
+              "unit_id": 2,
+              "level": "2.1",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Elicits the significant changes occurred in the computers from generation to generation with more emphasis on the evolution of processors",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 18,
+              "source_pages": [
+                18
+              ],
+              "id": "NIE2017-2.1-03",
+              "text": "Categorizes computers in terms of technology, purpose and size with examples",
+              "unit_id": 2,
+              "level": "2.1",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Elicits the significant changes occurred in the computers from generation to generation with more emphasis on the evolution of processors",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "2.2",
+          "title": "Explores the functionality of a computer in relation to the hardware and their interfaces",
+          "source_pages": [
+            18,
+            19
+          ],
+          "periods": 6,
+          "contents": [
+            "Major hardware components",
+            "Input devices: keyboard entry and direct entry (keyboard, pointing devices, touch pad, remote control, touch screen, magnetic strip reader, barcode reader, smart card reader, scanner, digital camera, microphone, sensors, graphic tablets, MICR, OMR and OCR readers, video camera, digitizer, web cam)",
+            "Advantages of direct entry input devices over keyboard entry input devices",
+            "Output devices and their features (CRT monitor, TFT monitor, LED monitor, dot matrix printer, inkjet printer, laser printer, 3D printer, graph plotter, speakers)",
+            "CPU and its compatibility with motherboard",
+            "Storage devices( fixed internal hard disk, portable external hard disk, magnetic tape, Optical discs(CD Rom/DVD Rom, CD-R/DVD-R, CD-RW/ DVD-RW, DVD-RAM, Blu-Ray) flash memory card, mini disk)",
+            "Parallel and grid computing"
+          ],
+          "outcomes": [
+            {
+              "source_page": 18,
+              "source_pages": [
+                18
+              ],
+              "id": "NIE2017-2.2-01",
+              "text": "Identifies hardware peripherals and their relevant interfaces",
+              "unit_id": 2,
+              "level": "2.2",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the functionality of a computer in relation to the hardware and their interfaces",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 18,
+              "source_pages": [
+                18
+              ],
+              "id": "NIE2017-2.2-02",
+              "text": "Identifies the advantages of direct entry input devices over keyboard entry input devices",
+              "unit_id": 2,
+              "level": "2.2",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the functionality of a computer in relation to the hardware and their interfaces",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 18,
+              "source_pages": [
+                18
+              ],
+              "id": "NIE2017-2.2-03",
+              "text": "Describes the evolution of CPU and its compatibility with motherboard",
+              "unit_id": 2,
+              "level": "2.2",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the functionality of a computer in relation to the hardware and their interfaces",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 18,
+              "source_pages": [
+                18
+              ],
+              "id": "NIE2017-2.2-04",
+              "text": "Categorizes the Storage devices",
+              "unit_id": 2,
+              "level": "2.2",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the functionality of a computer in relation to the hardware and their interfaces",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 18,
+              "source_pages": [
+                18
+              ],
+              "id": "NIE2017-2.2-05",
+              "text": "Briefly explains the features of each storage device",
+              "unit_id": 2,
+              "level": "2.2",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the functionality of a computer in relation to the hardware and their interfaces",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 18,
+              "source_pages": [
+                18
+              ],
+              "id": "NIE2017-2.2-06",
+              "text": "Identifies the need for parallel and grid computing",
+              "unit_id": 2,
+              "level": "2.2",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the functionality of a computer in relation to the hardware and their interfaces",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "2.3",
+          "title": "Explores the Von-Neumann Architecture",
+          "source_pages": [
+            19
+          ],
+          "periods": 6,
+          "contents": [
+            "Von-Neumann Architecture",
+            "Stored program control concept",
+            "Components (input, output, memory, Processor control unit and processing ALU unit)",
+            "Fetch-execute cycle",
+            "Central processing unit (CPU)",
+            "Arithmetic and logic unit (ALU)",
+            "Control unit (CU)",
+            "Memory (Registers)",
+            "Data and control bus",
+            "Multi-core processors"
+          ],
+          "outcomes": [
+            {
+              "source_page": 19,
+              "source_pages": [
+                19
+              ],
+              "id": "NIE2017-2.3-01",
+              "text": "Describes the stored program concept",
+              "unit_id": 2,
+              "level": "2.3",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the Von-Neumann Architecture",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 19,
+              "source_pages": [
+                19
+              ],
+              "id": "NIE2017-2.3-02",
+              "text": "Names the major components of Von-Neumann architecture",
+              "unit_id": 2,
+              "level": "2.3",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the Von-Neumann Architecture",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 19,
+              "source_pages": [
+                19
+              ],
+              "id": "NIE2017-2.3-03",
+              "text": "Describes fetch-execute cycle",
+              "unit_id": 2,
+              "level": "2.3",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the Von-Neumann Architecture",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 19,
+              "source_pages": [
+                19
+              ],
+              "id": "NIE2017-2.3-04",
+              "text": "Briefly describes ALU, CU, Memory (Registers), data and control bus",
+              "unit_id": 2,
+              "level": "2.3",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the Von-Neumann Architecture",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 19,
+              "source_pages": [
+                19
+              ],
+              "id": "NIE2017-2.3-05",
+              "text": "Draws the Von-Neumann Architecture model and names its components",
+              "unit_id": 2,
+              "level": "2.3",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the Von-Neumann Architecture",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 19,
+              "source_pages": [
+                19
+              ],
+              "id": "NIE2017-2.3-06",
+              "text": "Describes the need of multi-core processors",
+              "unit_id": 2,
+              "level": "2.3",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Explores the Von-Neumann Architecture",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "2.4",
+          "title": "Examines PC memory system to identify different types of memory and their main characteristics",
+          "source_pages": [
+            20,
+            21
+          ],
+          "periods": 6,
+          "contents": [
+            "Memory hierarchy",
+            "Need of memory hierarchy",
+            "Comparison criteria",
+            "Physical size / density of data",
+            "Access method",
+            "Access time (elapsed time/delay)",
+            "Capacity",
+            "Cost",
+            "Volatile memory and their characteristics",
+            "Registers",
+            "Types of cache memory",
+            "Main memory – RAM",
+            "Types of RAM",
+            "SRAM, DRAM, SDRAM",
+            "Non-volatile memory and their characteristics",
+            "Types of ROMs",
+            "PROM, EPROM and EEPROM",
+            "Secondary storage",
+            "magnetic, optical and flash memory"
+          ],
+          "outcomes": [
+            {
+              "source_page": 20,
+              "source_pages": [
+                20
+              ],
+              "id": "NIE2017-2.4-01",
+              "text": "Briefly explains the memory hierarchy with a suitable diagram",
+              "unit_id": 2,
+              "level": "2.4",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Examines PC memory system to identify different types of memory and their main characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 20,
+              "source_pages": [
+                20
+              ],
+              "id": "NIE2017-2.4-02",
+              "text": "Describes the need for different types of memory and their characteristics",
+              "unit_id": 2,
+              "level": "2.4",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Examines PC memory system to identify different types of memory and their main characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 20,
+              "source_pages": [
+                20
+              ],
+              "id": "NIE2017-2.4-03",
+              "text": "Briefly explains the volatile and non-volatile memory",
+              "unit_id": 2,
+              "level": "2.4",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Examines PC memory system to identify different types of memory and their main characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 20,
+              "source_pages": [
+                20
+              ],
+              "id": "NIE2017-2.4-04",
+              "text": "Lists volatile and non-volatile memories in computer",
+              "unit_id": 2,
+              "level": "2.4",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Examines PC memory system to identify different types of memory and their main characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 20,
+              "source_pages": [
+                20
+              ],
+              "id": "NIE2017-2.4-05",
+              "text": "Describes the characteristics of memory in terms of performance, location, capacity, access method, cost, physical type and physical arrangement of data (bits into words)",
+              "unit_id": 2,
+              "level": "2.4",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Examines PC memory system to identify different types of memory and their main characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 20,
+              "source_pages": [
+                20
+              ],
+              "id": "NIE2017-2.4-06",
+              "text": "Lists and briefly explains the types and characteristics of ROMs",
+              "unit_id": 2,
+              "level": "2.4",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Examines PC memory system to identify different types of memory and their main characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 20,
+              "source_pages": [
+                20,
+                21
+              ],
+              "id": "NIE2017-2.4-07",
+              "text": "Compares and contrasts each type of memory in terms of access time, cost / MB, capacity (typical amount used)",
+              "unit_id": 2,
+              "level": "2.4",
+              "competency": "Explores the evolution of computing devices, so as to be able to describe and compare the performance of modern computers",
+              "subtopic": "Examines PC memory system to identify different types of memory and their main characteristics",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Data Representation",
+      "grade": null,
+      "grade_review_note": "The source is jointly for Grades 12 and 13 and does not state a unit-by-grade allocation; none is inferred.",
+      "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+      "periods": 18,
+      "source_page": 11,
+      "source_pages": [
+        21,
+        22,
+        23
+      ],
+      "verified": true,
+      "levels": [
+        {
+          "id": "3.1",
+          "title": "Analyses how numbers are represented in computers",
+          "source_pages": [
+            21,
+            22
+          ],
+          "periods": 10,
+          "contents": [
+            "Need for instruction and data representation in digital devices",
+            "Methods of instruction and data representation in computers",
+            "Representation of data in two states (0,1)",
+            "Number systems used in computing",
+            "Binary, octal, hexadecimal",
+            "Conversion between number systems",
+            "Representation of decimal numbers (signed and unsigned)",
+            "Signed integer representations",
+            "Signed magnitude",
+            "One’s complement",
+            "Two’s Complement"
+          ],
+          "outcomes": [
+            {
+              "source_page": 21,
+              "source_pages": [
+                21
+              ],
+              "id": "NIE2017-3.1-01",
+              "text": "Describes that instruction and data are represented using two states in computers",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 21,
+              "source_pages": [
+                21
+              ],
+              "id": "NIE2017-3.1-02",
+              "text": "Explains the need of different number systems",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 21,
+              "source_pages": [
+                21
+              ],
+              "id": "NIE2017-3.1-03",
+              "text": "Describes how different types of decimal numbers are stored in computers",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 21,
+              "source_pages": [
+                21
+              ],
+              "id": "NIE2017-3.1-04",
+              "text": "Converts decimal integers into binary, octal and hexadecimal numbers and vice versa",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 21,
+              "source_pages": [
+                21
+              ],
+              "id": "NIE2017-3.1-05",
+              "text": "Converts binary numbers to octal and hexadecimal, and vice versa",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 21,
+              "source_pages": [
+                21
+              ],
+              "id": "NIE2017-3.1-06",
+              "text": "Converts octal numbers to binary and hexadecimal, and vice versa",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 22,
+              "source_pages": [
+                22
+              ],
+              "id": "NIE2017-3.1-07",
+              "text": "Explains that the MSB is used to indicate the sign when converting the given binary value to one’s complement",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 22,
+              "source_pages": [
+                22
+              ],
+              "id": "NIE2017-3.1-08",
+              "text": "Converts the given binary value to two’s complement",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 22,
+              "source_pages": [
+                22
+              ],
+              "id": "NIE2017-3.1-09",
+              "text": "Explains the usage of one’s complement and two’s complement",
+              "unit_id": 3,
+              "level": "3.1",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how numbers are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "3.2",
+          "title": "Analyses how characters are represented in computers",
+          "source_pages": [
+            22
+          ],
+          "periods": 4,
+          "contents": [
+            "Methods of character representation",
+            "BCD",
+            "EBCDIC",
+            "ASCII",
+            "Unicode"
+          ],
+          "outcomes": [
+            {
+              "source_page": 22,
+              "source_pages": [
+                22
+              ],
+              "id": "NIE2017-3.2-01",
+              "text": "Lists the methods of character representation in computer",
+              "unit_id": 3,
+              "level": "3.2",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how characters are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 22,
+              "source_pages": [
+                22
+              ],
+              "id": "NIE2017-3.2-02",
+              "text": "Converts given symbols into a representation scheme",
+              "unit_id": 3,
+              "level": "3.2",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how characters are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 22,
+              "source_pages": [
+                22
+              ],
+              "id": "NIE2017-3.2-03",
+              "text": "Describes the advantage and disadvantage of different data representation schemes",
+              "unit_id": 3,
+              "level": "3.2",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Analyses how characters are represented in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "3.3",
+          "title": "Uses basic arithmetic and logic operations on binary numbers",
+          "source_pages": [
+            22,
+            23
+          ],
+          "periods": 4,
+          "contents": [
+            "Binary arithmetic operations - (integers only)",
+            "Addition, subtraction",
+            "Logical operations",
+            "Bitwise logical operations"
+          ],
+          "outcomes": [
+            {
+              "source_page": 22,
+              "source_pages": [
+                22,
+                23
+              ],
+              "id": "NIE2017-3.3-01",
+              "text": "Works out additions (multiple numbers with or without carryovers) – in binary numbers",
+              "unit_id": 3,
+              "level": "3.3",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Uses basic arithmetic and logic operations on binary numbers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-3.3-02",
+              "text": "Works out subtraction (with or without borrowing) – in binary numbers",
+              "unit_id": 3,
+              "level": "3.3",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Uses basic arithmetic and logic operations on binary numbers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-3.3-03",
+              "text": "Works out NOT, AND, OR, XOR bitwise operations",
+              "unit_id": 3,
+              "level": "3.3",
+              "competency": "Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations",
+              "subtopic": "Uses basic arithmetic and logic operations on binary numbers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Fundamental of Digital Circuits",
+      "grade": null,
+      "grade_review_note": "The source is jointly for Grades 12 and 13 and does not state a unit-by-grade allocation; none is inferred.",
+      "competency": "Uses logic gates to design basic digital circuits and devices",
+      "periods": 26,
+      "source_page": 11,
+      "source_pages": [
+        23,
+        24,
+        25
+      ],
+      "verified": true,
+      "levels": [
+        {
+          "id": "4.1",
+          "title": "Analyzes basic digital logic gates in terms of their unique functionalities",
+          "source_pages": [
+            23
+          ],
+          "periods": 6,
+          "contents": [
+            "Digital logic gates and truth tables",
+            "Basic logic gates",
+            "NOT, AND, OR, and XOR",
+            "Combinational gates",
+            "NAND, NOR, and XNOR",
+            "Universal gates",
+            "NAND, NOR"
+          ],
+          "outcomes": [
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-4.1-01",
+              "text": "Names basic logic gates and draws the appropriate symbols of them",
+              "unit_id": 4,
+              "level": "4.1",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Analyzes basic digital logic gates in terms of their unique functionalities",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-4.1-02",
+              "text": "Draws the truth tables for the basic logic gates",
+              "unit_id": 4,
+              "level": "4.1",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Analyzes basic digital logic gates in terms of their unique functionalities",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-4.1-03",
+              "text": "Identify symbols that represent negations of basic logic gates",
+              "unit_id": 4,
+              "level": "4.1",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Analyzes basic digital logic gates in terms of their unique functionalities",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-4.1-04",
+              "text": "Creates truth tables for given expressions (maximum three inputs)",
+              "unit_id": 4,
+              "level": "4.1",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Analyzes basic digital logic gates in terms of their unique functionalities",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-4.1-05",
+              "text": "Explains the need of universal gates",
+              "unit_id": 4,
+              "level": "4.1",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Analyzes basic digital logic gates in terms of their unique functionalities",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 23,
+              "source_pages": [
+                23
+              ],
+              "id": "NIE2017-4.1-06",
+              "text": "Explains the fabrication of any gate using universal gates",
+              "unit_id": 4,
+              "level": "4.1",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Analyzes basic digital logic gates in terms of their unique functionalities",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "4.2",
+          "title": "Simplifies logic expressions using laws of Boolean algebra and Karnaugh map",
+          "source_pages": [
+            23,
+            24
+          ],
+          "periods": 8,
+          "contents": [
+            "Two state logic and Boolean Algebra",
+            "Postulates (Axioms)",
+            "Laws/theorems",
+            "Commutative, associative",
+            "Distributive",
+            "Identity, redundancy",
+            "De Morgan’s",
+            "Standard logical expressions",
+            "Sum of products and product of sums",
+            "Transform SOP into POS and vice versa",
+            "Simplify logic expressions using",
+            "Boolean theorems",
+            "Karnaugh map"
+          ],
+          "outcomes": [
+            {
+              "source_page": 23,
+              "source_pages": [
+                23,
+                24
+              ],
+              "id": "NIE2017-4.2-01",
+              "text": "Describes the need for simplifying Boolean expressions",
+              "unit_id": 4,
+              "level": "4.2",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Simplifies logic expressions using laws of Boolean algebra and Karnaugh map",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 24,
+              "source_pages": [
+                24
+              ],
+              "id": "NIE2017-4.2-02",
+              "text": "Represents logical expressions in standard forms (SOP and POS) according to the given truth table",
+              "unit_id": 4,
+              "level": "4.2",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Simplifies logic expressions using laws of Boolean algebra and Karnaugh map",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 24,
+              "source_pages": [
+                24
+              ],
+              "id": "NIE2017-4.2-03",
+              "text": "Transforms SOP into POS and vice versa",
+              "unit_id": 4,
+              "level": "4.2",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Simplifies logic expressions using laws of Boolean algebra and Karnaugh map",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 24,
+              "source_pages": [
+                24
+              ],
+              "id": "NIE2017-4.2-04",
+              "text": "Simplifies logic expressions using Boolean theorems, axioms, De Morgan’s Laws and Karnaugh map",
+              "unit_id": 4,
+              "level": "4.2",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Simplifies logic expressions using laws of Boolean algebra and Karnaugh map",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "4.3",
+          "title": "Designs simple digital circuits using logic gates",
+          "source_pages": [
+            24
+          ],
+          "periods": 6,
+          "contents": [
+            "Truth tables and logic expressions for their designs (up to three inputs)",
+            "Digital circuit design"
+          ],
+          "outcomes": [
+            {
+              "source_page": 24,
+              "source_pages": [
+                24
+              ],
+              "id": "NIE2017-4.3-01",
+              "text": "Identifies situations to apply logic circuits in day to day life",
+              "unit_id": 4,
+              "level": "4.3",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Designs simple digital circuits using logic gates",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 24,
+              "source_pages": [
+                24
+              ],
+              "id": "NIE2017-4.3-02",
+              "text": "Designs logic expressions and truth table for identified applications",
+              "unit_id": 4,
+              "level": "4.3",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Designs simple digital circuits using logic gates",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 24,
+              "source_pages": [
+                24
+              ],
+              "id": "NIE2017-4.3-03",
+              "text": "Designs digital circuits",
+              "unit_id": 4,
+              "level": "4.3",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Designs simple digital circuits using logic gates",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "4.4",
+          "title": "Explores how combinational Logic circuits are used in CPU and sequential circuits in physical memory",
+          "source_pages": [
+            24,
+            25
+          ],
+          "periods": 6,
+          "contents": [
+            "Building blocks of CPU",
+            "Half adder",
+            "Full adder",
+            "Storing bits in digital circuits",
+            "Feedback loop",
+            "Flip-flops"
+          ],
+          "outcomes": [
+            {
+              "source_page": 24,
+              "source_pages": [
+                24,
+                25
+              ],
+              "id": "NIE2017-4.4-01",
+              "text": "Identifies the major building blocks of CPU",
+              "unit_id": 4,
+              "level": "4.4",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Explores how combinational Logic circuits are used in CPU and sequential circuits in physical memory",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 25,
+              "source_pages": [
+                25
+              ],
+              "id": "NIE2017-4.4-02",
+              "text": "Creates truth table and logical expressions for half adder circuit",
+              "unit_id": 4,
+              "level": "4.4",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Explores how combinational Logic circuits are used in CPU and sequential circuits in physical memory",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 25,
+              "source_pages": [
+                25
+              ],
+              "id": "NIE2017-4.4-03",
+              "text": "Creates truth table and logical expressions for full adder circuit",
+              "unit_id": 4,
+              "level": "4.4",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Explores how combinational Logic circuits are used in CPU and sequential circuits in physical memory",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 25,
+              "source_pages": [
+                25
+              ],
+              "id": "NIE2017-4.4-04",
+              "text": "Briefly describes the usage of Flip-Flops",
+              "unit_id": 4,
+              "level": "4.4",
+              "competency": "Uses logic gates to design basic digital circuits and devices",
+              "subtopic": "Explores how combinational Logic circuits are used in CPU and sequential circuits in physical memory",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Computer Operating System",
+      "grade": null,
+      "grade_review_note": "The source is jointly for Grades 12 and 13 and does not state a unit-by-grade allocation; none is inferred.",
+      "competency": "Uses operating systems to manage the functionality of computers",
+      "periods": 22,
+      "source_page": 11,
+      "source_pages": [
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "verified": true,
+      "levels": [
+        {
+          "id": "5.1",
+          "title": "Defines the term computer operating system (OS) and investigates its need in computer systems",
+          "source_pages": [
+            25,
+            26
+          ],
+          "periods": 4,
+          "contents": [
+            "Introduction to computer operating system",
+            "Evolution of OS",
+            "Main functions of an operating system",
+            "Providing interfaces",
+            "Process management",
+            "Resource management",
+            "Security and protection",
+            "Classification of operating systems",
+            "Single user – single task",
+            "Single user – multi task",
+            "Multi user – multi task",
+            "Multi-threading",
+            "Real time",
+            "Time sharing systems"
+          ],
+          "outcomes": [
+            {
+              "source_page": 25,
+              "source_pages": [
+                25
+              ],
+              "id": "NIE2017-5.1-01",
+              "text": "Defines the computer operating system",
+              "unit_id": 5,
+              "level": "5.1",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Defines the term computer operating system (OS) and investigates its need in computer systems",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 25,
+              "source_pages": [
+                25
+              ],
+              "id": "NIE2017-5.1-02",
+              "text": "Briefly describes the evolution of OS",
+              "unit_id": 5,
+              "level": "5.1",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Defines the term computer operating system (OS) and investigates its need in computer systems",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 25,
+              "source_pages": [
+                25
+              ],
+              "id": "NIE2017-5.1-03",
+              "text": "Identifies the main functions and the abstractions (directories, files and data) provided by the operating system to the user",
+              "unit_id": 5,
+              "level": "5.1",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Defines the term computer operating system (OS) and investigates its need in computer systems",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 25,
+              "source_pages": [
+                25
+              ],
+              "id": "NIE2017-5.1-04",
+              "text": "Describes how the operating system manages the resources of a computer",
+              "unit_id": 5,
+              "level": "5.1",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Defines the term computer operating system (OS) and investigates its need in computer systems",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 25,
+              "source_pages": [
+                25,
+                26
+              ],
+              "id": "NIE2017-5.1-05",
+              "text": "Classifies the operating systems based on their users and tasks",
+              "unit_id": 5,
+              "level": "5.1",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Defines the term computer operating system (OS) and investigates its need in computer systems",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "5.2",
+          "title": "Explores how an operating system manages directories/folders and files in computers",
+          "source_pages": [
+            26,
+            27
+          ],
+          "periods": 6,
+          "contents": [
+            "File types",
+            "Need for file types (.exe, .jpg .txt, etc)",
+            "Directory and file organization",
+            "File hierarchy",
+            "File systems – FAT etc",
+            "File security",
+            "Passwords and access privileges",
+            "File storage management",
+            "Storage allocation",
+            "Contiguous allocation",
+            "Linked allocation",
+            "Indexed allocation",
+            "Defragmentation",
+            "Maintenance of secondary storage",
+            "Need and outcome of disk formatting"
+          ],
+          "outcomes": [
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-01",
+              "text": "Describes files and directories",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-02",
+              "text": "Briefly describes the need of disk formatting",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-03",
+              "text": "Identifies the need for file types",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-04",
+              "text": "Lists attributes of file and directories",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-05",
+              "text": "Describes the structure of the file systems",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-06",
+              "text": "Illustrates the organization of files and directories",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-07",
+              "text": "Briefly describes the methods used in file security",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26
+              ],
+              "id": "NIE2017-5.2-08",
+              "text": "Briefly describes how an operating system manages file security",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 26,
+              "source_pages": [
+                26,
+                27
+              ],
+              "id": "NIE2017-5.2-09",
+              "text": "Briefly explains o Contiguous allocation o Linked allocation o Indexed allocation",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification. The source has one parent learning-outcome bullet with three nested o list items, retained in text; these are not three additional learning outcomes.",
+              "subitems": [
+                "Contiguous allocation",
+                "Linked allocation",
+                "Indexed allocation"
+              ]
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.2-10",
+              "text": "Describes defragmentation and explains how it occurs",
+              "unit_id": 5,
+              "level": "5.2",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages directories/folders and files in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "5.3",
+          "title": "Explores how an operating system manages processes in computers",
+          "source_pages": [
+            27,
+            28
+          ],
+          "periods": 6,
+          "contents": [
+            "Definition of process",
+            "Interrupts and interrupts handling",
+            "Process management",
+            "Process states",
+            "Process Transitions",
+            "Process control block",
+            "Context switching",
+            "Process schedulers"
+          ],
+          "outcomes": [
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-01",
+              "text": "Explains processes",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-02",
+              "text": "Lists the operating system tasks when a process is created",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-03",
+              "text": "Lists the types of processes",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-04",
+              "text": "Lists the process states",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-05",
+              "text": "Explains process termination",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-06",
+              "text": "Distinguishes a process and a program",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-07",
+              "text": "Explains process states using the seven state process transition diagrams",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-08",
+              "text": "Describes process schedulers and scheduling policies",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27
+              ],
+              "id": "NIE2017-5.3-09",
+              "text": "Compares long, short and medium term schedulers",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 27,
+              "source_pages": [
+                27,
+                28
+              ],
+              "id": "NIE2017-5.3-10",
+              "text": "Describes multi programming and its needs",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.3-11",
+              "text": "Describes time sharing systems",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.3-12",
+              "text": "Compares multi programming vs. time sharing systems",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.3-13",
+              "text": "Defines context switch",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.3-14",
+              "text": "Briefly explains turnaround time, response time, throughput time and waiting time",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.3-15",
+              "text": "Briefly explains the process control block and lists its contents",
+              "unit_id": 5,
+              "level": "5.3",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages processes in computers",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        },
+        {
+          "id": "5.4",
+          "title": "Explores how an operating system manages the resources",
+          "source_pages": [
+            28,
+            29
+          ],
+          "periods": 6,
+          "contents": [
+            "Memory management",
+            "Memory Management Unit(MMU)",
+            "Physical Memory",
+            "Virtual memory",
+            "Input and output device management",
+            "Device drivers",
+            "Spooling"
+          ],
+          "outcomes": [
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.4-01",
+              "text": "Briefly explains the need of memory management and Memory Management Unit (MMU)",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.4-02",
+              "text": "Briefly explains the virtual memory",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28
+              ],
+              "id": "NIE2017-5.4-03",
+              "text": "Briefly explains paging and mapping",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 28,
+              "source_pages": [
+                28,
+                29
+              ],
+              "id": "NIE2017-5.4-04",
+              "text": "Briefly describes how an OS manages Input and output devices",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 29,
+              "source_pages": [
+                29
+              ],
+              "id": "NIE2017-5.4-05",
+              "text": "Briefly describes device drivers",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 29,
+              "source_pages": [
+                29
+              ],
+              "id": "NIE2017-5.4-06",
+              "text": "Briefly describes the need of device drivers",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 29,
+              "source_pages": [
+                29
+              ],
+              "id": "NIE2017-5.4-07",
+              "text": "Briefly describes spooling",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            },
+            {
+              "source_page": 29,
+              "source_pages": [
+                29
+              ],
+              "id": "NIE2017-5.4-08",
+              "text": "Installs appropriate device drivers when connecting a peripheral",
+              "unit_id": 5,
+              "level": "5.4",
+              "competency": "Uses operating systems to manage the functionality of computers",
+              "subtopic": "Explores how an operating system manages the resources",
+              "verified": true,
+              "review_note": "Source cross-check by Codex against the learning-outcomes column and competency-level row; not teacher approval or examination-applicability certification."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "overview_pages_checked": [
+      9,
+      10,
+      11
+    ],
+    "table_pages_checked": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "visually_checked_pdf_pages": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "competency_levels": 22,
+    "learning_outcomes": 137,
+    "outcomes_per_unit": {
+      "1": 45,
+      "2": 22,
+      "3": 15,
+      "4": 17,
+      "5": 38
+    },
+    "source_bullet_completeness": "Every top-level bullet in the learning-outcomes column was enumerated once, including continuation pages and shared unit-boundary pages; nested list items remain within their parent outcome.",
+    "reconciliation": {
+      "preserved_candidate_ids": [
+        "NIE2017-1.1-01",
+        "NIE2017-1.1-02",
+        "NIE2017-1.1-03",
+        "NIE2017-1.1-04",
+        "NIE2017-1.1-05",
+        "NIE2017-1.1-06",
+        "NIE2017-1.1-07",
+        "NIE2017-1.1-08",
+        "NIE2017-1.1-09",
+        "NIE2017-1.1-10",
+        "NIE2017-1.2-01",
+        "NIE2017-1.2-02",
+        "NIE2017-1.2-03",
+        "NIE2017-1.2-04",
+        "NIE2017-1.2-05",
+        "NIE2017-1.2-06",
+        "NIE2017-1.2-07",
+        "NIE2017-1.2-08",
+        "NIE2017-1.3-01",
+        "NIE2017-1.3-02",
+        "NIE2017-1.3-03",
+        "NIE2017-1.3-04",
+        "NIE2017-1.3-05",
+        "NIE2017-1.3-06",
+        "NIE2017-1.4-01",
+        "NIE2017-1.4-02",
+        "NIE2017-1.4-03",
+        "NIE2017-1.4-04",
+        "NIE2017-1.5-01",
+        "NIE2017-1.5-02",
+        "NIE2017-1.5-03",
+        "NIE2017-1.5-04",
+        "NIE2017-1.5-05",
+        "NIE2017-1.5-06",
+        "NIE2017-1.5-07",
+        "NIE2017-1.6-01",
+        "NIE2017-1.6-02",
+        "NIE2017-1.7-01",
+        "NIE2017-1.7-02",
+        "NIE2017-1.7-03",
+        "NIE2017-1.7-04",
+        "NIE2017-1.7-05",
+        "NIE2017-1.7-06",
+        "NIE2017-1.7-07",
+        "NIE2017-1.7-08",
+        "NIE2017-2.1-01",
+        "NIE2017-2.1-02",
+        "NIE2017-2.1-03",
+        "NIE2017-2.2-01",
+        "NIE2017-2.2-02",
+        "NIE2017-2.2-03",
+        "NIE2017-2.2-04",
+        "NIE2017-2.2-05",
+        "NIE2017-2.2-06",
+        "NIE2017-2.3-01",
+        "NIE2017-2.3-02",
+        "NIE2017-2.3-03",
+        "NIE2017-2.3-04",
+        "NIE2017-2.3-05",
+        "NIE2017-2.3-06",
+        "NIE2017-2.4-01",
+        "NIE2017-2.4-02",
+        "NIE2017-2.4-03",
+        "NIE2017-2.4-04",
+        "NIE2017-2.4-05",
+        "NIE2017-2.4-06",
+        "NIE2017-2.4-07",
+        "NIE2017-3.1-01",
+        "NIE2017-3.1-02",
+        "NIE2017-3.1-03",
+        "NIE2017-3.1-04",
+        "NIE2017-3.1-05",
+        "NIE2017-3.1-06",
+        "NIE2017-3.1-07",
+        "NIE2017-3.1-08",
+        "NIE2017-3.1-09",
+        "NIE2017-3.2-01",
+        "NIE2017-3.2-02",
+        "NIE2017-3.2-03",
+        "NIE2017-3.3-01",
+        "NIE2017-3.3-02",
+        "NIE2017-3.3-03",
+        "NIE2017-4.1-01",
+        "NIE2017-4.1-02",
+        "NIE2017-4.1-03",
+        "NIE2017-4.1-04",
+        "NIE2017-4.1-05",
+        "NIE2017-4.1-06",
+        "NIE2017-4.2-01",
+        "NIE2017-4.2-02",
+        "NIE2017-4.2-03",
+        "NIE2017-4.2-04",
+        "NIE2017-4.3-01",
+        "NIE2017-4.3-02",
+        "NIE2017-4.3-03",
+        "NIE2017-4.4-01",
+        "NIE2017-4.4-02",
+        "NIE2017-4.4-03",
+        "NIE2017-4.4-04",
+        "NIE2017-5.1-01",
+        "NIE2017-5.1-02",
+        "NIE2017-5.1-03",
+        "NIE2017-5.1-04",
+        "NIE2017-5.1-05",
+        "NIE2017-5.2-01",
+        "NIE2017-5.2-02",
+        "NIE2017-5.2-03",
+        "NIE2017-5.2-04",
+        "NIE2017-5.2-05",
+        "NIE2017-5.2-06",
+        "NIE2017-5.2-07",
+        "NIE2017-5.2-08",
+        "NIE2017-5.2-09",
+        "NIE2017-5.2-10",
+        "NIE2017-5.3-01",
+        "NIE2017-5.3-02",
+        "NIE2017-5.3-03",
+        "NIE2017-5.3-04",
+        "NIE2017-5.3-05",
+        "NIE2017-5.3-06",
+        "NIE2017-5.3-07",
+        "NIE2017-5.3-08",
+        "NIE2017-5.3-09",
+        "NIE2017-5.3-10",
+        "NIE2017-5.3-11",
+        "NIE2017-5.3-12",
+        "NIE2017-5.3-13",
+        "NIE2017-5.3-14",
+        "NIE2017-5.3-15",
+        "NIE2017-5.4-01",
+        "NIE2017-5.4-02",
+        "NIE2017-5.4-03",
+        "NIE2017-5.4-04",
+        "NIE2017-5.4-05",
+        "NIE2017-5.4-06",
+        "NIE2017-5.4-07",
+        "NIE2017-5.4-08"
+      ],
+      "omitted_candidate_ids": [],
+      "duplicate_candidate_ids": [],
+      "merged_candidate_ids": [],
+      "new_outcome_ids": [],
+      "normalized_text": [
+        {
+          "id": "NIE2017-1.2-07",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-1.7-02",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-2.3-02",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-2.3-03",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-2.3-05",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-2.4-03",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-3.3-03",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-4.1-01",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-4.2-04",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-5.2-03",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        },
+        {
+          "id": "NIE2017-5.2-09",
+          "change": "Whitespace normalized and line-wrapped hyphenation joined; source wording retained."
+        }
+      ]
+    },
+    "notes": [
+      "Unit names and total periods follow the overview on PDF page11. In particular, the printed name is Fundamental of Digital Circuits (singular Fundamental).",
+      "The overview contains duplicated/misaligned unit numbering for later units; that anomaly does not affect units1–5.",
+      "All 137 existing outcome candidate IDs correspond to source bullets. Earlier subtopic/competency extraction metadata was not trusted and was replaced with the complete source level/competency text.",
+      "Cross-page bullets checked explicitly: 1.2-01 onPDF12–13; 1.2-08 onPDF13–14; 1.4-02 onPDF14–15; 1.7-03 onPDF16–17; 2.4-07 onPDF20–21; 3.3-01 onPDF22–23; 4.2-01 onPDF23–24; 4.4-01 onPDF24–25; 5.1-05 onPDF25–26; 5.2-09 onPDF26–27; 5.3-10 onPDF27–28; 5.4-04 onPDF28–29.",
+      "Source language is preserved rather than silently corrected: 4.1 outcome03 says Identify; 1.7 uses ethical, Legal; 3.1 outcome07 links MSB/sign and one’s complement. Source verification is not a claim that every source statement is pedagogically precise.",
+      "The 2.4 title contains joined text in PDF extraction (PCmemory/systemto/identifydifferent); obvious word boundaries were restored in the title. Other wording is retained.",
+      "Whitespace is normalized; hyphenated words broken across source lines are joined (e.g. Von-Neumann, fetch-execute, non-volatile).",
+      "Page renders were visually checked at every multi-page learning-outcome boundary, including the unit5 continuation before unit6 onPDF29, and at the nested allocation bullet onPDF26–27. PDF18–19 were read as full layout text; source wording and complete unit2 competency were checked across the unit boundary."
+    ]
+  }
+}
