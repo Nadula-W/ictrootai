@@ -10,6 +10,8 @@ Options, keys, rubrics and source references are JSON documents. Resource embedd
 
 The backend has a bounded pool with stale-connection checks and timeouts. Supabase session pooling supports a persistent Windows backend on IPv4. Remote connections require TLS; credentials are never sent to the frontend or printed in logs. Configuration/health checks report missing or unavailable PostgreSQL explicitly.
 
+`DATABASE_TRANSPORT` defaults to `direct`. The opt-in `supabase_websocket` mode wraps the existing PostgreSQL/TLS stream in Supabase's certificate-verified shared-pooler `/v2` WebSocket connection on port 443. Its loopback listener starts lazily and bounds connections to the SQLAlchemy pool limit. It accepts only shared Supabase pooler hostnames, keeps original PostgreSQL credentials/TLS settings and never logs wire contents. The proxy uses transaction pooling; prepared statements are disabled and application code must not depend on persistent session state. Engine disposal stops new local accepts while preserving checked-out connections. This transport does not change storage, authorization or browser privileges.
+
 Authentication remains scrypt plus opaque server-side sessions; it does not use Supabase Auth or browser JWT claims. Migrations enable RLS and revoke `PUBLIC`, `anon` and `authenticated` access to application tables/sequences and migration metadata. The runtime connection must own the application tables or have explicit server-role grants/policies. Broad browser grants are not a fix for backend configuration errors.
 
 ## Assessment lifecycle

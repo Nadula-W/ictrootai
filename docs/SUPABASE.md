@@ -2,7 +2,7 @@
 
 Project: **ictroot-ai**, reference `zbugipqjwamlrgdyycpr`, Mumbai (`ap-south-1`). Created on 2026-11-15 in the organization explicitly selected by the user, at the quoted **$0/month** creation cost. The separate MathRoot project was not changed.
 
-**Current installation is connected.** The private Session pooler URI is saved in `backend/.env`, schema revision `0002` and live teacher/student authentication/access/health checks passed. Start the backend normally; these setup steps are for a new installation or recovery, not something to repeat at each startup.
+**Current installation is connected (2026-11-17).** The private pooler URI and `DATABASE_TRANSPORT=supabase_websocket` are saved in `backend/.env`. Schema revision is `0002`; live student/teacher browser sign-in, dashboard loading, navigation, logout and database health checks passed. Start the backend normally; these setup steps are for a new installation or recovery, not something to repeat at each startup.
 
 Application persistence is PostgreSQL only. The backend uses SQLAlchemy and psycopg; it requires a private PostgreSQL connection string, not a Supabase publishable API key. The connected management tool can manage the project/schema but does not supply the local backend's private database password.
 
@@ -28,7 +28,17 @@ If a saved URL reaches the correct project but reports password authentication f
 
 Enter the original database password exactly as set in Supabase. The hidden prompt encodes reserved URL characters automatically and saves the result to `.env`. Do not enter your Supabase account sign-in password or a percent-encoded version.
 
-If `app.check_database` reports `database_timeout`, a timeout alone does not establish that the password is wrong. Check whether a different network (such as a mobile hotspot) completes the connection. A healthy project in the Supabase dashboard does not prove the network path from the local backend is working. PostgreSQL requires successful protocol/TLS negotiation in addition to an open TCP port. Do not disable TLS or reset passwords repeatedly to work around a handshake timeout. See [Supabase pooler troubleshooting](https://supabase.com/docs/guides/database/supavisor).
+If `app.check_database` reports `database_timeout`, a timeout alone does not establish that the password is wrong. A healthy project in the Supabase dashboard does not prove the network path from the local backend is working. PostgreSQL requires successful protocol/TLS negotiation in addition to an open TCP port. Do not disable TLS or reset passwords repeatedly to work around a handshake timeout. See [Supabase pooler troubleshooting](https://supabase.com/docs/guides/database/supavisor).
+
+On this computer, raw PostgreSQL TCP reaches the shared pooler but stalls before the TLS handshake. Supabase's secure WebSocket route works on the same network. The backend supports an explicit alternative in the ignored `backend/.env`:
+
+```dotenv
+DATABASE_TRANSPORT=supabase_websocket
+```
+
+Keep the existing `DATABASE_URL` and `sslmode=require`. Install `requirements.lock.txt` and restart the backend after changing transport. This mode connects to the shared pooler at `wss://POOLER_HOST/v2` on port 443 through a bounded loopback relay. The outer WebSocket certificate and hostname are verified, and psycopg still negotiates PostgreSQL TLS inside it. Credentials stay within PostgreSQL; they are absent from the WebSocket URL and browser. It uses the same Supabase database, with no new service or Data API grants. Only Supabase shared pooler hostnames are accepted. The `/v2` proxy uses transaction pooling, so server prepared statements remain disabled; application code must not depend on persistent session state. New installations default to `DATABASE_TRANSPORT=direct`.
+
+References: [Supabase serverless PostgreSQL drivers](https://supabase.com/docs/guides/database/connecting-to-postgres/serverless-drivers), [Supavisor WebSocket proxy implementation](https://github.com/supabase/supavisor/blob/main/lib/supavisor_web/ws_proxy.ex).
 
 The application schema is managed through Alembic. Revision **0002** is already applied in this cloud project. **434 legacy records have already been imported and checked**, including 3 accounts, 360 outcome records and 7 questions. Do not import or seed them again. Start the backend and sign in with your existing password.
 

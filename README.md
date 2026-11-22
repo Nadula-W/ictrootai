@@ -5,7 +5,7 @@
 | Teacher | `teacher@ictroot.local` |
 | Admin | `admin@ictroot.local` |
 
-1ZnrA7FHUiXrY5-4CPQ-
+Demo passwords are private. Use the password saved during seeding, or reset the development demo accounts with `python -m app.reset_demo_password`. Never publish live passwords in this file.
 
 A Sri Lankan A/L ICT learning and assessment application with a Next.js frontend, FastAPI backend, **Supabase PostgreSQL application database**, and local Ollama AI. The application has no SQLite storage fallback.
 
@@ -47,6 +47,8 @@ if not exist .env copy .env.example .env
 Edit **backend/.env** using your separate ICTRoot Supabase project's connection settings. **backend/.env.example** is the canonical backend template; the former root template and separate PostgreSQL template are redundant.
 
 The separate [ictroot-ai Supabase project](https://supabase.com/dashboard/project/zbugipqjwamlrgdyycpr) is created, migrated to revision `0002` and populated with the 434 preserved records. The private backend connection is saved and live teacher/student login and database health have passed. Use the startup commands above normally; no repeated connection entry is needed. For a new installation or credential recovery, use `.venv\Scripts\python.exe -m app.configure_database`. See [the connection guide](docs/SUPABASE.md).
+
+This computer currently uses saved `DATABASE_TRANSPORT=supabase_websocket` because raw PostgreSQL negotiation stalls on its network. The same Supabase database is reached over certificate-verified port 443, with PostgreSQL TLS still enabled. No network switch or repeated password entry is needed. New installations default to direct PostgreSQL TCP; see the connection guide for both modes.
 
 ```dotenv
 DATABASE_URL=postgresql+psycopg://postgres.PROJECT_REF:URL_ENCODED_DATABASE_PASSWORD@POOLER_HOST:5432/postgres?sslmode=require
