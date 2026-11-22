@@ -40,13 +40,13 @@ def test_curriculum_batches_outcomes_and_preserves_unit_order(env):
         with count_reads(db) as queries:
             result=curriculum(user=user,db=db)
 
-        assert len(queries)==3
+        assert len(queries)==5
         assert [u['id'] for u in result['units']]==[1,3,9]
         assert result['versions']==[{'id':'test','source':'NIE test reference','applicability':'Test fixture only','verified_complete':False}]
         for unit in result['units']:
             expected=[oid for oid in original_order if (oid=='3.1-test' and unit['id']==3) or (oid.startswith('batch-') and (1,3,9)[int(oid[6:])%3]==unit['id'])]
             assert [o['id'] for o in unit['outcomes']]==expected
-            assert all(set(o)=={'id','text','level','subtopic','competency','source_page','verified','reviewed_at'} for o in unit['outcomes'])
+            assert all(set(o)=={'id','text','level','subtopic','competency','source_page','source_pages','verified','reviewed_at','review_note','catalogued'} for o in unit['outcomes'])
 
 
 def test_coverage_is_five_reads_with_reviewed_only_counts(env):
@@ -71,7 +71,7 @@ def test_coverage_is_five_reads_with_reviewed_only_counts(env):
         with count_reads(db) as queries:
             result=coverage(user=user,db=db)
 
-        assert len(queries)==5
+        assert len(queries)==6
         assert not any('questions.key' in sql or 'questions.explanation' in sql for sql in queries)
         assert [row['id'] for row in result['outcomes']]==expected_order
         by_id={row['id']:row for row in result['outcomes']}

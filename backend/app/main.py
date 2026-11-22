@@ -9,11 +9,13 @@ import httpx
 from datetime import datetime, timedelta, timezone
 from fastapi import FastAPI, Depends, HTTPException, Request, Response, UploadFile, File, Form
 from fastapi.responses import StreamingResponse
+from fastapi.responses import FileResponse
+from pathlib import Path
 from pydantic import BaseModel, Field
 from sqlalchemy import select, text, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DBSession
-from . import models as m, ai
+from . import models as m, ai, assessment_tools, practice
 from .database import get_db
 from .config import settings
 from .security import current_user, staff, admin, hash_password, verify_password, digest
@@ -21,6 +23,8 @@ from .schemas import *
 from .verification import mark
 
 app=FastAPI(title='ICTRoot AI',version='0.1.0')
+app.include_router(assessment_tools.router)
+app.include_router(practice.router)
 limits={}
 limit_lock=threading.Lock()
 
@@ -145,10 +149,30 @@ def join_class(data:JoinInput,user=Depends(current_user),db:DBSession=Depends(ge
 def curriculum(user=Depends(current_user),db:DBSession=Depends(get_db)):
     units=db.scalars(select(m.Unit).order_by(m.Unit.id)).all()
     versions=db.scalars(select(m.CurriculumVersion)).all()
+    outcomes=db.scalars(select(m.Outcome)).all()
+    levels=sorted(db.scalars(select(m.CompetencyLevel)).all(),key=lambda level:(level.unit_id,tuple(int(part) for part in level.level.split('.'))))
+    marker=db.get(m.AppSetting,'curriculum_inventory')
+    inventory=inventory_status(marker,outcomes,versions)
+    inventory['level_count']=len(levels)
     outcomes_by_unit={u.id:[] for u in units}
-    for o in db.scalars(select(m.Outcome)):
-        outcomes_by_unit.setdefault(o.unit_id,[]).append({'id':o.id,'text':o.text,'level':o.level,'subtopic':o.subtopic,'competency':o.competency,'source_page':o.source_page,'verified':o.verified,'reviewed_at':o.reviewed_at})
-    return {'versions':[{'id':v.id,'source':v.source,'applicability':v.applicability,'verified_complete':v.verified_complete} for v in versions], 'units':[{'id':u.id,'name':u.name,'grade':u.grade,'verified':u.verified,'outcomes':outcomes_by_unit[u.id]} for u in units]}
+    levels_by_unit={u.id:[] for u in units}
+    for o in outcomes:
+        outcomes_by_unit.setdefault(o.unit_id,[]).append({'id':o.id,'text':o.text,'level':o.level,'subtopic':o.subtopic,'competency':o.competency,'source_page':o.source_page,'source_pages':o.source_pages or [o.source_page],'verified':o.verified,'reviewed_at':o.reviewed_at,'review_note':o.review_note,'catalogued':o.catalogued})
+    for level in levels:
+        levels_by_unit.setdefault(level.unit_id,[]).append({key:getattr(level,key) for key in ('id','level','title','source_pages','contents','periods','review_note')}|{'source_verified':True})
+    return {'inventory':inventory,'versions':[{'id':v.id,'source':v.source,'applicability':v.applicability,'verified_complete':v.verified_complete} for v in versions], 'units':[{'id':u.id,'name':u.name,'grade':u.grade,'verified':u.verified,'levels':levels_by_unit[u.id],'outcomes':outcomes_by_unit[u.id]} for u in units]}
+
+def inventory_status(marker,outcomes,versions):
+    try:inventory=json.loads(marker.value) if marker else {}
+    except (ValueError,TypeError):inventory={}
+    official=[o for o in outcomes if o.catalogued]
+    verified=sum(o.verified for o in official)
+    complete=bool(inventory.get('complete') and inventory.get('outcome_count')==len(official)==verified and any(v.id==inventory.get('version_id') and v.verified_complete for v in versions))
+    return {**inventory,'unit_count':inventory.get('unit_count',0),'level_count':inventory.get('level_count',0),'outcome_count':len(official),'verified_outcome_count':verified,'complete':complete,'exam_applicability_verified':False}
+
+@app.get('/api/curriculum/source')
+def curriculum_source():
+    return FileResponse(Path(__file__).resolve().parents[2]/'curriculum/nie-ict-2017.pdf',media_type='application/pdf',headers={'Content-Disposition':'inline; filename="nie-ict-2017.pdf"'})
 
 @app.post('/api/admin/curriculum')
 def import_curriculum(data:CurriculumImport,user=Depends(admin),db:DBSession=Depends(get_db)):
@@ -157,6 +181,9 @@ def import_curriculum(data:CurriculumImport,user=Depends(admin),db:DBSession=Dep
         o=db.get(m.Outcome,row.id)
         if not o: o=m.Outcome(**row.model_dump());db.add(o)
         else:
+            if o.catalogued and any(getattr(o,k)!=v for k,v in row.model_dump().items()):
+                o.catalogued=False
+                db.get(m.CurriculumVersion,db.get(m.Unit,o.unit_id).version_id).verified_complete=False
             for k,v in row.model_dump().items():setattr(o,k,v)
         o.reviewed_at=datetime.now(timezone.utc).isoformat() if row.verified else None
     db.commit();return {'imported':len(data.outcomes)}
@@ -170,14 +197,20 @@ def coverage(user=Depends(current_user),db:DBSession=Depends(get_db)):
     for q in db.execute(select(m.Question.id,m.Question.outcome_id,m.Question.kind,m.Question.difficulty).where(m.Question.status=='approved')):
         approved_by_outcome.setdefault(q.outcome_id,[]).append(q)
     reviewed_outcomes=set(db.scalars(select(m.Resource.outcome_id).where(m.Resource.reviewed==True)))
-    reviewed_translations=set(db.scalars(select(m.Translation.question_id).where(m.Translation.reviewed==True)))
-    complete=all(v.verified_complete for v in db.scalars(select(m.CurriculumVersion)))
+    reviewed_translations=set(db.scalars(select(m.Translation.question_id).where(m.Translation.reviewed==True,m.Translation.language=='si')))
+    versions=db.scalars(select(m.CurriculumVersion)).all()
+    marker=db.get(m.AppSetting,'curriculum_inventory')
+    inventory=inventory_status(marker,outcomes,versions)
+    complete=inventory['complete']
     rows=[]
     for o in outcomes:
         qs=approved_by_outcome.get(o.id,[])
         translated=any(q.id in reviewed_translations for q in qs)
-        rows.append({'id':o.id,'text':o.text,'unit_id':o.unit_id,'verified':o.verified,'approved_questions':len(qs),'formats':sorted({q.kind for q in qs}),'difficulties':sorted({q.difficulty for q in qs}),'sinhala':translated,'reviewed_at':o.reviewed_at,'covered':bool(o.verified and qs and o.id in reviewed_outcomes)})
-    return {'outcomes':rows,'imported_outcomes':len(rows),'covered_outcomes':sum(r['covered'] for r in rows),'official_denominator_verified':complete,'full_syllabus_percentage':None,'warning':'Coverage of imported outcomes only. Complete official outcome inventory and examination applicability are not yet verified.'}
+        rows.append({'id':o.id,'text':o.text,'unit_id':o.unit_id,'verified':o.verified,'catalogued':o.catalogued,'approved_questions':len(qs),'formats':sorted({q.kind for q in qs}),'difficulties':sorted({q.difficulty for q in qs}),'sinhala':translated,'reviewed_at':o.reviewed_at,'covered':bool(o.verified and qs and o.id in reviewed_outcomes)})
+    official=[r for r in rows if r['catalogued']]
+    source_coverage=round(100*sum(r['covered'] for r in official)/len(official),1) if complete and official else None
+    warning='The 2017 source inventory is verified. Question coverage is separate; Project has no explicit outcome bullets. Current examination-year applicability still requires official confirmation.' if complete else 'Coverage of imported outcomes only. Complete official outcome inventory and examination applicability are not yet verified.'
+    return {'outcomes':rows,'imported_outcomes':len(rows),'covered_outcomes':sum(r['covered'] for r in rows),'official_outcomes':len(official),'source_verified_outcomes':inventory['verified_outcome_count'],'source_outcome_coverage_percentage':source_coverage,'official_denominator_verified':complete,'full_syllabus_percentage':None,'warning':warning}
 
 def question_public(q,user,language,db):
     result={k:getattr(q,k) for k in ('id','outcome_id','kind','difficulty','prompt','status')}
@@ -228,15 +261,16 @@ def create_assessment(data:AssessmentCreate,user=Depends(staff),db:DBSession=Dep
 
 @app.get('/api/assessments')
 def assessments(user=Depends(current_user),db:DBSession=Depends(get_db)):
+    from sqlalchemy import func
+    from .assessment_lifecycle import finalize_expired
     stmt=select(m.Assessment)
     if user.role=='student':stmt=stmt.join(m.Membership,m.Membership.class_id==m.Assessment.class_id).where(m.Membership.student_id==user.id,m.Assessment.published==True)
     elif user.role!='admin':stmt=stmt.where(m.Assessment.teacher_id==user.id)
-    result=[]
-    for a in db.scalars(stmt):
-        attempt=db.scalar(select(m.Attempt).where(m.Attempt.assessment_id==a.id,m.Attempt.student_id==user.id))
-        count=len(db.scalars(select(m.AssessmentQuestion).where(m.AssessmentQuestion.assessment_id==a.id)).all())
-        result.append({'id':a.id,'title':a.title,'duration':a.duration,'class_id':a.class_id,'questions':count,'published':a.published,'attempt_id':attempt.id if attempt else None,'submitted':attempt.submitted if attempt else False})
-    return result
+    visible=db.scalars(stmt).all();ids=[a.id for a in visible]
+    if finalize_expired(db,assessment_ids=ids,student_id=user.id if user.role=='student' else None):db.commit()
+    attempts={a.assessment_id:a for a in db.scalars(select(m.Attempt).where(m.Attempt.assessment_id.in_(ids),m.Attempt.student_id==user.id))}
+    counts=dict(db.execute(select(m.AssessmentQuestion.assessment_id,func.count()).where(m.AssessmentQuestion.assessment_id.in_(ids)).group_by(m.AssessmentQuestion.assessment_id)).all())
+    return [{'id':a.id,'title':a.title,'duration':a.duration,'class_id':a.class_id,'questions':counts.get(a.id,0),'published':a.published,'attempt_id':attempts[a.id].id if a.id in attempts else None,'submitted':attempts[a.id].submitted if a.id in attempts else False} for a in visible]
 
 @app.post('/api/assessments/{aid}/start')
 def start(aid:int,user=Depends(current_user),db:DBSession=Depends(get_db)):
@@ -263,11 +297,15 @@ def attempt_questions(db,attempt):
     return db.scalars(select(m.Question).join(m.AssessmentQuestion).where(m.AssessmentQuestion.assessment_id==attempt.assessment_id).order_by(m.AssessmentQuestion.position)).all()
 
 def deadline(db,attempt):
-    return attempt.started.replace(tzinfo=timezone.utc)+timedelta(minutes=db.get(m.Assessment,attempt.assessment_id).duration)
+    from .assessment_lifecycle import attempt_deadline
+    return attempt_deadline(attempt.started,db.get(m.Assessment,attempt.assessment_id).duration)
 
 @app.get('/api/attempts/{tid}')
 def get_attempt(tid:int,language:Literal['en','si']='en',user=Depends(current_user),db:DBSession=Depends(get_db)):
+    from .assessment_lifecycle import finalize_expired
     a=owned_attempt(db,tid,user)
+    if finalize_expired(db,attempt_ids=[a.id]):db.commit()
+    if not a.submitted:db.refresh(a,attribute_names=['submitted'])
     answers=db.scalars(select(m.Answer).where(m.Answer.attempt_id==a.id)).all()
     return {'id':a.id,'title':db.get(m.Assessment,a.assessment_id).title,'submitted':a.submitted,'deadline':deadline(db,a).isoformat(),'questions':[question_public(q,user,language,db) for q in attempt_questions(db,a)],'answers':{str(x.question_id):x.value for x in answers}}
 
@@ -278,7 +316,7 @@ def save_answer(tid:int,qid:int,data:AnswerInput,user=Depends(current_user),db:D
     # Atomic guard serializes writes with submission in PostgreSQL.
     guarded=db.execute(update(m.Attempt).where(m.Attempt.id==a.id,m.Attempt.submitted==False).values(submitted=False))
     if guarded.rowcount!=1:raise HTTPException(409,'Attempt already submitted')
-    if datetime.now(timezone.utc)>deadline(db,a):raise HTTPException(409,'Time expired; submit saved answers')
+    if datetime.now(timezone.utc)>=deadline(db,a):raise HTTPException(409,'Time expired; no further answers can be saved')
     if qid not in [q.id for q in attempt_questions(db,a)]:raise HTTPException(404,'Question not in assessment')
     q=db.get(m.Question,qid)
     if q.kind=='mcq' and data.value not in [o['id'] for o in q.options]:raise HTTPException(422,'Unknown option ID')
@@ -289,19 +327,20 @@ def save_answer(tid:int,qid:int,data:AnswerInput,user=Depends(current_user),db:D
 
 @app.post('/api/attempts/{tid}/submit')
 def submit(tid:int,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    from .assessment_lifecycle import grade_saved_answers
     a=owned_attempt(db,tid,user,True)
     if user.role!='student':raise HTTPException(403,'Student access required')
     guard=db.execute(update(m.Attempt).where(m.Attempt.id==a.id,m.Attempt.submitted==False).values(submitted=True))
     if guard.rowcount!=1:raise HTTPException(409,'Attempt already submitted')
-    for q in attempt_questions(db,a):
-        answer=db.get(m.Answer,(tid,q.id))
-        if not answer:answer=m.Answer(attempt_id=tid,question_id=q.id,value='');db.add(answer)
-        answer.score,answer.reason=mark(q,answer.value) if answer.value else (0.0,'No answer submitted')
+    grade_saved_answers(db,[a])
     db.commit();return {'submitted':True}
 
 @app.get('/api/attempts/{tid}/results')
 def results(tid:int,user=Depends(current_user),db:DBSession=Depends(get_db)):
+    from .assessment_lifecycle import finalize_expired
     a=owned_attempt(db,tid,user)
+    if finalize_expired(db,attempt_ids=[a.id]):db.commit()
+    if not a.submitted:db.refresh(a,attribute_names=['submitted'])
     if not a.submitted:raise HTTPException(409,'Submit assessment to see answers')
     items=[]
     for q in attempt_questions(db,a):
@@ -314,22 +353,34 @@ def results(tid:int,user=Depends(current_user),db:DBSession=Depends(get_db)):
 
 @app.get('/api/progress')
 def progress(user=Depends(current_user),db:DBSession=Depends(get_db)):
-    rows=db.execute(select(m.Answer,m.Question).join(m.Attempt,m.Answer.attempt_id==m.Attempt.id).join(m.Question,m.Answer.question_id==m.Question.id).where(m.Attempt.student_id==user.id,m.Attempt.submitted==True).order_by(m.Attempt.started,m.Attempt.id,m.Question.id)).all()
+    from .assessment_lifecycle import finalize_expired
+    if finalize_expired(db,student_id=user.id):db.commit()
+    rows=db.execute(select(m.Answer.score,m.Question.outcome_id,m.Outcome.text).select_from(m.Answer).join(m.Attempt,m.Answer.attempt_id==m.Attempt.id).join(m.Question,m.Answer.question_id==m.Question.id).join(m.Outcome,m.Outcome.id==m.Question.outcome_id).where(m.Attempt.student_id==user.id,m.Attempt.submitted==True).order_by(m.Attempt.started,m.Attempt.id,m.Question.id)).all()
     topics={}
-    for answer,q in rows:
-        if answer.score is None:continue
-        topics.setdefault(q.outcome_id,[]).append(answer.score)
-    return [{'outcome_id':oid,'text':db.get(m.Outcome,oid).text,'answered':len(scores),'accuracy':round(100*sum(scores)/len(scores)),'recommended_difficulty':'easy' if sum(scores[-5:])/len(scores[-5:])<0.5 else ('hard' if len(scores)>=3 and sum(scores[-5:])/len(scores[-5:])>=0.8 else 'medium')} for oid,scores in topics.items()]
+    names={}
+    for row in rows:
+        if row.score is None:continue
+        topics.setdefault(row.outcome_id,[]).append(row.score);names[row.outcome_id]=row.text
+    return [{'outcome_id':oid,'text':names[oid],'answered':len(scores),'accuracy':round(100*sum(scores)/len(scores)),'recommended_difficulty':'easy' if sum(scores[-5:])/len(scores[-5:])<0.5 else ('hard' if len(scores)>=3 and sum(scores[-5:])/len(scores[-5:])>=0.8 else 'medium')} for oid,scores in topics.items()]
 
 @app.get('/api/history')
 def history(user=Depends(current_user),db:DBSession=Depends(get_db)):
-    return [{'id':a.id,'title':db.get(m.Assessment,a.assessment_id).title,'started':a.started.isoformat(),'submitted':a.submitted} for a in db.scalars(select(m.Attempt).where(m.Attempt.student_id==user.id).order_by(m.Attempt.started.desc()))]
+    from .assessment_lifecycle import finalize_expired
+    if finalize_expired(db,student_id=user.id):db.commit()
+    return [{'id':a.id,'title':title,'started':a.started.isoformat(),'submitted':a.submitted} for a,title in db.execute(select(m.Attempt,m.Assessment.title).join(m.Assessment,m.Assessment.id==m.Attempt.assessment_id).where(m.Attempt.student_id==user.id).order_by(m.Attempt.started.desc(),m.Attempt.id.desc()))]
 
 @app.get('/api/teacher/submissions')
 def submissions(user=Depends(staff),db:DBSession=Depends(get_db)):
-    stmt=select(m.Attempt).join(m.Assessment).where(m.Attempt.submitted==True)
+    from sqlalchemy import func
+    from .assessment_lifecycle import finalize_expired
+    scope=select(m.Assessment.id)
+    if user.role!='admin':scope=scope.where(m.Assessment.teacher_id==user.id)
+    if finalize_expired(db,assessment_ids=list(db.scalars(scope))):db.commit()
+    answer_stats=select(m.Answer.attempt_id.label('attempt_id'),func.sum(m.Answer.score).label('score'),func.count(m.Answer.question_id).filter(m.Answer.score.is_(None)).label('pending')).group_by(m.Answer.attempt_id).subquery()
+    question_counts=select(m.AssessmentQuestion.assessment_id.label('assessment_id'),func.count().label('total')).group_by(m.AssessmentQuestion.assessment_id).subquery()
+    stmt=select(m.Attempt.id,m.User.name.label('student'),m.Assessment.title,answer_stats.c.score,answer_stats.c.pending,question_counts.c.total).select_from(m.Attempt).join(m.Assessment,m.Assessment.id==m.Attempt.assessment_id).join(m.User,m.User.id==m.Attempt.student_id).outerjoin(answer_stats,answer_stats.c.attempt_id==m.Attempt.id).outerjoin(question_counts,question_counts.c.assessment_id==m.Assessment.id).where(m.Attempt.submitted==True)
     if user.role!='admin':stmt=stmt.where(m.Assessment.teacher_id==user.id)
-    return [{'id':a.id,'student':db.get(m.User,a.student_id).name,'title':db.get(m.Assessment,a.assessment_id).title,**{k:v for k,v in results(a.id,user,db).items() if k in ('score','total','pending')}} for a in db.scalars(stmt)]
+    return [{'id':row.id,'student':row.student,'title':row.title,'score':row.score or 0,'total':row.total or 0,'pending':row.pending or 0} for row in db.execute(stmt.order_by(m.Attempt.started.desc(),m.Attempt.id.desc()))]
 
 class GradeInput(BaseModel):
     score:float=Field(ge=0,le=1)

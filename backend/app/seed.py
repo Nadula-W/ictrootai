@@ -18,10 +18,8 @@ def seed():
         db.add(version);db.flush()
         for i,name in enumerate(NAMES,1):db.add(Unit(id=i,version_id=version.id,name=name,grade=None,verified=i<=11))
         db.flush()
-        extracted=ROOT/'curriculum/extracted-review.json'
-        if extracted.exists():
-            for row in json.loads(extracted.read_text(encoding='utf-8'))['outcomes']:
-                if 1<=row['unit_id']<=14:db.add(Outcome(**row))
+        from .curriculum_catalogue import load_catalogue,install_catalogue
+        install_catalogue(db,load_catalogue())
         oid='NIE2017-3.1-conversion-reviewed'
         db.add(Outcome(id=oid,unit_id=3,subtopic='Analyses how numbers are represented in computers',competency='Investigates how instructions and data are represented in computers and exploit them in arithmetic and logic operations',level='3.1',text='Converts decimal integers into binary, octal and hexadecimal numbers and vice versa',source_page=21,verified=True,reviewed_at='2026-11-14'))
         db.flush()

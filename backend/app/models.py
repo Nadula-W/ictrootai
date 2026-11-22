@@ -37,6 +37,18 @@ class Unit(Base):
     grade: Mapped[int | None]
     verified: Mapped[bool] = mapped_column(default=False)
 
+class CompetencyLevel(Base):
+    __tablename__ = 'competency_levels'
+    id: Mapped[str] = mapped_column(String(150), primary_key=True)
+    unit_id: Mapped[int] = mapped_column(ForeignKey('units.id'), index=True)
+    level: Mapped[str] = mapped_column(String(30))
+    title: Mapped[str] = mapped_column(Text)
+    source_pages: Mapped[list] = mapped_column(JSON)
+    contents: Mapped[list] = mapped_column(JSON)
+    periods: Mapped[int | None] = mapped_column(nullable=True)
+    review_note: Mapped[str] = mapped_column(Text, default='')
+    __table_args__ = (UniqueConstraint('unit_id', 'level'),)
+
 class Outcome(Base):
     __tablename__ = 'learning_outcomes'
     id: Mapped[str] = mapped_column(String(120), primary_key=True)
@@ -48,6 +60,9 @@ class Outcome(Base):
     source_page: Mapped[int]
     verified: Mapped[bool] = mapped_column(default=False)
     reviewed_at: Mapped[str | None] = mapped_column(nullable=True)
+    source_pages: Mapped[list] = mapped_column(JSON, default=list)
+    review_note: Mapped[str] = mapped_column(Text, default='')
+    catalogued: Mapped[bool] = mapped_column(default=False)
 
 class Resource(Base):
     __tablename__ = 'learning_resources'
@@ -160,3 +175,27 @@ class AppSetting(Base):
     __tablename__ = 'app_settings'
     key: Mapped[str] = mapped_column(primary_key=True)
     value: Mapped[str]
+
+
+class PracticeAnswer(Base):
+    __tablename__ = 'practice_answers'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    student_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
+    question_id: Mapped[int] = mapped_column(ForeignKey('questions.id'), index=True)
+    value: Mapped[str] = mapped_column(Text)
+    score: Mapped[float | None] = mapped_column(nullable=True)
+    reason: Mapped[str] = mapped_column(Text)
+    created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    request_id: Mapped[str] = mapped_column(String(64))
+    reviewed_by: Mapped[int | None] = mapped_column(ForeignKey('users.id'), nullable=True, index=True)
+    __table_args__ = (UniqueConstraint('student_id', 'request_id', name='uq_practice_answers_student_request'),)
+
+
+class PracticeReview(Base):
+    __tablename__ = 'practice_reviews'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    answer_id: Mapped[int] = mapped_column(ForeignKey('practice_answers.id'), index=True)
+    teacher_id: Mapped[int] = mapped_column(ForeignKey('users.id'), index=True)
+    score: Mapped[float]
+    reason: Mapped[str] = mapped_column(Text)
+    created: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
