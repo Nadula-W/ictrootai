@@ -1,4 +1,5 @@
 'use client';
+import {useUi} from './UiLanguage';
 
 import {useMemo, useState} from 'react';
 import {BookOpen, CheckCircle2, FileText, Search, ShieldCheck} from 'lucide-react';
@@ -46,6 +47,7 @@ function reviewedDate(value: unknown) {
 }
 
 export default function CurriculumExplorer({curriculum, coverage, isAdmin, onEdit}: Props) {
+  const {t}=useUi();
   const [search, setSearch] = useState('');
   const [unitFilter, setUnitFilter] = useState('');
   const [reviewFilter, setReviewFilter] = useState('all');
@@ -91,24 +93,24 @@ export default function CurriculumExplorer({curriculum, coverage, isAdmin, onEdi
 
   return <div className="curriculum-explorer workspace-tool">
     <div className="workspace-metrics" aria-label="Curriculum coverage summary">
-      <div><BookOpen size={20}/><strong>{inventory.unit_count ?? units.length}</strong><span>Syllabus units</span></div>
-      <div><FileText size={20}/><strong>{levelCount}</strong><span>Competency levels</span></div>
+      <div><BookOpen size={20}/><strong>{inventory.unit_count ?? units.length}</strong><span>{t('Syllabus units')}</span></div>
+      <div><FileText size={20}/><strong>{levelCount}</strong><span>{t('Competency levels')}</span></div>
       <div><ShieldCheck size={20}/><strong>{verifiedCount}<small> / {sourceCount}</small></strong><span>{hasCatalogue ? 'Official outcomes source checked' : 'Imported outcomes source checked'}</span></div>
-      <div><CheckCircle2 size={20}/><strong>{coveredCount}<small> / {sourceCount}</small></strong><span>Outcomes with reviewed practice</span></div>
+      <div><CheckCircle2 size={20}/><strong>{coveredCount}<small> / {sourceCount}</small></strong><span>{t('Outcomes with reviewed practice')}</span></div>
     </div>
 
     <div className="workspace-note" role="note">
       <ShieldCheck size={22}/><div><strong>{inventory.complete ? 'The 2017 source inventory has been checked.' : 'Source review and practice coverage are separate.'}</strong>
-        <p>Source checking confirms syllabus wording and page references. Practice coverage also needs reviewed teaching notes and approved questions. Current examination applicability still requires official confirmation.</p>
+        <p>{t('Source checking confirms syllabus wording and page references. Practice coverage also needs reviewed teaching notes and approved questions. Current examination applicability still requires official confirmation.')}</p>
         {additionalCount > 0 && <p>{additionalCount} additional authored outcome {additionalCount === 1 ? 'is' : 'are'} preserved alongside the official inventory.</p>}
       </div>
     </div>
 
     <div className="workspace-filters">
-      <label className="workspace-search">Search units, topics or outcomes<div><Search size={18}/><input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder="Try SQL, IoT, 3.1, or a learning outcome"/></div></label>
-      <label>Unit<select value={unitFilter} onChange={event => setUnitFilter(event.target.value)}><option value="">All units</option>{units.map(unit => <option key={unit.id} value={unit.id}>{unit.id}. {unit.name}</option>)}</select></label>
-      <label>Source review and practice<select value={reviewFilter} onChange={event => setReviewFilter(event.target.value)}>
-        <option value="all">All statuses</option><option value="verified">Source checked</option><option value="pending">Needs source review</option><option value="covered">Reviewed practice available</option><option value="no_questions">No approved questions</option>
+      <label className="workspace-search">{t('Search units, topics or outcomes')}<div><Search size={18}/><input type="search" value={search} onChange={event => setSearch(event.target.value)} placeholder={t('Try SQL, IoT, 3.1, or a learning outcome')}/></div></label>
+      <label>{t('Unit')}<select value={unitFilter} onChange={event => setUnitFilter(event.target.value)}><option value="">{t('All units')}</option>{units.map(unit => <option key={unit.id} value={unit.id}>{unit.id}. {unit.name}</option>)}</select></label>
+      <label>{t('Source review and practice')}<select value={reviewFilter} onChange={event => setReviewFilter(event.target.value)}>
+        <option value="all">{t('All statuses')}</option><option value="verified">{t('Source checked')}</option><option value="pending">{t('Needs source review')}</option><option value="covered">{t('Reviewed practice available')}</option><option value="no_questions">{t('No approved questions')}</option>
       </select></label>
     </div>
     <p className="workspace-results" aria-live="polite">Showing {shownCount} outcome {shownCount === 1 ? 'record' : 'records'} across {visible.length} {visible.length === 1 ? 'unit' : 'units'}.</p>
@@ -124,15 +126,15 @@ export default function CurriculumExplorer({curriculum, coverage, isAdmin, onEdi
               <SourceLinks row={level}/>
               {level.review_note && <p className="workspace-source-note">{level.review_note}</p>}
               {level.contents.length > 0 && <details className="syllabus-topics"><summary>Topics in this level ({level.contents.length})</summary><ul>{level.contents.map((content: string, index: number) => <li key={`${index}-${content}`}>{content}</li>)}</ul></details>}
-              {level.emptySourceLevel && <div className="workspace-note project-note"><BookOpen size={20}/><p>The source documents this project competency but provides no separate learning-outcome bullets. The competency is included here without inventing outcomes.</p></div>}
+              {level.emptySourceLevel && <div className="workspace-note project-note"><BookOpen size={20}/><p>{t('The source documents this project competency but provides no separate learning-outcome bullets. The competency is included here without inventing outcomes.')}</p></div>}
               {level.outcomes.map((outcome: Row) => {
                 const info = coverageById.get(outcome.id);
                 return <article className="syllabus-outcome" key={outcome.id}>
-                  <div className="syllabus-outcome-top"><code>{outcome.id}</code><span className={`workspace-tag ${outcome.verified ? 'checked' : 'pending'}`}>{outcome.verified ? 'Source checked' : 'Needs source review'}</span>{outcome.catalogued === false && <span className="workspace-tag neutral">Additional authored outcome</span>}</div>
+                  <div className="syllabus-outcome-top"><code>{outcome.id}</code><span className={`workspace-tag ${outcome.verified ? 'checked' : 'pending'}`}>{outcome.verified ? 'Source checked' : 'Needs source review'}</span>{outcome.catalogued === false && <span className="workspace-tag neutral">{t('Additional authored outcome')}</span>}</div>
                   <p className="syllabus-outcome-text">{outcome.text}</p>
                   <div className="syllabus-outcome-meta"><SourceLinks row={outcome}/><span>{info?.approved_questions || 0} approved questions</span><span>{info?.covered ? 'Reviewed practice available' : 'Practice content still needed'}</span><span>Sinhala: {info?.sinhala ? 'reviewed' : 'unavailable'}</span></div>
                   {outcome.review_note && <p className="workspace-source-note">{outcome.review_note}</p>}
-                  <div className="syllabus-outcome-footer"><span>{outcome.verified ? reviewedDate(outcome.reviewed_at) : 'Source review pending'}</span>{isAdmin && <button type="button" className="secondary" onClick={() => onEdit(outcome, Number(unit.id))} aria-label={`Edit outcome ${outcome.id}`}>Edit / review</button>}</div>
+                  <div className="syllabus-outcome-footer"><span>{outcome.verified ? reviewedDate(outcome.reviewed_at) : 'Source review pending'}</span>{isAdmin && <button type="button" className="secondary" onClick={() => onEdit(outcome, Number(unit.id))} aria-label={`Edit outcome ${outcome.id}`}>{t('Edit / review')}</button>}</div>
                 </article>;
               })}
             </div>
@@ -140,7 +142,7 @@ export default function CurriculumExplorer({curriculum, coverage, isAdmin, onEdi
         </div>
       </details>)}
     </div>
-    {!visible.length && <div className="workspace-empty"><Search size={26}/><h3>No matching curriculum records</h3><p>Try a broader search or clear the filters.</p><button type="button" className="secondary" onClick={() => {setSearch(''); setUnitFilter(''); setReviewFilter('all');}}>Clear filters</button></div>}
+    {!visible.length && <div className="workspace-empty"><Search size={26}/><h3>{t('No matching curriculum records')}</h3><p>{t('Try a broader search or clear the filters.')}</p><button type="button" className="secondary" onClick={() => {setSearch(''); setUnitFilter(''); setReviewFilter('all');}}>{t('Clear filters')}</button></div>}
     <p className="workspace-source-note">Source: <a href="/api/curriculum/source" target="_blank" rel="noreferrer">NIE A/L ICT syllabus, effective from 2017</a>. Page links use physical PDF page numbers. Source numbering and wording defects are documented in review notes; application outcome IDs are not NIE-issued identifiers.</p>
   </div>;
 }

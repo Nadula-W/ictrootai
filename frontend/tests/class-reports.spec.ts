@@ -1,9 +1,7 @@
 import {expect, Page, test} from '@playwright/test';
 
-async function reportsWorkspace(page: Page, failOnce = false) {
+async function reportsWorkspace(page: Page, failOnce = false, failures={roster:true,learner:true}) {
   const reads: string[] = [];
-  let rosterFailed = false;
-  let learnerFailed = false;
   const learners = [
     {id: 1, name: 'Sam', email: 'sam@example.invalid', grade: 12, started_assessments: 1, submitted_assessments: 1, marked_answers: 0, pending_answers: 1, accuracy: null},
     {id: 5, name: 'Maya', email: 'maya@example.invalid', grade: 12, started_assessments: 2, submitted_assessments: 2, marked_answers: 4, pending_answers: 1, accuracy: 50},
@@ -19,12 +17,12 @@ async function reportsWorkspace(page: Page, failOnce = false) {
     else if (path === '/api/coverage') data = {outcomes: []};
     else if (path === '/api/classes/7/students') {
       reads.push(path);
-      if (failOnce && !rosterFailed) {rosterFailed = true; status = 503; data = {detail: 'Class report is temporarily unavailable.'};}
+      if (failOnce && failures.roster) {status = 503; data = {detail: 'Class report is temporarily unavailable.'};}
       else data = {class_id: 7, class_name: 'Revision class', students: learners};
     } else if (path === '/api/classes/8/students') {reads.push(path); data = {class_id: 8, class_name: 'New class', students: []};}
     else if (path === '/api/classes/7/students/1/progress' || path === '/api/classes/7/students/5/progress') {
       reads.push(path);
-      if (failOnce && !learnerFailed) {learnerFailed = true; status = 503; data = {detail: 'Learner report is temporarily unavailable.'};}
+      if (failOnce && failures.learner) {status = 503; data = {detail: 'Learner report is temporarily unavailable.'};}
       else {
         const learner = path.includes('/1/') ? learners[0] : learners[1];
         data = {
@@ -70,15 +68,18 @@ test('teacher sees unknown marks, revision priorities and tentative patterns on 
 });
 
 test('report errors can be retried and switching classes clears the prior learner report', async ({page}) => {
-  const reads = await reportsWorkspace(page, true);
+  const failures={roster:true,learner:true};
+  const reads = await reportsWorkspace(page, true, failures);
   const reports = page.getByRole('region', {name: 'Class progress reports', exact: true});
   await expect(reports.getByRole('alert')).toContainText('Class report is temporarily unavailable.');
+  failures.roster=false;
   await reports.getByRole('button', {name: 'Retry class report', exact: true}).click();
   await reports.getByRole('button', {name: "View Maya's progress", exact: true}).click();
   await expect(reports.getByRole('alert')).toContainText('Learner report is temporarily unavailable.');
+  failures.learner=false;
   await reports.getByRole('button', {name: 'Retry learner report', exact: true}).click();
   await expect(reports.getByRole('region', {name: "Maya's progress", exact: true})).toBeVisible();
-  await reports.getByLabel('Report class', {exact: true}).selectOption('8');
+  await reports.getByRole('combobox', {name:'Report class',exact:true}).selectOption('8');
   await expect(reports).toContainText('No learners have joined this class yet.');
   await expect(reports.getByRole('region', {name: "Maya's progress", exact: true})).toHaveCount(0);
   expect(reads.every(path => /^\/api\/classes\/(7|8)\/students(?:\/(1|5)\/progress)?$/.test(path))).toBeTruthy();
