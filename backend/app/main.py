@@ -218,8 +218,18 @@ def question_public(q,user,language,db):
     result['language']='en';result['language_notice']=None
     if language=='si':
         tr=db.scalar(select(m.Translation).where(m.Translation.question_id==q.id,m.Translation.language=='si',m.Translation.reviewed==True))
-        if tr: result.update(tr.content);result['language']='si'
-        else:result['language_notice']='Reviewed Sinhala translation unavailable. Showing original English.'
+        content=tr.content if tr and isinstance(tr.content,dict) else {}
+        translated_prompt=content.get('prompt')
+        translated_options=content.get('options',[])
+        valid_prompt=isinstance(translated_prompt,str) and 5<=len(translated_prompt)<=10000 and bool(translated_prompt.strip())
+        valid_options=isinstance(translated_options,list) and len(translated_options)==len(q.options) and all(isinstance(option,dict) and option.get('id')==original['id'] and isinstance(option.get('text'),str) and 1<=len(option['text'])<=1000 and bool(option['text'].strip()) for option,original in zip(translated_options,q.options))
+        if valid_prompt and valid_options:
+            # Reviewed legacy JSON must never add keys, rubrics, explanations,
+            # distractor labels or altered identifiers to a student response.
+            result['prompt']=translated_prompt
+            result['options']=[{'id':option['id'],'text':option['text']} for option in translated_options]
+            result['language']='si'
+        else:result['language_notice']='Reviewed Sinhala translation unavailable or invalid. Showing original English.'
     if user.role!='student':result.update(key=q.key,explanation=q.explanation,sources=q.sources,rubric=q.rubric,options=q.options)
     return result
 
@@ -258,6 +268,17 @@ def create_assessment(data:AssessmentCreate,user=Depends(staff),db:DBSession=Dep
     a=m.Assessment(**data.model_dump(exclude={'question_ids'}),teacher_id=user.id);db.add(a);db.flush()
     for pos,qid in enumerate(data.question_ids):db.add(m.AssessmentQuestion(assessment_id=a.id,question_id=qid,position=pos))
     db.commit();return {'id':a.id}
+
+@app.post('/api/assessments/{aid}/publish')
+def publish_assessment(aid:int,user=Depends(staff),db:DBSession=Depends(get_db)):
+    assessment=db.scalar(select(m.Assessment).where(m.Assessment.id==aid).with_for_update())
+    if not assessment or (user.role!='admin' and assessment.teacher_id!=user.id):raise HTTPException(404,'Assessment not found')
+    owned_class(db,assessment.class_id,user)
+    questions=db.execute(select(m.Question.id,m.Question.status).join(m.AssessmentQuestion,m.AssessmentQuestion.question_id==m.Question.id).where(m.AssessmentQuestion.assessment_id==aid).order_by(m.AssessmentQuestion.position)).all()
+    if not questions:raise HTTPException(422,'Add at least one approved question before publishing')
+    if any(question.status!='approved' for question in questions):raise HTTPException(422,'Only approved questions can be published')
+    assessment.published=True
+    db.commit();return {'id':assessment.id,'published':True,'questions':len(questions)}
 
 @app.get('/api/assessments')
 def assessments(user=Depends(current_user),db:DBSession=Depends(get_db)):

@@ -10,11 +10,12 @@ from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel, Field, field_validator
-from sqlalchemy import select
+from sqlalchemy import case, func, literal, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DBSession
 
 from . import models as m
+from .assessment_lifecycle import finalize_expired
 from .database import get_db
 from .security import current_user, staff
 from .verification import mark
@@ -88,18 +89,28 @@ def revision_summary(rows, now=None):
     return sorted(result, key=lambda row: (not row['due'], row['recent_accuracy'] if row['recent_accuracy'] is not None else -1, row['outcome_id']))
 
 
-def _revision_rows(db, student_id):
+def _revision_rows(db, student_id, include_options=True):
     # Read only this student's evidence. Draft questions and unverified outcomes
     # cannot become recommendations, including through an old assessment. Do
     # not fetch answer-key, explanation or rubric JSON for a revision summary.
-    common = [m.Question.id.label('question_id'), m.Outcome.id.label('outcome_id'), m.Outcome.text, m.Question.kind, m.Question.options]
+    common = [m.Question.id.label('question_id'), m.Outcome.id.label('outcome_id'), m.Outcome.text, m.Question.kind]
+    if include_options:
+        common.append(m.Question.options)
     practice = db.execute(select(*common, m.PracticeAnswer.score, m.PracticeAnswer.created, m.PracticeAnswer.value).select_from(m.PracticeAnswer).join(m.Question, m.Question.id == m.PracticeAnswer.question_id).join(m.Outcome, m.Outcome.id == m.Question.outcome_id).where(m.PracticeAnswer.student_id == student_id, m.Question.status == 'approved', m.Outcome.verified == True)).mappings()
     assessments = db.execute(select(*common, m.Answer.score, m.Attempt.started.label('created'), m.Answer.value).select_from(m.Answer).join(m.Attempt, m.Attempt.id == m.Answer.attempt_id).join(m.Question, m.Question.id == m.Answer.question_id).join(m.Outcome, m.Outcome.id == m.Question.outcome_id).where(m.Attempt.student_id == student_id, m.Attempt.submitted == True, m.Question.status == 'approved', m.Outcome.verified == True)).mappings()
-    return [dict(row) for row in practice] + [dict(row) for row in assessments]
+    rows = [dict(row) for row in practice] + [dict(row) for row in assessments]
+    if not include_options:
+        for row in rows:
+            row['options'] = []
+    return rows
 
 
 @router.get('/revision')
 def revision(user=Depends(student), db: DBSession=Depends(get_db)):
+    # The student dependency authorizes first. Do not sweep another learner's
+    # attempts when their deadline passes while this learner opens revision.
+    if finalize_expired(db, student_id=user.id):
+        db.commit()
     return {
         'outcomes': revision_summary(_revision_rows(db, user.id)),
         'method': 'Difficulty uses the latest five marked responses: below 60% easy, 60–84% medium, 85% or above hard. Review intervals are 1, 3 or 7 days from the latest marked response. Pending marks are excluded. Assessment timing uses the recorded attempt start because a submission timestamp is not stored.',
@@ -127,22 +138,36 @@ def _display_question(question, user, translations):
 
 @router.get('/practice')
 def practice_questions(outcome_id: str | None=None, difficulty: Literal['easy', 'medium', 'hard'] | None=None, limit: int=Query(default=5, ge=1, le=10), user=Depends(student), db: DBSession=Depends(get_db)):
+    if finalize_expired(db, student_id=user.id):
+        db.commit()
     statement = select(m.Question.id, m.Question.outcome_id, m.Question.kind, m.Question.difficulty, m.Question.prompt, m.Question.options).join(m.Outcome, m.Outcome.id == m.Question.outcome_id).where(m.Question.status == 'approved', m.Outcome.verified == True)
     if outcome_id:
         statement = statement.where(m.Question.outcome_id == outcome_id)
     if difficulty:
         statement = statement.where(m.Question.difficulty == difficulty)
-    evidence = _revision_rows(db, user.id)
+    # Selection needs scores/timing, not distractor contents. Only the bounded
+    # selected-question query below fetches candidate prompts and options JSON.
+    evidence = _revision_rows(db, user.id, include_options=False)
     recommendations = {row['outcome_id']: row for row in revision_summary(evidence)}
     seen = Counter(row['question_id'] for row in evidence)
 
-    def priority(question):
-        state = recommendations.get(question.outcome_id, {})
-        suggested = state.get('recommended_difficulty', 'easy')
-        accuracy = state.get('recent_accuracy')
-        return (seen[question.id], not state.get('due', True), accuracy if accuracy is not None else -1, abs(DIFFICULTIES.index(question.difficulty) - DIFFICULTIES.index(suggested)), question.id)
+    def priority_case(values, column, default):
+        # SQL CASE requires at least one WHEN. Literal defaults also keep a new
+        # student's empty history valid without manufacturing a placeholder ID.
+        return case(values, value=column, else_=default) if values else literal(default)
 
-    questions = sorted(db.execute(statement), key=priority)[:limit]
+    due = {oid: int(not row['due']) for oid, row in recommendations.items()}
+    accuracies = {oid: row['recent_accuracy'] if row['recent_accuracy'] is not None else -1 for oid, row in recommendations.items()}
+    suggested = {oid: DIFFICULTIES.index(row['recommended_difficulty']) for oid, row in recommendations.items()}
+    difficulty_rank = priority_case({name: index for index, name in enumerate(DIFFICULTIES)}, m.Question.difficulty, 0)
+    statement = statement.order_by(
+        priority_case(dict(seen), m.Question.id, 0),
+        priority_case(due, m.Question.outcome_id, 0),
+        priority_case(accuracies, m.Question.outcome_id, -1),
+        func.abs(difficulty_rank - priority_case(suggested, m.Question.outcome_id, 0)),
+        m.Question.id,
+    ).limit(limit)
+    questions = db.execute(statement).all()
     translations = {}
     if user.language == 'si' and questions:
         translations = {row.question_id: row for row in db.scalars(select(m.Translation).where(m.Translation.question_id.in_([question.id for question in questions]), m.Translation.language == 'si', m.Translation.reviewed == True))}

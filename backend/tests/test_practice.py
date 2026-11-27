@@ -9,7 +9,7 @@ from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import func, select
+from sqlalchemy import event, func, select
 
 from app import models as m
 from app.main import app
@@ -254,3 +254,93 @@ def test_concurrent_request_retries_are_transactional(signed, env, monkeypatch, 
         assert db.scalar(select(func.count()).select_from(m.PracticeAnswer)) == 1
     if not different_payload:
         assert results[0].json() == results[1].json()
+
+
+def test_practice_fetches_only_requested_question_bodies_from_large_bank(signed, env):
+    with env() as db:
+        for index in range(120):
+            db.add(m.Question(outcome_id='3.1-test', kind='mcq', difficulty='easy', prompt=f'Large approved practice-bank question {index}: ' + 'x' * 1000, options=[{'id': key, 'text': text * 100} for key, text in zip('ABCD', ['alpha', 'bravo', 'charlie', 'delta'])], key={'answer': 'B'}, explanation='Private marking material', status='approved', sources=[], author_id=2, rubric=[]))
+        db.commit()
+    client = signed()
+    engine = env.kw['bind']
+    bodies = []
+    option_reads = []
+
+    def record(_connection, cursor, statement, parameters, _context, _many):
+        if statement.lstrip().upper().startswith('SELECT'):
+            if 'questions.options' in statement:
+                option_reads.append(statement)
+            if 'questions.prompt' in statement:
+                bodies.append((statement, cursor.rowcount))
+
+    event.listen(engine, 'after_cursor_execute', record)
+    try:
+        response = client.get('/api/practice?limit=3')
+    finally:
+        event.remove(engine, 'after_cursor_execute', record)
+    assert response.status_code == 200, response.text
+    assert len(response.json()['questions']) == 3
+    assert len(bodies) == len(option_reads) == 1
+    statement, fetched = bodies[0]
+    assert 'LIMIT' in statement.upper() and fetched == 3
+    assert 'questions.key' not in statement and 'questions.rubric' not in statement and 'questions.explanation' not in statement
+
+
+def test_sql_practice_priority_preserves_unseen_due_and_difficulty_order(signed, env):
+    now = datetime.now(timezone.utc)
+    with env() as db:
+        db.add(m.Outcome(id='weak-topic', unit_id=3, subtopic='Fixture', competency='Fixture', level='3.1', text='A weak fixture topic', source_page=21, verified=True))
+        db.commit()
+        seen_weak = new_question(db, outcome_id='weak-topic', difficulty='easy')
+        weak_hard = new_question(db, outcome_id='weak-topic', difficulty='hard')
+        strong_hard = new_question(db, difficulty='hard')
+        weak_medium = new_question(db, outcome_id='weak-topic', difficulty='medium')
+        weak_easy = new_question(db, outcome_id='weak-topic', difficulty='easy')
+        db.add_all([
+            m.PracticeAnswer(student_id=1, question_id=seen_weak, value='Wrong', score=0, reason='Fixture evidence', request_id=str(uuid4()), created=now-timedelta(days=2)),
+            m.PracticeAnswer(student_id=1, question_id=1, value='B', score=1, reason='Fixture evidence', request_id=str(uuid4()), created=now),
+        ])
+        db.commit()
+    client = signed()
+    result = client.get('/api/practice?limit=10').json()['questions']
+    assert [question['id'] for question in result] == [weak_easy, weak_medium, weak_hard, strong_hard, seen_weak, 1]
+    assert [question['id'] for question in client.get('/api/practice?outcome_id=weak-topic&difficulty=medium').json()['questions']] == [weak_medium]
+
+
+def expired_saved_attempts(db):
+    started = datetime.now(timezone.utc)-timedelta(hours=2)
+    own = m.Attempt(assessment_id=1, student_id=1, started=started, submitted=False)
+    foreign = m.Attempt(assessment_id=1, student_id=5, started=started, submitted=False)
+    db.add_all([own, foreign])
+    db.flush()
+    for attempt in (own, foreign):
+        db.add(m.Answer(attempt_id=attempt.id, question_id=1, value='B', score=None, reason='Awaiting submission'))
+    db.commit()
+    return own.id, foreign.id
+
+
+@pytest.mark.parametrize('path', ['/api/practice', '/api/revision'])
+def test_practice_reads_finalize_and_commit_only_own_expired_assessments(signed, env, path):
+    with env() as db:
+        own, foreign = expired_saved_attempts(db)
+    client = signed()
+    response = client.get(path)
+    assert response.status_code == 200, response.text
+    if path == '/api/revision':
+        assert response.json()['outcomes'][0]['accuracy'] == 100
+    with env() as db:
+        assert db.get(m.Attempt, own).submitted is True
+        assert db.get(m.Answer, (own, 1)).score == 1
+        assert db.get(m.Attempt, foreign).submitted is False
+        assert db.get(m.Answer, (foreign, 1)).score is None
+
+
+def test_practice_authorizes_student_before_any_deadline_finalization(signed, env):
+    with env() as db:
+        own, foreign = expired_saved_attempts(db)
+    client = signed(2, 'teacher')
+    assert client.get('/api/practice').status_code == 403
+    assert client.get('/api/revision').status_code == 403
+    with env() as db:
+        assert db.get(m.Attempt, own).submitted is False
+        assert db.get(m.Attempt, foreign).submitted is False

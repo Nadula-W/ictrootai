@@ -1,0 +1,15 @@
+.sidebar{overflow-y:auto;overscroll-behavior:contain}
+.sidebar nav{flex-shrink:0}
+.sidebar-bottom{flex-shrink:0}
+.nav-item{font-size:.875rem}
+.logout{font-size:.875rem;min-height:36px}
+.profile-row strong{font-size:.8rem}
+.profile-row small{font-size:.75rem}
+.breadcrumb{font-size:.8rem}
+.main-shell .language{font-size:.8rem}
+@media (max-height:850px) and (min-width:901px){
+ .sidebar{padding-top:20px}
+ .sidebar .workspace{margin:18px 0}
+ .sidebar .local-card{display:none}
+ .sidebar-bottom{padding-top:12px}
+}
