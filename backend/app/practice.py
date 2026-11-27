@@ -125,14 +125,25 @@ def _display_question(question, user, translations):
     result['language_notice'] = None
     if user.language == 'si':
         translated = translations.get(question.id)
-        if translated:
+        content = translated.content if translated and isinstance(translated.content, dict) else {}
+        prompt = content.get('prompt')
+        options = content.get('options', [])
+        valid_prompt = isinstance(prompt, str) and 5 <= len(prompt) <= 10000 and bool(prompt.strip())
+        valid_options = isinstance(options, list) and len(options) == len(question.options) and all(
+            isinstance(option, dict) and option.get('id') == original['id']
+            and isinstance(option.get('text'), str) and 1 <= len(option['text']) <= 1000
+            and bool(option['text'].strip())
+            for option, original in zip(options, question.options)
+        )
+        if valid_prompt and valid_options:
             # Whitelist display fields even if an old translation contains other
-            # JSON keys; a reviewed translation is never an answer-key channel.
-            result['prompt'] = translated.content.get('prompt', question.prompt)
-            result['options'] = [{'id': option['id'], 'text': option['text']} for option in translated.content.get('options', question.options)]
+            # JSON keys; require the approved option IDs and order as well.
+            # Malformed legacy JSON must fall back rather than fail the request.
+            result['prompt'] = prompt
+            result['options'] = [{'id': option['id'], 'text': option['text']} for option in options]
             result['language'] = 'si'
         else:
-            result['language_notice'] = 'Reviewed Sinhala translation unavailable. Showing original English.'
+            result['language_notice'] = 'Reviewed Sinhala translation unavailable or invalid. Showing original English.'
     return result
 
 

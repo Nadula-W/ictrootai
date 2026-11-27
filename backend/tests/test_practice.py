@@ -199,6 +199,49 @@ def test_reviewed_translations_cannot_inject_marking_fields(signed, env):
     assert 'LEAK' not in str(result)
 
 
+@pytest.mark.parametrize('content', [
+    ['not', 'a', 'display', 'object'],
+    {'prompt': {'key': 'PRIVATE'}, 'options': []},
+    {'prompt': '     ', 'options': []},
+    {'prompt': 'Translated prompt', 'options': 'not an option array'},
+    {'prompt': 'Translated prompt', 'options': [{'id': oid, 'text': oid} for oid in 'BACD']},
+    {'prompt': 'Translated prompt', 'options': [{'id': oid, 'text': oid} for oid in 'ABCE']},
+    {'prompt': 'Translated prompt', 'options': [{'id': oid, 'text': oid} for oid in 'ABC']},
+    {'prompt': 'Translated prompt', 'options': [{'id': oid, 'text': None} for oid in 'ABCD']},
+])
+def test_invalid_legacy_practice_translation_falls_back_without_changing_identifiers(signed, env, content):
+    with env() as db:
+        db.get(m.User, 1).language = 'si'
+        db.add(m.Translation(question_id=1, language='si', reviewed=True, content=content))
+        db.commit()
+    response = signed().get('/api/practice')
+    assert response.status_code == 200, response.text
+    question = response.json()['questions'][0]
+    assert question['language'] == 'en'
+    assert 'invalid' in question['language_notice']
+    assert question['prompt'] == 'Which number is binary thirteen?'
+    assert question['options'] == [{'id': oid, 'text': text} for oid, text in zip('ABCD', ['1110', '1101', '1100', '1111'])]
+    assert not any(field in question for field in ('key', 'explanation', 'rubric', 'sources'))
+
+
+def test_valid_reviewed_practice_translation_retains_display_text_and_option_order(signed, env):
+    with env() as db:
+        db.get(m.User, 1).language = 'si'
+        db.add(m.Translation(question_id=1, language='si', reviewed=True, content={
+            'prompt': 'Reviewed translated prompt',
+            'options': [{'id': oid, 'text': 'Translated ' + oid, 'misconception': 'PRIVATE'} for oid in 'ABCD'],
+            'id': 9000, 'key': {'answer': 'PRIVATE'},
+        }))
+        db.commit()
+    response = signed().get('/api/practice')
+    assert response.status_code == 200, response.text
+    question = response.json()['questions'][0]
+    assert question['id'] == 1 and question['language'] == 'si'
+    assert question['prompt'] == 'Reviewed translated prompt'
+    assert question['options'] == [{'id': oid, 'text': 'Translated ' + oid} for oid in 'ABCD']
+    assert 'PRIVATE' not in response.text
+
+
 @pytest.mark.parametrize('values,difficulty,days', [([0, 0.5], 'easy', 1), ([1, 0.5], 'medium', 3), ([1, 1], 'hard', 7)])
 def test_revision_heuristic_uses_only_marked_recent_responses(values, difficulty, days):
     now = datetime(2026, 11, 22, tzinfo=timezone.utc)

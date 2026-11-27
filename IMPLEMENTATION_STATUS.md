@@ -1,4 +1,8 @@
-# Implementation status — updated 2026-11-22
+# Implementation status — updated 2026-11-27
+
+**Resumed development — 2026-11-27:** Saved Supabase connection checked successfully at revision `0004`. Both reviewed conversion-note resources are indexed. Seven approved questions remain; the earlier live generation attempts logged `ValueError`, so successful source-grounded generation is still unverified. Curriculum source verification is complete for the 2017 document; current examination applicability and broad reviewed question coverage remain separate requirements.
+
+Hardened practice display against malformed legacy Sinhala translation JSON: only validated prompt/option display fields with the original option IDs/order may appear. Invalid translations fall back to English and cannot expose marking fields. Local backend run: **153 passed, 120 skipped**, with the existing upstream warning; Docker did not finish starting, so no new local PostgreSQL integration pass is claimed. The GitHub run for baseline `91aca44` passed its PostgreSQL backend job and failed a frontend browser check; that baseline result does not substitute for validation of these new changes. UI publication, cloning and language work are being checked before their next commit.
 
 **Completion work — 2026-11-22, in progress:** Rechecked the saved Supabase connection successfully at revision `0002`; the project is `ACTIVE_HEALTHY`. Source review of all 14 units is underway, including missing IoT outcomes and misassigned Business records. A live demo password was present in the public README: removed it, rotated only the three development demo accounts, and revoked their old sessions. New credentials are stored in ignored `backend/.env-demo-accounts`; existing learning records and the database password are preserved. Meaningful, validated milestones will be committed and pushed to the existing GitHub repository as requested.
 
