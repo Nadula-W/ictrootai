@@ -35,6 +35,8 @@ Open **http://localhost:3000**. API documentation is at **http://127.0.0.1:8000/
 
 Teachers can save an assessment draft and publish it later from **Assessments → Publish assessment**. **Edit as new draft** copies an approved question into a new draft while preserving its original. **My classes** contains class and individual learner reports. Students can use **Recommended practice** for saved feedback and revision suggestions. Select Sinhala in **Profile** or the language control for core navigation and editor labels; question translations still require separate review and otherwise fall back to English.
 
+Teachers manage source notes, resource review/indexing and local AI in **Teaching resources**. In **Create assessment**, choose **Question bank**, **Generate with AI**, or **Mix bank + AI**. Select the learning outcomes and counts, generate drafts, check their answers and sources, and approve them before saving or publishing the exam. AI failures preserve saved drafts and never substitute unreviewed questions. New teachers select the teacher account type at registration or request access in Profile; the administrator's workspace accepts or declines those applications.
+
 ## First-time setup
 
 Install Node.js 24 LTS, Python 3.13 and Ollama for Windows. Commands below use Command Prompt and a project-local virtual environment.
