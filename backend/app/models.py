@@ -22,6 +22,16 @@ class Session(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), index=True)
     expires: Mapped[datetime] = mapped_column(DateTime(timezone=True))
 
+class TeacherApplication(Base):
+    __tablename__='teacher_applications'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id'),unique=True)
+    status: Mapped[str] = mapped_column(String(20),default='pending')
+    message: Mapped[str] = mapped_column(Text,default='')
+    reason: Mapped[str] = mapped_column(Text,default='')
+    reviewer_id: Mapped[int|None] = mapped_column(ForeignKey('users.id'),nullable=True,index=True)
+    created: Mapped[datetime] = mapped_column(DateTime(timezone=True),default=now)
+
 class CurriculumVersion(Base):
     __tablename__ = 'curriculum_versions'
     id: Mapped[str] = mapped_column(String(80), primary_key=True)

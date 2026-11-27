@@ -15,7 +15,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy import select, text, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DBSession
-from . import models as m, ai, assessment_tools, practice
+from . import models as m, ai, assessment_tools, practice, teacher_applications
 from .database import get_db
 from .config import settings
 from .security import current_user, staff, admin, hash_password, verify_password, digest
@@ -25,6 +25,7 @@ from .verification import mark
 app=FastAPI(title='ICTRoot AI',version='0.1.0')
 app.include_router(assessment_tools.router)
 app.include_router(practice.router)
+app.include_router(teacher_applications.router)
 limits={}
 limit_lock=threading.Lock()
 
@@ -175,7 +176,7 @@ def curriculum_source():
     return FileResponse(Path(__file__).resolve().parents[2]/'curriculum/nie-ict-2017.pdf',media_type='application/pdf',headers={'Content-Disposition':'inline; filename="nie-ict-2017.pdf"'})
 
 @app.post('/api/admin/curriculum')
-def import_curriculum(data:CurriculumImport,user=Depends(admin),db:DBSession=Depends(get_db)):
+def import_curriculum(data:CurriculumImport,user=Depends(staff),db:DBSession=Depends(get_db)):
     for row in data.outcomes:
         if not db.get(m.Unit,row.unit_id):raise HTTPException(422,'Unknown unit')
         o=db.get(m.Outcome,row.id)
@@ -424,7 +425,7 @@ def export(user=Depends(staff),db:DBSession=Depends(get_db)):
     return Response(output.getvalue(),media_type='text/csv',headers={'Content-Disposition':'attachment; filename=ictroot-report.csv'})
 
 @app.get('/api/admin/ai')
-def ai_status(user=Depends(admin),db:DBSession=Depends(get_db)):
+def ai_status(user=Depends(staff),db:DBSession=Depends(get_db)):
     try:
         models=ai.local_models();return {'connected':True,'models':[m['name'] for m in models],'selected':ai.model_name(db),'embedding_model':settings.embedding_model,'embedding_available':ai.model_installed(settings.embedding_model,models)}
     except Exception:return {'connected':False,'models':[],'selected':ai.model_name(db),'embedding_available':False,'message':'Ollama unavailable. Approved questions and deterministic marking remain usable.'}
@@ -433,7 +434,7 @@ class ModelInput(BaseModel):
     model:str=Field(max_length=150)
 
 @app.put('/api/admin/ai')
-def configure_model(data:ModelInput,user=Depends(admin),db:DBSession=Depends(get_db)):
+def configure_model(data:ModelInput,user=Depends(staff),db:DBSession=Depends(get_db)):
     try:names=[x['name'] for x in ai.local_models()]
     except Exception:raise HTTPException(503,'Ollama unavailable')
     if data.model not in names:raise HTTPException(422,'Choose an installed local model')
@@ -446,7 +447,7 @@ def configure_model(data:ModelInput,user=Depends(admin),db:DBSession=Depends(get
 def generation_readiness(outcome_id:str,user=Depends(staff),db:DBSession=Depends(get_db)):
     outcome=db.get(m.Outcome,outcome_id)
     if not outcome or not outcome.verified:
-        return {'ready':False,'code':'outcome_unverified','message':'This syllabus learning outcome has not been checked against its official source. Choose a source-verified outcome or ask an administrator to review it.','outcome_id':outcome_id,'reviewed_resources':0,'indexed_resources':0}
+        return {'ready':False,'code':'outcome_unverified','message':'This syllabus learning outcome has not been checked against its official source. Choose a source-verified outcome or review its official source in Curriculum.','outcome_id':outcome_id,'reviewed_resources':0,'indexed_resources':0}
     resources=db.scalars(select(m.Resource).where(m.Resource.outcome_id==outcome.id)).all()
     reviewed=[r for r in resources if r.reviewed]
     response={'outcome_id':outcome_id,'reviewed_resources':len(reviewed),'indexed_resources':sum(bool(r.embedding) and r.embedding_model==settings.embedding_model for r in reviewed)}
@@ -481,11 +482,11 @@ def generate_question(data:GenerateInput,response:Response,user=Depends(staff),d
     db.add(m.GenerationLog(model=ai.model_name(db),outcome_id=outcome.id,status='draft_created'));db.commit();return {'id':q.id,'status':'draft'}
 
 @app.get('/api/admin/resources')
-def resources(user=Depends(admin),db:DBSession=Depends(get_db)):
+def resources(user=Depends(staff),db:DBSession=Depends(get_db)):
     return [{'id':r.id,'outcome_id':r.outcome_id,'title':r.title,'source':r.source,'text':r.text,'reviewed':r.reviewed,'indexed':bool(r.embedding)} for r in db.scalars(select(m.Resource))]
 
 @app.post('/api/admin/resources')
-async def upload_resource(outcome_id:str=Form(...),title:str=Form(...),source:str=Form(...),file:UploadFile=File(...),user=Depends(admin),db:DBSession=Depends(get_db)):
+async def upload_resource(outcome_id:str=Form(...),title:str=Form(...),source:str=Form(...),file:UploadFile=File(...),user=Depends(staff),db:DBSession=Depends(get_db)):
     if not db.get(m.Outcome,outcome_id):raise HTTPException(422,'Unknown learning outcome')
     data=await file.read(5*1024*1024+1)
     if len(data)>5*1024*1024:raise HTTPException(413,'Maximum file size is 5 MB')
@@ -508,13 +509,13 @@ async def upload_resource(outcome_id:str=Form(...),title:str=Form(...),source:st
     db.commit();return {'chunks':len(chunks),'status':'unreviewed'}
 
 @app.post('/api/admin/resources/{rid}/review')
-def review_resource(rid:int,data:Decision,user=Depends(admin),db:DBSession=Depends(get_db)):
+def review_resource(rid:int,data:Decision,user=Depends(staff),db:DBSession=Depends(get_db)):
     r=db.get(m.Resource,rid)
     if not r:raise HTTPException(404,'Resource not found')
     r.reviewed=data.decision=='approved';r.embedding=None;r.embedding_model=None;db.commit();return {'reviewed':r.reviewed}
 
 @app.post('/api/admin/resources/{rid}/index')
-def index_resource(rid:int,user=Depends(admin),db:DBSession=Depends(get_db)):
+def index_resource(rid:int,user=Depends(staff),db:DBSession=Depends(get_db)):
     rate_limit(f'index:{user.id}',10)
     r=db.get(m.Resource,rid)
     if not r or not r.reviewed:raise HTTPException(422,'Review resource before indexing')
@@ -538,7 +539,7 @@ def set_role(uid:int,data:RoleInput,user=Depends(admin),db:DBSession=Depends(get
     db.commit();return public_user(target)
 
 @app.get('/api/admin/logs')
-def logs(user=Depends(admin),db:DBSession=Depends(get_db)):
+def logs(user=Depends(staff),db:DBSession=Depends(get_db)):
     return [{'id':r.id,'model':r.model,'outcome_id':r.outcome_id,'status':r.status,'created':r.created.isoformat()} for r in db.scalars(select(m.GenerationLog).order_by(m.GenerationLog.id.desc()).limit(100))]
 
 class TranslationInput(BaseModel):
